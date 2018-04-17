@@ -1,0 +1,138 @@
+<?xml version='1.0' encoding='utf-8'?>
+<agent name='(agCargarCambioEstado)' alias='agCargarCambioEstado' xmlns='http://www.lotus.com/dxl'
+ version='9.0' maintenanceversion='1.9' replicaid='052581670049F6C5' hide='v3'
+ runaswebuser='true' publicaccess='false' designerversion='8.5.3'>
+<noteinfo noteid='5d6' unid='2591AD757D35682C05257C0C005A7155' sequence='75'>
+<created><datetime>20131022T112752,53-05</datetime></created>
+<modified><datetime>20170724T082913,20-05</datetime></modified>
+<revised><datetime>20170724T082913,19-05</datetime></revised>
+<lastaccessed><datetime>20170724T082913,20-05</datetime></lastaccessed>
+<addedtofile><datetime>20170724T082759,34-05</datetime></addedtofile></noteinfo>
+<updatedby><name>CN=Admin Desarrollo/O=cognox</name><name>CN=Administrador Aplicaciones/O=GNCH</name><name
+>CN=Admin Desarrollo/O=cognox</name><name>CN=Administrador Aplicaciones/O=GNCH</name><name
+>CN=Admin Desarrollo/O=cognox</name><name>CN=Administrador Aplicaciones/O=GNCH</name><name
+>CN=Admin Desarrollo/O=cognox</name><name>CN=Administrador Aplicaciones/O=GNCH</name><name
+>CN=Admin Desarrollo/O=cognox</name><name>CN=Administrador Aplicaciones/O=GNCH</name><name
+>CN=Admin Desarrollo/O=cognox</name><name>CN=Administrador Aplicaciones/O=GNCH</name><name
+>CN=Admin Desarrollo/O=cognox</name><name>CN=Administrador Aplicaciones/O=GNCH</name><name
+>CN=Admin Desarrollo/O=cognox</name><name>CN=Administrador Aplicaciones/O=GNCH</name><name
+>CN=Admin Desarrollo/O=cognox</name><name>CN=Administrador Aplicaciones/O=GNCH</name><name
+>CN=Admin Desarrollo/O=cognox</name><name>CN=Administrador DEV/O=DEV</name><name
+>CN=Admin Desarrollo/O=cognox</name><name>CN=Administrador DEV/O=DEV</name><name
+>CN=Admin Desarrollo/O=cognox</name><name>CN=Administrador DEV/O=DEV</name><name
+>CN=Administrador Aplicaciones/O=GNCH</name><name>CN=Admin Desarrollo/O=cognox</name><name
+>CN=Administrador Aplicaciones/O=GNCH</name><name>CN=Admin Desarrollo/O=cognox</name><name
+>CN=Administrador Aplicaciones/O=GNCH</name><name>CN=Admin Desarrollo/O=cognox</name><name
+>CN=Administrador Aplicaciones/O=GNCH</name><name>CN=Admin Desarrollo/O=cognox</name><name
+>CN=Administrador Aplicaciones/O=GNCH</name><name>CN=Admin Desarrollo/O=cognox</name><name
+>CN=Administrador Aplicaciones/O=GNCH</name><name>CN=Diego Alexander Velasco Acevedo/O=desarrollo</name></updatedby>
+<wassignedby><name>CN=Diego Alexander Velasco Acevedo/O=desarrollo</name></wassignedby>
+<designchange><datetime>20170724T082910,46-05</datetime></designchange>
+<trigger type='agentlist'/>
+<documentset type='runonce'/><code event='options'><lotusscript>Option Public
+Option Declare
+
+
+</lotusscript></code><code event='initialize'><lotusscript>Sub Initialize
+	On Error Goto label
+	Dim ns As New NotesSession
+	Dim db As NotesDatabase
+	Dim nd As NotesDocument
+	Dim vwTransiciones As NotesView
+	Dim vwUniques As NotesView 
+	Dim vec As NotesViewEntryCollection
+	Dim ve As NotesViewEntry
+	Dim dcTransiciones As NotesDocumentCollection
+	Dim ndTransicion As NotesDocument
+	Dim ndPrincipal As NotesDocument
+	Dim ndEstado As NotesDocument
+	Dim claves(1) As String
+	Dim existeDestino As boolean
+	Dim posicion As Integer
+	Dim sError As String
+	Dim orden As Integer
+	Dim i As Integer 
+	Dim contador As Integer 
+	 		
+	Set db = ns.CurrentDatabase
+	Set nd = ns.DocumentContext
+	Set vwUniques = db.GetView("vwProgUniques")
+	Set vwTransiciones = db.GetView("vwProgTransicionesDireccion")
+	 
+	If nd.edicion(0) = "0" Then 
+		Set ndPrincipal = vwUniques.GetDocumentByKey(nd.uniquePadre(0), True)
+		nd.autor = ndPrincipal.autor
+	End If
+	
+	orden = -1
+	nd.posicionDestino = ""
+	claves(0) = nd.flujo(0)+nd.estadoOrigen(0)+nd.direccion(0)
+	claves(1) = "Si"
+	
+	i = 1
+	existeDestino = False
+	Set dcTransiciones = vwTransiciones.GetAllDocumentsByKey(claves, True)
+	
+	Set ndTransicion = dcTransiciones.GetFirstDocument
+	While Not ndTransicion Is Nothing
+		contador = 0
+		ForAll x In ndTransicion.condiciones
+			
+		End ForAll
+		Set ndEstado = vwUniques.GetDocumentByKey(ndTransicion.estadoDestino(0), True)
+		If contador = UBound(ndTransicion.condiciones) + 1 And CInt(ndEstado.posicion(0)) &gt; orden Then
+			existeDestino = True
+			posicion = i
+			orden = CInt(ndEstado.posicion(0))
+			nd.destinos = ndTransicion.nomEstadoDestino(0) +"|"+ ndTransicion.estadoDestino(0)
+		End If
+		i = i + 1
+		Set ndTransicion = dcTransiciones.GetNextDocument(ndTransicion)
+	Wend
+	
+	If Not existeDestino Then
+		i = 1
+		claves(1) = "No"
+		Set dcTransiciones = vwTransiciones.GetAllDocumentsByKey(claves, True)
+		Set ndTransicion = dcTransiciones.GetFirstDocument
+		While Not ndTransicion Is Nothing
+			Set ndEstado = vwUniques.GetDocumentByKey(ndTransicion.estadoDestino(0), True)
+			If CInt(ndEstado.posicion(0)) &gt; orden Then
+				existeDestino = True
+				posicion = i
+				orden = CInt(ndEstado.posicion(0))
+				nd.destinos = ndTransicion.nomEstadoDestino(0) +"|"+ ndTransicion.estadoDestino(0)
+			End If
+			i = i + 1
+			Set ndTransicion = dcTransiciones.GetNextDocument(ndTransicion)
+		Wend
+	End If
+		
+	If existeDestino Then	
+		Set ndTransicion = dcTransiciones.GetNthDocument(posicion)
+		Set ndEstado = vwUniques.GetDocumentByKey(ndTransicion.estadoDestino(0), True)
+		If Not ndEstado Is Nothing Then
+			nd.posicionDestino = ndEstado.ubicacion
+			nd.estadoDestino = ndTransicion.estadoDestino
+		End If
+	Else
+		sError = "No ha sido posible identificar el nuevo estado&lt;br&gt;Por favor, comuníquese con el administrador del sistema"
+	End If
+
+salir:
+	nd.sError = sError
+	Exit Sub
+label:
+	sError = "Error al abrir la página. " &amp; " (" &amp; CStr(Erl) &amp; ") " &amp; Error$
+	Msgbox "Error en agCargarCambioEstado . " &amp; " (" &amp; Cstr(Erl) &amp; ") " &amp; Error$
+	Resume salir
+End Sub</lotusscript></code>
+<rundata processeddocs='0' exitcode='0'>
+<agentmodified><datetime>20140523T082835,44-05</datetime></agentmodified>
+<agentrun><datetime>20140523T083024,38-05</datetime></agentrun>
+<runlog>Started running agent '(agCargarCambioEstado)|agCargarCambioEstado' on 23/05/2014 08:30:24 a.m.
+Ran LotusScript code
+Done running agent '(agCargarCambioEstado)|agCargarCambioEstado' on 23/05/2014 08:30:24 a.m.
+</runlog></rundata>
+<item name='$POID'><datetime>20170323T155827,10-05</datetime></item></agent>
+

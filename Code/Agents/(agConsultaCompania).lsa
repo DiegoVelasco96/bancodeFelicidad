@@ -1,0 +1,83 @@
+<?xml version='1.0' encoding='utf-8'?>
+<agent name='(agConsultaCompania)' alias='agConsultaCompania' xmlns='http://www.lotus.com/dxl'
+ version='9.0' maintenanceversion='1.9' replicaid='052581670049F6C5' hide='v3'
+ publicaccess='false' designerversion='8.5.3'>
+<noteinfo noteid='fbe' unid='C2713661BE856A3505257F1E0059D641' sequence='43'>
+<created><datetime>20151217T112115,53-05</datetime></created>
+<modified><datetime>20170724T082913,28-05</datetime></modified>
+<revised><datetime>20170724T082913,27-05</datetime></revised>
+<lastaccessed><datetime>20170724T082913,28-05</datetime></lastaccessed>
+<addedtofile><datetime>20170724T082811,56-05</datetime></addedtofile></noteinfo>
+<updatedby><name>CN=Administrador Aplicaciones/O=GNCH</name><name>CN=Admin Desarrollo/O=cognox</name><name
+>CN=Administrador Aplicaciones/O=GNCH</name><name>CN=Admin Desarrollo/O=cognox</name><name
+>CN=Administrador Aplicaciones/O=GNCH</name><name>CN=Admin Desarrollo/O=cognox</name><name
+>CN=Administrador Aplicaciones/O=GNCH</name><name>CN=Admin Desarrollo/O=cognox</name><name
+>CN=Administrador Aplicaciones/O=GNCH</name><name>CN=Admin Desarrollo/O=cognox</name><name
+>CN=Administrador Aplicaciones/O=GNCH</name><name>CN=Diego Alexander Velasco Acevedo/O=desarrollo</name></updatedby>
+<wassignedby><name>CN=Diego Alexander Velasco Acevedo/O=desarrollo</name></wassignedby>
+<designchange><datetime>20170724T082910,49-05</datetime></designchange>
+<trigger type='agentlist'/>
+<documentset type='runonce'/><code event='options'><lotusscript>Option Public
+Option Declare
+Use "LSCorreo"
+
+</lotusscript></code><code event='initialize'><lotusscript>Sub Initialize
+	On Error GoTo label 
+	
+	Print "Cache-Control:no-cache"
+	Print "Content-Type:application/json;charset=ISO-8859-1"
+	
+	Dim arrParametros As Variant	
+	Dim sParametros As String 
+	Dim sError As String
+	Dim nd As NotesDocument
+	Dim ns As New NotesSession
+	Dim db As NotesDatabase
+	Dim vwCfg As NotesView
+	Dim ndAux As NotesDocument 
+	Dim ndAuxAjax As NotesDocument  
+	Dim webDbName As Variant
+	Dim ndCfg As NotesDocument
+	Dim companias As String 
+	Dim separador As String
+	
+	companias = |[|
+	separador = ""
+
+	webDbName = Evaluate("@WebDBName")	
+	Set db = ns.CurrentDatabase
+	Set vwCfg = db.Getview("vwProgTodos")
+	
+	Set ndCfg = vwCfg.Getdocumentbykey("frGeneral", True)
+	
+	Set ndAux = New NotesDocument(db)
+	Set ndAuxAjax = New NotesDocument(db)
+	
+	Set nd = ns.DocumentContext
+	
+
+	sParametros = StrRight(nd.Query_String_Decoded(0),"&amp;")
+	arrParametros = Split(sParametros,"&amp;")
+	
+	ForAll parametro In arrParametros
+		Call ndAuxAjax.ReplaceItemValue(StrLeft(parametro,"="), StrRight(parametro,"="))
+	End ForAll	
+	
+	ForAll x In ndCfg.codigoCompania
+		companias = companias + (separador + |{"codigo":"|+x+|"}|)
+		separador = ","
+	End ForAll
+salir:
+	companias = companias + |]|
+	Print |{"sError": "| + sError + |", "companias":| + companias + |}|	
+		
+	Exit Sub
+label:
+	sError = "Error en Consultar compania. " &amp; " (" &amp; CStr(Erl) &amp; ") " &amp; Error$
+	MsgBox "Error en agConsultaCompania. " &amp; " (" &amp; CStr(Erl) &amp; ") " &amp; Error$
+	Resume salir
+End Sub</lotusscript></code>
+<rundata processeddocs='0' exitcode='0'>
+<agentmodified><datetime>20160129T080151,52-05</datetime></agentmodified></rundata>
+<item name='$POID'><datetime>20170323T155827,18-05</datetime></item></agent>
+

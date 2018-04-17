@@ -1,0 +1,220 @@
+<?xml version='1.0' encoding='utf-8'?>
+<form name='Admon / Estado' alias='frEstado' xmlns='http://www.lotus.com/dxl'
+ version='9.0' maintenanceversion='1.9' replicaid='052581670049F6C5' nocompose='true'
+ publicaccess='false' designerversion='8.5.3' editonopen='true' renderpassthrough='true'>
+<noteinfo noteid='582' unid='92A120323C165D5705257C0B006CD6B8' sequence='67'>
+<created><datetime>20131021T144848,56-05</datetime></created>
+<modified><datetime>20170724T092435,70-05</datetime></modified>
+<revised><datetime>20170724T092435,69-05</datetime></revised>
+<lastaccessed><datetime>20170724T092435,70-05</datetime></lastaccessed>
+<addedtofile><datetime>20170724T082758,94-05</datetime></addedtofile></noteinfo>
+<updatedby><name>CN=Diego Alexander Velasco Acevedo/O=desarrollo</name></updatedby>
+<wassignedby><name>CN=Diego Alexander Velasco Acevedo/O=desarrollo</name></wassignedby><code
+ event='webquerysave'><formula>@Command([ToolsRunMacro]; "agGuardarConfiguracion")</formula></code>
+<body><richtext>
+<pardef id='1' leftmargin='1in' tabs='L0.5000in L1in L1.1806in L1.3778in L1.5743in L1.7715in L1.9681in L2.1653in L2.3618in L2.5590in L2.7556in L2.9521in L3.1493in L3.3458in L3.5431in L3.7396in L3.9368in'/><subformref
+><code event='value'><formula>"sfrHeader"</formula></code></subformref>
+<par def='1'/>
+<pardef id='2' hide='notes web mobile'/>
+<par def='2'><run><font color='red'/></run><run><font color='red'/><field
+ type='text' kind='editable' name='form'><code event='defaultvalue'><formula
+>"frEstado"</formula></code></field></run><compositedata type='98' prevtype='65418'
+ nexttype='222' afterparcount='10' containertype='65418' aftercontainercount='1'
+ afterbegincount='3'>
+Yg4BAIQAAAAAAAAAAAA=
+</compositedata><run><font color='red'/></run><run><font
+ color='red'/><field type='text' kind='editable' name='keyForm'><code event='defaultvalue'><formula
+>"Configuración estado"</formula></code></field></run><compositedata type='98'
+ prevtype='65418' nexttype='222' afterparcount='19' containertype='65418'
+ aftercontainercount='1' afterbegincount='3'>
+Yg4BAIQAAAAAAAAAAAA=
+</compositedata><run><font color='red'/></run><run
+><font color='red'/><field type='text' kind='computedfordisplay' name='SaveOptions'><code
+ event='defaultvalue'><formula>"1"</formula></code></field></run><compositedata
+ type='98' prevtype='65418' nexttype='222' afterparcount='28' containertype='65418'
+ aftercontainercount='1' afterbegincount='3'>
+Yg4BAIQAAAAAAAAAAAA=
+</compositedata><run><font color='red'/></run><run
+><font color='red'/><field type='text' kind='computedfordisplay' name='redireccion'><code
+ event='defaultvalue'><formula>"vwEstados?Open"</formula></code></field></run><compositedata
+ type='98' prevtype='65418' nexttype='222' afterparcount='37' containertype='65418'
+ aftercontainercount='1' afterbegincount='3'>
+Yg4BAIQAAAAAAAAAAAA=
+</compositedata><run html='true'><font
+ color='red'/></run></par>
+<pardef id='3'/>
+<par def='3'/><subformref><code event='value'><formula>"sfrHeaderConfiguracion"</formula></code></subformref>
+<pardef id='4' leftmargin='1in' tabs='L1.1806in L1.3778in L1.5743in L1.7715in L1.9681in L2.1653in L2.3618in L2.5590in L2.7556in L2.9521in L3.1493in L3.3458in L3.5431in L3.7396in L3.9368in'/>
+<par def='4'/>
+<table widthtype='fitmargins' refwidth='9.2083in'><tablecolumn width='21.3438%'/><tablecolumn
+ width='78.6563%'/>
+<tablerow>
+<tablecell borderwidth='0px' htmlclass='etiqueta'>
+<pardef id='6' keepwithnext='true' keeptogether='true'/>
+<par def='6'>Flujo</par></tablecell>
+<tablecell borderwidth='0px'>
+<pardef id='7' keepwithnext='true' keeptogether='true'/>
+<par def='7'><field type='keyword' kind='editable' name='flujo'><keywords
+ ui='dialoglist'><formula>opciones:=@DbColumn("":"NoCache";"";"vwProgFlujos";2);
+defecto:=""+"|"+"";
+defecto:opciones</formula></keywords></field></par>
+<pardef id='8' hide='notes web mobile' keepwithnext='true' keeptogether='true'/>
+<par def='8'><field type='text' kind='computed' name='nomFlujo'><code event='defaultvalue'><formula
+>@DbLookup("":"NoCache";"";"vwProgUniques";flujo;"nombre";[FailSilent])</formula></code></field><compositedata
+ type='98' prevtype='65418' nexttype='222' afterparcount='7' containertype='65418'
+ aftercontainercount='1' afterbegincount='3'>
+Yg4BAIQAAAAAAAAAAAA=
+</compositedata></par></tablecell></tablerow>
+<tablerow>
+<tablecell borderwidth='0px' htmlclass='etiqueta'>
+<par def='6'>Nombre</par></tablecell>
+<tablecell borderwidth='0px'>
+<pardef id='9' keepwithnext='true' keeptogether='true'/>
+<par def='9'><field type='text' kind='editable' name='nombre' htmlclass='input-xxlarge'><code
+ event='inputtranslation'><formula>@Trim(@ThisValue)</formula></code></field><compositedata
+ type='98' prevtype='65402' nexttype='222' afterparcount='8' containertype='65418'
+ aftercontainercount='2' afterbegincount='4'>
+Yg4BAIQAAAAAAAAAAAA=
+</compositedata></par></tablecell></tablerow>
+<tablerow>
+<tablecell borderwidth='0px' htmlclass='etiqueta'>
+<par def='6'>Posición</par></tablecell>
+<tablecell borderwidth='0px'>
+<par def='7'><field type='text' kind='editable' name='posicion' htmlclass='input-mini'/><compositedata
+ type='98' prevtype='65402' nexttype='222' afterparcount='7' containertype='65418'
+ aftercontainercount='2' afterbegincount='4'>
+Yg4BAIQAAAAAAAAAAAA=
+</compositedata></par></tablecell></tablerow>
+<tablerow>
+<tablecell borderwidth='0px' htmlclass='etiqueta'>
+<pardef id='10' keepwithnext='true' keeptogether='true'/>
+<par def='10'><run><font name='Verdana' pitch='variable' truetype='true' familyid='20'/>¿Indica inicio del flujo?</run></par></tablecell>
+<tablecell borderwidth='0px'>
+<par def='9'><field type='keyword' kind='editable' name='inicial'><keywords
+ ui='dialoglist'><textlist><text>[&lt;br&gt;]</text><text>Si | Si</text><text
+>No | No</text></textlist></keywords></field></par></tablecell></tablerow>
+<tablerow>
+<tablecell borderwidth='0px' htmlclass='etiqueta'>
+<par def='10'><run><font name='Verdana' pitch='variable' truetype='true' familyid='20'/>¿Indica fin del flujo?</run></par></tablecell>
+<tablecell borderwidth='0px'>
+<par def='9'><field type='keyword' kind='editable' name='final'><keywords
+ ui='dialoglist'><textlist><text>[&lt;br&gt;]</text><text>Si | Si</text><text
+>No | No</text></textlist></keywords></field></par>
+<pardef id='11' hide='notes web mobile' keepwithnext='true' keeptogether='true'/>
+<par def='11'><run><font color='red'/><field type='text' kind='computed' name='ubicacion'><code
+ event='defaultvalue'><formula>@If(inicial="Si";"I";final="Si";"F";"M")</formula></code></field></run><compositedata
+ type='98' prevtype='65418' nexttype='222' afterparcount='7' containertype='65418'
+ aftercontainercount='1' afterbegincount='3'>
+Yg4BAIQAAAAAAAAAAAA=
+</compositedata><run><font color='red'/></run></par></tablecell></tablerow>
+<tablerow>
+<tablecell borderwidth='0px'>
+<par def='10'><run><font name='Verdana' pitch='variable' truetype='true' familyid='20'/>¿Indica aprobación?</run></par></tablecell>
+<tablecell borderwidth='0px'>
+<par def='9'><field type='keyword' kind='editable' name='aprobacion'><keywords
+ ui='dialoglist'><textlist><text>[&lt;br&gt;]</text><text>Si | Si</text><text
+>No | No</text></textlist></keywords></field></par></tablecell></tablerow>
+<tablerow>
+<tablecell borderwidth='0px' htmlclass='etiqueta'>
+<par def='10'><run><font name='Verdana' pitch='variable' truetype='true' familyid='20'/>¿Indica rechazo?</run></par></tablecell>
+<tablecell borderwidth='0px'>
+<par def='9'><field type='keyword' kind='editable' name='rechazo'><keywords
+ ui='dialoglist'><textlist><text>[&lt;br&gt;]</text><text>Si | Si</text><text
+>No | No</text></textlist></keywords></field><run><font name='Verdana' pitch='variable'
+ truetype='true' familyid='20'/></run></par></tablecell></tablerow>
+<tablerow>
+<tablecell borderwidth='0px'>
+<par def='10'><run><font name='Verdana' pitch='variable' truetype='true' familyid='20'/>¿Indica cancelación?</run></par></tablecell>
+<tablecell borderwidth='0px'>
+<par def='9'><field type='keyword' kind='editable' name='cancelacion'><keywords
+ ui='dialoglist'><textlist><text>[&lt;br&gt;]</text><text>Si | Si</text><text
+>No | No</text></textlist></keywords></field></par></tablecell></tablerow>
+<tablerow>
+<tablecell borderwidth='0px'>
+<par def='10'><run><font name='Verdana' pitch='variable' truetype='true' familyid='20'/>¿Indica estado jefe?</run></par></tablecell>
+<tablecell borderwidth='0px'>
+<par def='9'><field type='keyword' kind='editable' name='estadoJefe'><keywords
+ ui='dialoglist'><textlist><text>[&lt;br&gt;]</text><text>Si | Si</text><text
+>No | No</text></textlist></keywords></field></par></tablecell></tablerow>
+<tablerow>
+<tablecell borderwidth='0px' htmlclass='etiqueta'>
+<par def='10'><run><font name='Verdana' pitch='variable' truetype='true' familyid='20'/>Nombre del botón para adelantar</run></par></tablecell>
+<tablecell borderwidth='0px'>
+<par def='7'><field type='text' kind='editable' name='botonAdelantar'/><compositedata
+ type='98' prevtype='65418' nexttype='222' afterparcount='6' containertype='65418'
+ aftercontainercount='1' afterbegincount='3'>
+Yg4BAIQAAAAAAAAAAAA=
+</compositedata></par></tablecell></tablerow>
+<tablerow>
+<tablecell borderwidth='0px' htmlclass='etiqueta'>
+<par def='10'><run><font name='Verdana' pitch='variable' truetype='true' familyid='20'/>Nombre del botón para retroceder </run></par></tablecell>
+<tablecell borderwidth='0px'>
+<par def='7'><field type='text' kind='editable' name='botonRetroceder'/><compositedata
+ type='98' prevtype='65418' nexttype='222' afterparcount='6' containertype='65418'
+ aftercontainercount='1' afterbegincount='3'>
+Yg4BAIQAAAAAAAAAAAA=
+</compositedata></par></tablecell></tablerow>
+<tablerow>
+<tablecell borderwidth='0px' htmlclass='etiqueta'>
+<par def='10'><run><font name='Verdana' pitch='variable' truetype='true' familyid='20'/>Botones que se muestran en este estado</run></par></tablecell>
+<tablecell borderwidth='0px'>
+<par def='7'><field type='keyword' allowmultivalues='true' kind='editable'
+ name='botones' listinputseparators='newline' listdisplayseparator='newline'><keywords
+ ui='dialoglist'><textlist><text>Eliminar | EL</text></textlist></keywords></field></par></tablecell></tablerow>
+<tablerow>
+<tablecell borderwidth='0px' htmlclass='etiqueta'>
+<par def='10'><run><font name='Verdana' pitch='variable' truetype='true' familyid='20'/>Días para alarma </run><run
+ html='true'>&lt;span class=text-info&gt;</run>(Dejar vacío si no aplica)<run
+ html='true'>&lt;/span&gt;</run></par></tablecell>
+<tablecell borderwidth='0px'>
+<par def='7'><field type='text' kind='editable' name='diasAlarma' htmlclass='input-mini'/><compositedata
+ type='98' prevtype='65402' nexttype='222' afterparcount='7' containertype='65418'
+ aftercontainercount='2' afterbegincount='4'>
+Yg4BAIQAAAAAAAAAAAA=
+</compositedata></par></tablecell></tablerow>
+<tablerow>
+<tablecell borderwidth='0px'>
+<par def='10'><run><font name='Verdana' pitch='variable' truetype='true' familyid='20'/>Días para detener el envío de la alarma </run><run
+ html='true'>&lt;span class=text-info&gt;</run>(Dejar vacío si no aplica)<run
+ html='true'>&lt;/span&gt;</run></par></tablecell>
+<tablecell borderwidth='0px'>
+<par def='7'><field type='text' kind='editable' name='diasDetenerAlarma' htmlclass='input-mini'/><compositedata
+ type='98' prevtype='65402' nexttype='222' afterparcount='7' containertype='65418'
+ aftercontainercount='2' afterbegincount='4'>
+Yg4BAIQAAAAAAAAAAAA=
+</compositedata><run><font name='Verdana'
+ pitch='variable' truetype='true' familyid='20'/></run></par></tablecell></tablerow>
+<tablerow>
+<tablecell borderwidth='0px'>
+<pardef id='12' tabs='L1.1806in L1.3778in L1.5743in L1.7715in L1.9681in L2.1653in L2.3618in L2.5590in L2.7556in L2.9521in L3.1493in L3.3458in L3.5431in L3.7396in L3.9368in'
+ keepwithnext='true' keeptogether='true'/>
+<par def='12'><run><font name='Verdana' pitch='variable' truetype='true' familyid='20'/>Responsable</run></par></tablecell>
+<tablecell borderwidth='0px'>
+<pardef id='13' tabs='L1.1806in L1.3778in L1.5743in L1.7715in L1.9681in L2.1653in L2.3618in L2.5590in L2.7556in L2.9521in L3.1493in L3.3458in L3.5431in L3.7396in L3.9368in'
+ keepwithnext='true' keeptogether='true'/>
+<par def='13'><field type='keyword' kind='editable' name='resCampo'><keywords
+ ui='dialoglist'><textlist><text>[&lt;br&gt;]</text><text>Autor | autor</text><text
+>Jefe | jefe</text></textlist></keywords><code event='inputtranslation'><formula
+>@If(inicial="Si";"autor";final="Si";"";@ThisValue)</formula></code></field><run
+><font name='Verdana' pitch='variable' truetype='true' familyid='20'/></run></par></tablecell></tablerow>
+<tablerow>
+<tablecell borderwidth='0px'>
+<par def='12'><run><font name='Verdana' pitch='variable' truetype='true' familyid='20'/>Editor</run></par></tablecell>
+<tablecell borderwidth='0px'>
+<par def='13'><field type='keyword' kind='editable' name='ediCampo'><keywords
+ ui='dialoglist'><textlist><text>[&lt;br&gt;]</text><text>Autor | autor</text><text
+>Jefe | jefe</text></textlist></keywords><code event='inputtranslation'><formula
+>@If(inicial="Si";"autor";final="Si";"";@ThisValue)</formula></code></field><run
+><font name='Verdana' pitch='variable' truetype='true' familyid='20'/></run></par></tablecell></tablerow></table>
+<par def='1'/><subformref><code event='value'><formula>"sfrFooter"</formula></code></subformref>
+<pardef id='14' leftmargin='1in' tabs='L0.5000in L1in L1.5000in L2in L2.5000in L3in L3.5000in L4in'/>
+<par def='14'/>
+<par def='14'><run html='true'>&lt;script src="/</run><run html='true'><computedtext
+><code event='value'><formula>webDbName</formula></code></computedtext></run><run
+ html='true'>/JSFrEstado?Open"&gt;&lt;/script&gt;</run></par>
+<par def='14'/></richtext></body>
+<item name='OriginalModTime'><datetime>20100916T112413,96-05</datetime></item>
+<item name='$SubForm_RepIDs' sign='true'><textlist><text>0000000000000000</text><text
+>0000000000000000</text><text>0000000000000000</text></textlist></item>
+<item name='$$ScriptName' summary='false' sign='true'><text>frEstado</text></item></form>
+

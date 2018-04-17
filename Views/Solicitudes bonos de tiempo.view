@@ -1,0 +1,57 @@
+<?xml version='1.0' encoding='utf-8'?>
+<view name='Solicitudes bonos de tiempo' alias='vwSolicitudesBonos' xmlns='http://www.lotus.com/dxl'
+ version='9.0' maintenanceversion='1.9' replicaid='052581670049F6C5' showinmenu='false'
+ publicaccess='false' designerversion='8.5.3' unreadmarks='none' onopengoto='lastopened'
+ onrefresh='displayindicator' headers='beveled' opencollapsed='true' showresponsehierarchy='true'
+ showmargin='true' shrinkrows='false' extendlastcolumn='false' showhierarchies='false'
+ unreadcolor='black' rowlinecount='1' headerlinecount='1' rowspacing='1' bgcolor='white'
+ totalscolor='black' headerbgcolor='white' boldunreadrows='false' evaluateactions='false'
+ allownewdocuments='false' allowcustomizations='true' hidemarginborder='false'
+ marginwidth='0px' marginbgcolor='white' uniquekeys='false'>
+<noteinfo noteid='9de' unid='253529BF99A846FF05257C970074CF8B' sequence='62'>
+<created><datetime>20140310T161553,07-05</datetime></created>
+<modified><datetime>20170724T082912,52-05</datetime></modified>
+<revised><datetime>20170724T082912,51-05</datetime></revised>
+<lastaccessed><datetime>20170724T082912,52-05</datetime></lastaccessed>
+<addedtofile><datetime>20170724T082804,34-05</datetime></addedtofile></noteinfo>
+<updatedby><name>CN=Admin Desarrollo/O=cognox</name><name>CN=Administrador Aplicaciones/O=GNCH</name><name
+>CN=Admin Desarrollo/O=cognox</name><name>CN=Administrador Aplicaciones/O=GNCH</name><name
+>CN=Admin Desarrollo/O=cognox</name><name>CN=Administrador Aplicaciones/O=GNCH</name><name
+>CN=Diego Alexander Velasco Acevedo/O=desarrollo</name></updatedby>
+<wassignedby><name>CN=Diego Alexander Velasco Acevedo/O=desarrollo</name></wassignedby><code
+ event='selection'><formula>SELECT ((Form = "User / Solicitud bono de tiempo") | (Form = "frSolicitudBono") | (Form = "frSolicitudBono")| (Form = "frSolicitudHorarioFlexible")| (Form = "frSolicitudLactancia")| (Form = "frSolicitudAcompaniamiento")| (Form = "frSolicitudCalamidad")|(Form = "frSolicitudBonoEspacio"))</formula></code><code
+ event='querypaste'><lotusscript>Sub Querypaste(Source As Notesuiview, Continue As Variant)
+	Continue = False
+End Sub</lotusscript></code>
+<column sort='ascending' hidedetailrows='false' itemname='autor' width='10'
+ resizable='true' separatemultiplevalues='true' sortnoaccent='false' sortnocase='true'
+ showaslinks='false' categorized='true'><font size='7pt' name='Verdana' pitch='variable'
+ truetype='true' familyid='20'/><columnheader align='center' title='Autor'><font
+ size='7pt' style='bold' name='Verdana' pitch='variable' truetype='true' familyid='20'/></columnheader></column>
+<column align='center' sort='ascending' hidedetailrows='false' itemname='fechaRedencion'
+ width='17' resizable='true' separatemultiplevalues='false' sortnoaccent='true'
+ sortnocase='true' showaslinks='false'><font size='7pt' name='Verdana' pitch='variable'
+ truetype='true' familyid='20'/><columnheader align='center' title='Fecha de redención (d/m/a)'><font
+ size='7pt' style='bold' name='Verdana' pitch='variable' truetype='true' familyid='20'/></columnheader><datetimeformat
+ show='datetime' date='yearmonthday' fourdigityearfor21stcentury='true' time='hourminutesecond'
+ zone='never' dateformat='weekdaydaymonthyear' dayformat='twodigitday' monthformat='twodigitmonth'
+ yearformat='fourdigityear' weekdayformat='shortname' dateseparator1=' ' dateseparator2='/'
+ dateseparator3='/' timeseparator=':' preference='custom'/><numberformat format='general'
+ punctuated='false' parens='false' percent='false' bytes='false'/></column>
+<column align='center' hidedetailrows='false' itemname='$7' width='10' resizable='true'
+ separatemultiplevalues='false' sortnoaccent='false' sortnocase='true' showaslinks='false'><font
+ size='7pt' name='Verdana' pitch='variable' truetype='true' familyid='20'/><columnheader
+ align='center' title='Jornada'><font size='7pt' style='bold' name='Verdana'
+ pitch='variable' truetype='true' familyid='20'/></columnheader><code event='value'><formula
+>@If(jornada = "M";"Mañana";@If(jornada = "D";"Dia completo";"Tarde"))</formula></code></column>
+<column align='center' hidedetailrows='false' itemname='estado' width='10'
+ resizable='true' separatemultiplevalues='false' sortnoaccent='false' sortnocase='true'
+ showaslinks='false'><font size='7pt' name='Verdana' pitch='variable' truetype='true'
+ familyid='20'/><columnheader align='center' title='Estado'><font size='7pt'
+ style='bold' name='Verdana' pitch='variable' truetype='true' familyid='20'/></columnheader></column>
+<column hidedetailrows='false' itemname='$10' width='10' resizable='true'
+ separatemultiplevalues='false' sortnoaccent='false' sortnocase='true' showaslinks='false'><columnheader
+ title='Tipo'><font size='9pt' style='bold'/></columnheader><code event='value'><formula
+>a:=Form;
+@If(a="frSolicitudBono";"Solicitud Bono";@If(a="frSolicitudBonoEspacio";"Solicitud Bono Espacio";""))</formula></code></column></view>
+

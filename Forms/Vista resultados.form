@@ -1,0 +1,96 @@
+<?xml version='1.0' encoding='utf-8'?>
+<form name='Vista resultados' alias='frBusqueda|$$SearchTemplateDefault' xmlns='http://www.lotus.com/dxl'
+ version='9.0' maintenanceversion='1.9' replicaid='052581670049F6C5' nocompose='true'
+ publicaccess='false' designerversion='8.5.3' editonopen='true'>
+<noteinfo noteid='77a' unid='DE6B66CE4BB4126B05257C36000E8787' sequence='49'>
+<created><datetime>20131202T213841,99-05</datetime></created>
+<modified><datetime>20170724T082912,98-05</datetime></modified>
+<revised><datetime>20170724T082912,97-05</datetime></revised>
+<lastaccessed><datetime>20170724T082912,98-05</datetime></lastaccessed>
+<addedtofile><datetime>20170724T082801,36-05</datetime></addedtofile></noteinfo>
+<updatedby><name>CN=Admin Desarrollo/O=cognox</name><name>CN=Administrador Aplicaciones/O=GNCH</name><name
+>CN=Admin Desarrollo/O=cognox</name><name>CN=Administrador Aplicaciones/O=GNCH</name><name
+>CN=Admin Desarrollo/O=cognox</name><name>CN=Administrador Aplicaciones/O=GNCH</name><name
+>CN=Admin Desarrollo/O=cognox</name><name>CN=Administrador Aplicaciones/O=GNCH</name><name
+>CN=Admin Desarrollo/O=cognox</name><name>CN=Administrador Aplicaciones/O=GNCH</name><name
+>CN=Admin Desarrollo/O=cognox</name><name>CN=Administrador Aplicaciones/O=GNCH</name><name
+>CN=Admin Desarrollo/O=cognox</name><name>CN=Administrador Aplicaciones/O=GNCH</name><name
+>CN=Admin Desarrollo/O=cognox</name><name>CN=Administrador Aplicaciones/O=GNCH</name><name
+>CN=Admin Desarrollo/O=cognox</name><name>CN=Administrador Aplicaciones/O=GNCH</name><name
+>CN=Admin Desarrollo/O=cognox</name><name>CN=Administrador Aplicaciones/O=GNCH</name><name
+>CN=Admin Desarrollo/O=cognox</name><name>CN=Administrador Aplicaciones/O=GNCH</name><name
+>CN=Admin Desarrollo/O=cognox</name><name>CN=Administrador Aplicaciones/O=GNCH</name><name
+>CN=Admin Desarrollo/O=cognox</name><name>CN=Administrador DEV/O=DEV</name><name
+>CN=Admin Desarrollo/O=cognox</name><name>CN=Administrador DEV/O=DEV</name><name
+>CN=Admin Desarrollo/O=cognox</name><name>CN=Administrador DEV/O=DEV</name><name
+>CN=Administrador Aplicaciones/O=GNCH</name><name>CN=Admin Desarrollo/O=cognox</name><name
+>CN=Administrador Aplicaciones/O=GNCH</name><name>CN=Admin Desarrollo/O=cognox</name><name
+>CN=Administrador Aplicaciones/O=GNCH</name><name>CN=Admin Desarrollo/O=cognox</name><name
+>CN=Administrador Aplicaciones/O=GNCH</name><name>CN=Admin Desarrollo/O=cognox</name><name
+>CN=Administrador Aplicaciones/O=GNCH</name><name>CN=Admin Desarrollo/O=cognox</name><name
+>CN=Administrador Aplicaciones/O=GNCH</name><name>CN=Diego Alexander Velasco Acevedo/O=desarrollo</name></updatedby>
+<wassignedby><name>CN=Diego Alexander Velasco Acevedo/O=desarrollo</name></wassignedby>
+<actionbar bgcolor='#ece9d8' bordercolor='black'>
+<actionbuttonstyle bgcolor='#ece9d8'/><font color='system'/><border style='solid'
+ width='0px 0px 1px'/></actionbar>
+<body><richtext>
+<pardef id='1' leftmargin='1in' tabs='L0.5000in L1in L1.1806in L1.3778in L1.5743in L1.7715in L1.9681in L2.1653in L2.3618in L2.5590in L2.7556in L2.9521in L3.1493in L3.3458in L3.5431in L3.7396in L3.9368in'/><subformref
+><code event='value'><formula>"sfrHeader"</formula></code></subformref>
+<par def='1'/>
+<pardef id='2' hide='notes web mobile'/>
+<par def='2'><run><font color='red'/><field type='text' kind='editable' name='form'><code
+ event='defaultvalue'><formula>"frBusqueda"</formula></code></field></run><compositedata
+ type='98' prevtype='65418' nexttype='222' afterparcount='7' containertype='65418'
+ aftercontainercount='1' afterbegincount='3'>
+Yg4BAIQAAAAAAAAAAAA=
+</compositedata><run><font color='red'/></run><run
+><font color='red'/><field type='text' kind='editable' name='keyForm'><code
+ event='defaultvalue'><formula>"Búsqueda"</formula></code></field></run><compositedata
+ type='98' prevtype='65418' nexttype='222' afterparcount='16' containertype='65418'
+ aftercontainercount='1' afterbegincount='3'>
+Yg4BAIQAAAAAAAAAAAA=
+</compositedata><run><font color='red'/></run><run
+><font color='red'/><field type='text' kind='computedfordisplay' name='SaveOptions'><code
+ event='defaultvalue'><formula>"0"</formula></code></field></run><compositedata
+ type='98' prevtype='65418' nexttype='222' afterparcount='25' containertype='65418'
+ aftercontainercount='1' afterbegincount='3'>
+Yg4BAIQAAAAAAAAAAAA=
+</compositedata><run><font color='red'/><field
+ type='text' kind='computedfordisplay' name='redireccion'><code event='defaultvalue'><formula
+>"?Open"</formula></code></field></run><compositedata type='98' prevtype='65418'
+ nexttype='222' afterparcount='31' containertype='65418' aftercontainercount='1'
+ afterbegincount='3'>
+Yg4BAIQAAAAAAAAAAAA=
+</compositedata></par>
+<pardef id='3' tabs='L0.5000in L1in L1.1806in L1.3778in L1.5743in L2in L2.5000in L3in L3.5000in L4in'/>
+<par def='3'><run html='true'>&lt;div class="cabeza"&gt;</run></par>
+<pardef id='4' tabs='L1.1806in L1.3778in'/>
+<par def='4'><run html='true'>	&lt;div class="titulo"&gt;</run></par>
+<par def='4'><run html='true'>		</run><run html='true'><computedtext><code
+ event='value'><formula>keyForm</formula></code></computedtext></run></par>
+<par def='4'><run html='true'>	&lt;/div&gt;</run></par>
+<par def='4'><run html='true'>&lt;/div&gt;</run></par>
+<pardef id='5'/>
+<par def='5'><run html='true'>&lt;div class="input-append" style="width:100%;text-align:left"&gt;</run></par>
+<pardef id='6' tabs='L1.1806in L1.3778in L1.5743in L1.7715in L1.9681in L2.1653in L2.3618in L2.5590in L2.7556in L2.9521in L3.1493in L3.3458in L3.5431in L3.7396in L3.9368in'/>
+<par def='6'><run html='true'>&lt;input name="clave" type="text" onKeyPress="validarEnter(event, '.btn-buscar')"&gt;&lt;a href="javascript:void(0)" onclick="buscar()" class="btn btn-mini btn-buscar"&gt;&lt;i class="icon-search icon-white"&gt; &lt;/i&gt;Buscar&lt;/a&gt;</run></par>
+<par def='5'><run html='true'>&lt;/div&gt;</run></par>
+<pardef id='7' firstlineleftmargin='1in' tabs='L1.1806in L1.3778in L1.5743in L1.7715in L1.9681in L2.1653in L2.3618in L2.5590in L2.7556in L2.9521in L3.1493in L3.3458in L3.5431in L3.7396in L3.9368in'/>
+<par def='7'/>
+<par def='5'><run html='true'>&lt;div id=vista&gt;</run><run html='true'><field
+ type='text' kind='editable' name='$$ViewBody'><code event='defaultvalue'><formula
+>$$ViewBody</formula></code></field></run><compositedata type='98' prevtype='65418'
+ nexttype='222' afterparcount='6' containertype='65418' aftercontainercount='1'
+ afterbegincount='3'>
+Yg4BAIQAAAAAAAAAAAA=
+</compositedata><run html='true'>&lt;/div&gt;</run></par>
+<par def='1'/><subformref><code event='value'><formula>"sfrFooter"</formula></code></subformref>
+<par def='1'/>
+<pardef id='8' leftmargin='1in' tabs='L0.5000in L1in L1.5000in L2in L2.5000in L3in L3.5000in L4in'/>
+<par def='8'><run html='true'>&lt;script src="/</run><run html='true'><computedtext
+><code event='value'><formula>webDbName</formula></code></computedtext></run><run
+ html='true'>/JSFrViewTemplate?Open"&gt;&lt;/script&gt;</run></par></richtext></body>
+<item name='OriginalModTime' sign='true'><datetime>20120124T155920,41-05</datetime></item>
+<item name='$SubForm_RepIDs' sign='true'><text>0000000000000000</text></item>
+<item name='$$ScriptName' summary='false' sign='true'><text>$$SearchTemplateDefault</text></item></form>
+

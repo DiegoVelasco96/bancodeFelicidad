@@ -1,0 +1,138 @@
+<?xml version='1.0' encoding='utf-8'?>
+<form name='Admon / Cargo específico' alias='frCargosEspecificos' xmlns='http://www.lotus.com/dxl'
+ version='9.0' maintenanceversion='1.9' replicaid='052581670049F6C5' nocompose='true'
+ publicaccess='false' designerversion='8.5.3' editonopen='true' renderpassthrough='true'>
+<noteinfo noteid='e92' unid='F22EF9C282931BA605257E0E0065F77C' sequence='34'>
+<created><datetime>20150320T133344,92-05</datetime></created>
+<modified><datetime>20170724T082909,44-05</datetime></modified>
+<revised><datetime>20170724T082909,43-05</datetime></revised>
+<lastaccessed><datetime>20170724T082909,44-05</datetime></lastaccessed>
+<addedtofile><datetime>20170724T082810,18-05</datetime></addedtofile></noteinfo>
+<updatedby><name>CN=Admin Desarrollo/O=cognox</name><name>CN=Administrador Aplicaciones/O=GNCH</name><name
+>CN=Admin Desarrollo/O=cognox</name><name>CN=Administrador Aplicaciones/O=GNCH</name><name
+>CN=Admin Desarrollo/O=cognox</name><name>CN=Administrador Aplicaciones/O=GNCH</name><name
+>CN=Diego Alexander Velasco Acevedo/O=desarrollo</name></updatedby>
+<wassignedby><name>CN=Diego Alexander Velasco Acevedo/O=desarrollo</name></wassignedby><code
+ event='webquerysave'><formula>@Command([ToolsRunMacro]; "agGuardarConfiguracion")</formula></code>
+<body><richtext>
+<pardef id='1' leftmargin='1in' tabs='L0.5000in L1in L1.1806in L1.3778in L1.5743in L1.7715in L1.9681in L2.1653in L2.3618in L2.5590in L2.7556in L2.9521in L3.1493in L3.3458in L3.5431in L3.7396in L3.9368in'/><subformref
+><code event='value'><formula>"sfrHeader"</formula></code></subformref>
+<par def='1'/>
+<pardef id='2' hide='notes web mobile'/>
+<par def='2'><run><font color='red'/></run><run><font color='red'/><field
+ type='text' kind='editable' name='form'><code event='defaultvalue'><formula
+>"frCargosEspecificos"</formula></code></field></run><compositedata type='98'
+ prevtype='65418' nexttype='222' afterparcount='10' containertype='65418'
+ aftercontainercount='1' afterbegincount='3'>
+Yg4BAIQAAAAAAAAAAAA=
+</compositedata><run><font color='red'/></run><run
+><font color='red'/><field type='text' kind='editable' name='keyForm'><code
+ event='defaultvalue'><formula>"Configuracion cargos específicos"</formula></code></field></run><compositedata
+ type='98' prevtype='65418' nexttype='222' afterparcount='19' containertype='65418'
+ aftercontainercount='1' afterbegincount='3'>
+Yg4BAIQAAAAAAAAAAAA=
+</compositedata><run><font color='red'/></run><run
+><font color='red'/><field type='text' kind='computedfordisplay' name='SaveOptions'><code
+ event='defaultvalue'><formula>"1"</formula></code></field></run><compositedata
+ type='98' prevtype='65418' nexttype='222' afterparcount='28' containertype='65418'
+ aftercontainercount='1' afterbegincount='3'>
+Yg4BAIQAAAAAAAAAAAA=
+</compositedata><run><font color='red'/></run><run
+><font color='red'/><field type='text' kind='computedfordisplay' name='redireccion'><code
+ event='defaultvalue'><formula>"vwCargosEspecificos?Open"</formula></code></field></run><compositedata
+ type='98' prevtype='65418' nexttype='222' afterparcount='37' containertype='65418'
+ aftercontainercount='1' afterbegincount='3'>
+Yg4BAIQAAAAAAAAAAAA=
+</compositedata><run><font color='red'/><field
+ type='datetime' kind='editable' name='anioActual'><datetimeformat show='date'
+ date='yearmonthday' fourdigityearfor21stcentury='true' zone='never' dateformat='weekdaydaymonthyear'
+ dayformat='twodigitday' monthformat='twodigitmonth' yearformat='fourdigityear'
+ weekdayformat='shortname' dateseparator1=' ' dateseparator2='/' dateseparator3='/'
+ timeseparator=':' preference='custom'/><code event='defaultvalue'><formula
+>@Now</formula></code></field></run></par>
+<pardef id='3'/>
+<par def='3'><run html='true'>&lt;div style="display:none"&gt;</run><run html='true'><font
+ color='blue'/><field type='text' allowmultivalues='true' kind='editable'
+ name='nomFormularios' listinputseparators='newline' listdisplayseparator='newline'/></run><compositedata
+ type='98' prevtype='65418' nexttype='222' afterparcount='7' containertype='65418'
+ aftercontainercount='1' afterbegincount='3'>
+Yg4BAIQAAAAAAAAAAAA=
+</compositedata><run html='true'>&lt;/div&gt;</run></par>
+<par def='3'/><subformref><code event='value'><formula>"sfrHeaderConfiguracion"</formula></code></subformref>
+<par def='3'/>
+<par def='3'/>
+<table widthtype='fitmargins' refwidth='9.3854in'><tablecolumn width='30.7153%'/><tablecolumn
+ width='17.3472%'/><tablecolumn width='32.7778%'/><tablecolumn width='19.1597%'/>
+<tablerow>
+<tablecell borderwidth='0px' htmlclass='etiqueta'>
+<pardef id='5' keepwithnext='true' keeptogether='true'/>
+<par def='5'>Cargo</par></tablecell>
+<tablecell columnspan='3' borderwidth='0px'>
+<pardef id='8' keepwithnext='true' keeptogether='true'/>
+<par def='8'><run><font name='Verdana' pitch='variable' truetype='true' familyid='20'/><field
+ type='text' kind='editable' name='cargosBonos' htmlclass='input-xxlarge'/></run><compositedata
+ type='98' prevtype='65402' nexttype='222' afterparcount='8' containertype='65418'
+ aftercontainercount='2' afterbegincount='4'>
+Yg4BAIQAAAAAAAAAAAA=
+</compositedata></par></tablecell></tablerow>
+<tablerow>
+<tablecell borderwidth='0px'>
+<par def='5'>Formularios a los que aplica</par></tablecell>
+<tablecell columnspan='3' borderwidth='0px'>
+<par def='8'><field type='keyword' allowmultivalues='true' kind='editable'
+ name='formularios' listinputseparators='comma' listdisplayseparator='comma'
+ htmlclass='input-xxlarge'><keywords ui='dialoglist'><textlist><text>Solicitud bono de tiempo | frSolicitudBono</text><text
+>Horarios flexibles | frSolicitudHorarioFlexible</text><text>Horas por mes lactancia | frSolicitudLactancia</text><text
+>Horas por mes acompañamiento | frSolicitudAcompaniamiento</text><text>Dias por calamidad | frSolicitudCalamidad</text><text
+>Permisos especiales |frSolicitudPermisoEspecial</text><text>Bono espacio |frSolicitudBonoEspacio</text></textlist></keywords></field></par></tablecell></tablerow>
+<tablerow>
+<tablecell borderwidth='0px'>
+<par def='5'><run><font name='Verdana' pitch='variable' truetype='true' familyid='20'/>Número de bonos para el año actual</run></par></tablecell>
+<tablecell borderwidth='0px'>
+<pardef id='6' keepwithnext='true' keeptogether='true'/>
+<par def='6'><run><font name='Verdana' pitch='variable' truetype='true' familyid='20'/><field
+ type='text' kind='editable' name='bonosAnioC' htmlclass='input-large'/></run><compositedata
+ type='98' prevtype='65402' nexttype='222' afterparcount='7' containertype='65418'
+ aftercontainercount='2' afterbegincount='4'>
+Yg4BAIQAAAAAAAAAAAA=
+</compositedata></par></tablecell>
+<tablecell borderwidth='0px'>
+<pardef id='7' keepwithnext='true' keeptogether='true'/>
+<par def='7'><run><font name='Verdana' pitch='variable' truetype='true' familyid='20'/>Número de bonos para el próximo año</run></par></tablecell>
+<tablecell borderwidth='0px'>
+<pardef id='9' keepwithnext='true' keeptogether='true'/>
+<par def='9'><run><font name='Verdana' pitch='variable' truetype='true' familyid='20'/><field
+ type='text' kind='editable' name='bonosAnioProC' htmlclass='input-large'/></run><compositedata
+ type='98' prevtype='65402' nexttype='222' afterparcount='8' containertype='65418'
+ aftercontainercount='2' afterbegincount='4'>
+Yg4BAIQAAAAAAAAAAAA=
+</compositedata></par></tablecell></tablerow>
+<tablerow>
+<tablecell borderwidth='0px'>
+<par def='5'>Número de bonos por mes año actual</par></tablecell>
+<tablecell borderwidth='0px'>
+<par def='6'><field type='text' kind='editable' name='bonosMesC' htmlclass='input-large'/><compositedata
+ type='98' prevtype='65402' nexttype='222' afterparcount='7' containertype='65418'
+ aftercontainercount='2' afterbegincount='4'>
+Yg4BAIQAAAAAAAAAAAA=
+</compositedata></par></tablecell>
+<tablecell borderwidth='0px'>
+<par def='7'><run><font name='Verdana' pitch='variable' truetype='true' familyid='20'/>Número de bonos por mes próximo año</run></par></tablecell>
+<tablecell borderwidth='0px'>
+<par def='9'><field type='text' kind='editable' name='bonosMesProC' htmlclass='input-large'/><compositedata
+ type='98' prevtype='65402' nexttype='222' afterparcount='7' containertype='65418'
+ aftercontainercount='2' afterbegincount='4'>
+Yg4BAIQAAAAAAAAAAAA=
+</compositedata></par></tablecell></tablerow></table>
+<par def='1'/><subformref><code event='value'><formula>"sfrFooter"</formula></code></subformref>
+<pardef id='10' leftmargin='1in' tabs='L0.5000in L1in L1.5000in L2in L2.5000in L3in L3.5000in L4in'/>
+<par def='10'/>
+<par def='10'><run html='true'>&lt;script src="/</run><run html='true'><computedtext
+><code event='value'><formula>webDbName</formula></code></computedtext></run><run
+ html='true'>/</run><run html='true'>JSFrCargosEspecificos</run><run html='true'>?Open"&gt;&lt;/script&gt;</run></par>
+<par def='10'/></richtext></body>
+<item name='OriginalModTime' sign='true'><datetime>20100916T112413,96-05</datetime></item>
+<item name='$SubForm_RepIDs' sign='true'><textlist><text>0000000000000000</text><text
+>0000000000000000</text><text>0000000000000000</text></textlist></item>
+<item name='$$ScriptName' summary='false' sign='true'><text>frFlujo</text></item></form>
+

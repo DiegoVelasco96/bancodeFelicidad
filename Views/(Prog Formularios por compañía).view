@@ -1,0 +1,43 @@
+<?xml version='1.0' encoding='utf-8'?>
+<view name='(Prog Formularios por compañía)' alias='vwProgFormulariosCompania'
+ xmlns='http://www.lotus.com/dxl' version='9.0' maintenanceversion='1.9' replicaid='052581670049F6C5'
+ showinmenu='false' publicaccess='false' designerversion='8.5.3' unreadmarks='none'
+ onopengoto='lastopened' onrefresh='displayindicator' headers='beveled' opencollapsed='false'
+ showresponsehierarchy='true' showmargin='true' shrinkrows='false' extendlastcolumn='false'
+ showhierarchies='false' unreadcolor='black' rowlinecount='1' headerlinecount='1'
+ rowspacing='1' bgcolor='white' totalscolor='black' headerbgcolor='white'
+ boldunreadrows='false' evaluateactions='false' allownewdocuments='false'
+ allowcustomizations='true' hidemarginborder='false' marginwidth='0px' marginbgcolor='white'
+ uniquekeys='false'>
+<noteinfo noteid='fce' unid='498E3410092CAB3B05257F2200536F32' sequence='27'>
+<created><datetime>20151221T101119,54-05</datetime></created>
+<modified><datetime>20170724T082913,94-05</datetime></modified>
+<revised><datetime>20170724T082913,93-05</datetime></revised>
+<lastaccessed><datetime>20180125T020030,48-05</datetime></lastaccessed>
+<addedtofile><datetime>20170724T082811,62-05</datetime></addedtofile></noteinfo>
+<updatedby><name>CN=Administrador Aplicaciones/O=GNCH</name><name>CN=Admin Desarrollo/O=cognox</name><name
+>CN=Administrador Aplicaciones/O=GNCH</name><name>CN=Diego Alexander Velasco Acevedo/O=desarrollo</name></updatedby>
+<wassignedby><name>CN=Diego Alexander Velasco Acevedo/O=desarrollo</name></wassignedby><code
+ event='selection'><formula>SELECT
+(Form = "frConfAcompaniamiento" |
+Form = "frConfBonoTiempo" |
+Form = "frConfCalamidad" |
+Form = "frConfHorarioFlexible" |
+Form = "frConfLactancia" |
+Form = "frConfPermisosEspeciales" |
+Form = "frConfBonoEspacio") &amp; solicitudActiva="S"</formula></code>
+<column sort='ascending' hidedetailrows='false' itemname='codigoCompania'
+ width='25.6250' resizable='true' separatemultiplevalues='true' sortnoaccent='true'
+ sortnocase='true' showaslinks='false'><columnheader title='Compañía (MV en entradas separadas)'><font
+ size='9pt' style='bold'/></columnheader></column>
+<column sort='ascending' hidedetailrows='false' itemname='$5' width='19.7500'
+ resizable='true' separatemultiplevalues='false' sortnoaccent='false' sortnocase='true'
+ showaslinks='false'><columnheader title='Formulario'><font size='9pt' style='bold'/></columnheader><code
+ event='value'><formula>@If(Form = "frConfAcompaniamiento"; "frSolicitudAcompaniamiento";
+Form = "frConfBonoTiempo"; "frSolicitudBono";
+Form = "frConfCalamidad"; "frSolicitudCalamidad";
+Form = "frConfHorarioFlexible"; "frSolicitudHorarioFlexible";
+Form = "frConfLactancia"; "frSolicitudLactancia";
+Form = "frConfPermisosEspeciales"; "frSolicitudPermisoEspecial";
+Form = "frConfBonoEspacio";"frSolicitudBonoEspacio"; "")</formula></code></column></view>
+

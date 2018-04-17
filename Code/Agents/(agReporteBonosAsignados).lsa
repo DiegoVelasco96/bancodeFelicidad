@@ -1,0 +1,200 @@
+<?xml version='1.0' encoding='utf-8'?>
+<agent name='(agReporteBonosAsignados)' alias='agReporteBonosAsignados' xmlns='http://www.lotus.com/dxl'
+ version='9.0' maintenanceversion='1.9' replicaid='052581670049F6C5' hide='v3'
+ publicaccess='false' designerversion='8.5.3'>
+<noteinfo noteid='eca' unid='DAF4412721468EDB05257E12005C9EA7' sequence='53'>
+<created><datetime>20150324T115139,27-05</datetime></created>
+<modified><datetime>20170724T082913,54-05</datetime></modified>
+<revised><datetime>20170724T082913,53-05</datetime></revised>
+<lastaccessed><datetime>20170724T082913,54-05</datetime></lastaccessed>
+<addedtofile><datetime>20170724T082810,36-05</datetime></addedtofile></noteinfo>
+<updatedby><name>CN=Administrador Aplicaciones/O=GNCH</name><name>CN=Admin Desarrollo/O=cognox</name><name
+>CN=Administrador Aplicaciones/O=GNCH</name><name>CN=Diego Alexander Velasco Acevedo/O=desarrollo</name></updatedby>
+<wassignedby><name>CN=Diego Alexander Velasco Acevedo/O=desarrollo</name></wassignedby>
+<designchange><datetime>20170724T082910,57-05</datetime></designchange>
+<trigger type='agentlist'/>
+<documentset type='runonce'/><code event='options'><lotusscript>Option Public
+Option Declare
+
+</lotusscript></code><code event='initialize'><lotusscript>Sub Initialize
+	On Error GoTo label
+	
+	Print "Cache-Control:no-cache"
+	Print "Content-Type:application/json;charset=ISO-8859-1"
+	
+	Dim sError As String
+	Dim nd As NotesDocument
+	Dim ndHistorico As NotesDocument 
+	Dim ns As New NotesSession
+	Dim db As NotesDatabase
+	Dim dbNomina As NotesDatabase
+	Dim dbNames As NotesDatabase 
+	Dim vwCfg As NotesView
+	Dim vwSolicitudes As NotesView
+	Dim vwUniques As NotesView 
+	Dim ndAux As NotesDocument 
+	Dim webDbName As Variant
+	Dim ndBono As NotesDocument 
+	Dim ndFLujo As NotesDocument 
+	Dim ndCfg As NotesDocument
+	Dim ndCfg2 As NotesDocument
+	Dim ndConsulta As NotesDocument
+	Dim ndBonosCargos As NotesDocument
+	Dim vwSolicitudesCatego As NotesView
+	Dim vwHistoricoBono As NotesView 
+	Dim vwBonosCargos As NotesView
+	Dim vwEstado As NotesView
+	Dim ndEstados As NotesDocument
+	Dim estado As String
+	Dim vwEstadoSolicitudes As NotesView
+	Dim dcAprovados As NotesDocumentCollection
+	Dim dcBonosCargo As NotesDocumentCollection 	
+	Dim nav As NotesViewNavigator
+	Dim ve As NotesViewEntry
+	Dim cont As Integer
+	Dim cedula As String
+	Dim bonos As String
+	Dim autor As String
+	Dim form As String
+	Dim nNames As NotesName
+	Dim arreglo As Variant
+	Dim anio As String  
+	Dim claves(1) As String
+	Dim resultado As Variant 
+	
+	webDbName = Evaluate("@WebDBName")	
+	Set db = ns.CurrentDatabase
+	Set vwCfg = db.Getview("vwProgTodos")
+	Set vwUniques = db.Getview("vwProgUniques")
+	Set vwSolicitudes = db.GetView("vwProgBonosCedula")
+	Set ndCfg = vwCfg.Getdocumentbykey("frGeneral", True)
+	Set ndCfg2 = vwCfg.Getdocumentbykey("frConfBonoTiempo", True)
+	Set dbNomina = ns.Getdatabase("",ndCfg.rutaNomina(0))
+	Set nd = ns.DocumentContext
+	Set vwEstado = db.Getview("vwProgEstadosFlujo")
+	Set vwEstadoSolicitudes = db.Getview("vwProgBonosCedulaEstados")
+	Set vwSolicitudesCatego = db.Getview("vwProgSolicitudesCatego")
+	Set vwBonosCargos = db.Getview("vwProgCargosEspecificosAnios")
+	Set vwHistoricoBono = db.Getview("vwProgHistoricosBonosAnios")
+	
+	Set nav = vwSolicitudesCatego.Createviewnav()
+	
+	Print "Cache-Control:no-cache"
+	Print {Content-Type:application/vnd.ms-excel;charset=ISO-8859-1}
+	Print {Content-Disposition: Attachment; filename="Reporte_}+db.title+{.xls"}
+	
+	Set ndEstados = vwEstado.Getfirstdocument()	
+	While Not ndEstados Is Nothing And estado = "" 		
+		If ndEstados.aprobacion(0) = "Si" Then
+			Set ndFlujo = vwUniques.Getdocumentbykey(ndEstados.flujo(0), True)
+			If Not ndFlujo Is Nothing Then
+				resultado = ArrayGetIndex(ndFlujo.formularios, "frSolicitudBono")
+				If Not IsNull(resultado) Then 
+					estado = ndEstados.unique(0)	
+				End If
+			End If 			
+		End If
+		Set ndEstados = vwEstado.Getnextdocument(ndEstados)
+	Wend
+	
+	Print |&lt;table class="table table-striped" border="1"&gt;
+			&lt;tr&gt;
+				&lt;th&gt;Año de redención&lt;/font&gt;&lt;/b&gt;&lt;/th&gt;
+				&lt;th&gt;Nombre&lt;/font&gt;&lt;/b&gt;&lt;/th&gt;
+				&lt;th&gt;Documento&lt;/font&gt;&lt;/b&gt;&lt;/th&gt;
+				&lt;th&gt;Derecho a&lt;/font&gt;&lt;/b&gt;&lt;/th&gt;
+				&lt;th&gt;Gasto&lt;/font&gt;&lt;/b&gt;&lt;/th&gt;
+			&lt;/tr&gt;|
+	
+	Set ve = nav.Getfirst()
+	While Not ve Is Nothing
+		cont = 0
+		If ve.Iscategory Then
+			If ve.Columnvalues(0) &lt;&gt; "" Then 
+				cedula = ve.Columnvalues(0) 
+				arreglo = Split(ve.Columnvalues(0),"CC")
+				anio = arreglo(0)
+				cedula = arreglo(1)
+				form = "frSolicitudBono"
+				Set dcAprovados = vwEstadoSolicitudes.Getalldocumentsbykey(cedula+anio+estado+form, True)
+				
+				Set ndBono = dcAprovados.Getfirstdocument()
+				While Not ndBono Is Nothing 
+					If CLng(ndCfg2.equivalenteBono(0)) = 2 Then
+						If ndBono.jornada(0) = "D" Then
+							cont = cont + CInt(ndCfg2.equivalenteBono(0))
+						Else
+							cont = cont + (CInt(ndCfg2.equivalenteBono(0))/2)
+						End If
+					Else
+						cont = cont + CInt(ndCfg2.equivalenteBono(0))
+					End If
+	%rem
+					If ndBono.jornada(0) = "D" Then 
+						cont  = cont + 2
+					Else
+						cont = cont + 1
+					End If
+					%end rem					
+					Set ndBono = dcAprovados.Getnextdocument(ndBono)
+				Wend
+				
+				Set ndAux = dcAprovados.Getfirstdocument()
+				If Not ndAux Is Nothing Then
+					claves(0) = anio
+					claves(1) = ndAux.cargo(0)
+					Set ndBonosCargos = vwBonosCargos.Getdocumentbykey(claves, True)
+					If Not ndBonosCargos Is Nothing Then
+						bonos = ndBonosCargos.bonosAnioC(0)
+					Else
+						Set ndHistorico = vwHistoricoBono.Getdocumentbykey(claves,True)
+						If Not ndHistorico Is Nothing Then
+							bonos = ndHistorico.bonosAnio(0)
+						Else 
+							claves(1) = "Configuración general"
+							Set ndHistorico = vwHistoricoBono.Getdocumentbykey(claves,True)
+							If Not ndHistorico Is Nothing Then 
+								bonos = ndHistorico.bonosAnio(0)
+							Else
+								If Not ndCfg2 Is Nothing Then 
+									bonos = ndCfg2.bonosAnio(0)	
+								Else 
+									bonos = "No se encontró configuración de bonos asignados"
+								End If		
+							End If
+						End If
+					End If
+					autor = ndAux.autor(0)		
+				Set nNames = New NotesName(autor)	
+				Print |&lt;tr&gt;
+				&lt;td&gt;|+ anio +|&lt;/td&gt;
+				&lt;td&gt;|+ nNames.Common +|&lt;/td&gt;
+				&lt;td&gt;| + cedula + |&lt;/td&gt;
+				&lt;td&gt;| + CStr(bonos) + |&lt;/td&gt;
+				&lt;td&gt;| + CStr(cont) + |&lt;/td&gt;
+				&lt;/tr&gt;|	
+				End If			
+			End If			
+		End If	
+	Set ve = nav.Getnextcategory(ve)
+	Wend
+	
+		Print |&lt;/tbody&gt;
+		&lt;/table&gt;|
+	
+salir:	
+	Exit Sub
+label:
+	sError = "Error en Reporte Bonos asignados. " &amp; " (" &amp; CStr(Erl) &amp; ") " &amp; Error$
+	MsgBox "Error en agReporteBonosAsignados. " &amp; " (" &amp; CStr(Erl) &amp; ") " &amp; Error$
+	Resume salir
+End Sub</lotusscript></code>
+<rundata processeddocs='0' exitcode='0' agentdata='570235ED9829C2840525805900487E0D'>
+<agentmodified><datetime>20161027T081005,09-05</datetime></agentmodified>
+<agentrun><datetime>20161027T081519,54-05</datetime></agentrun>
+<runlog>Started running agent '(agReporteBonosAsignados)|agReporteBonosAsignados' on 10/27/2016 08:15:19 AM
+Ran LotusScript code
+Done running agent '(agReporteBonosAsignados)|agReporteBonosAsignados' on 10/27/2016 08:15:19 AM
+</runlog></rundata>
+<item name='$POID'><datetime>20170323T155827,42-05</datetime></item></agent>
+

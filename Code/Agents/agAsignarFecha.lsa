@@ -1,0 +1,117 @@
+<?xml version='1.0' encoding='utf-8'?>
+<agent name='agAsignarFecha' alias='agAsignarFecha' xmlns='http://www.lotus.com/dxl'
+ version='9.0' maintenanceversion='1.9' replicaid='052581670049F6C5' hide='v3'
+ publicaccess='false' designerversion='8.5.3' activatable='false'>
+<noteinfo noteid='e52' unid='3532815E700FFE3805257DA1004AFA6F' sequence='80'>
+<created><datetime>20141201T083857,75-05</datetime></created>
+<modified><datetime>20170724T082909,92-05</datetime></modified>
+<revised><datetime>20170724T082909,91-05</datetime></revised>
+<lastaccessed><datetime>20170724T082909,92-05</datetime></lastaccessed>
+<addedtofile><datetime>20170724T082809,86-05</datetime></addedtofile></noteinfo>
+<updatedby><name>CN=Admin Desarrollo/O=cognox</name><name>CN=Administrador Aplicaciones/O=GNCH</name><name
+>CN=Admin Desarrollo/O=cognox</name><name>CN=Administrador Aplicaciones/O=GNCH</name><name
+>CN=Admin Desarrollo/O=cognox</name><name>CN=Administrador Aplicaciones/O=GNCH</name><name
+>CN=Diego Alexander Velasco Acevedo/O=desarrollo</name></updatedby>
+<wassignedby><name>CN=Diego Alexander Velasco Acevedo/O=desarrollo</name></wassignedby>
+<designchange><datetime>20170724T082909,51-05</datetime></designchange>
+<trigger type='scheduled'>
+<schedule type='daily' runlocation='any'/></trigger>
+<documentset type='modified'/><code event='options'><lotusscript>Option Public
+Option Declare
+
+</lotusscript></code><code event='initialize'><lotusscript>
+Sub Initialize
+	On Error GoTo label
+	
+	Dim ns As New NotesSession
+	Dim ndCfg As NotesDocument
+	Dim ndCfg2 As NotesDocument
+	Dim ndCfgHorarioFlexible  As NotesDocument
+	Dim ndCfgLactancia  As NotesDocument
+	Dim ndCfgCalamidad  As NotesDocument
+	Dim ndCfgAcompaniamiento As NotesDocument
+	Dim ndCfgPermisosEspeciales As NotesDocument
+	Dim ndCfgBonoEspacio As NotesDocument
+	Dim db As NotesDatabase
+	Dim vwCfg As NotesView
+	Dim ndAux As NotesDocument
+	Dim item As NotesItem 
+		
+	Set db = ns.CurrentDatabase
+	Set vwCfg = db.Getview("vwProgTodos")
+	Set ndCfg = vwCfg.Getdocumentbykey("frGeneral", True)
+	Set ndCfg2 = vwCfg.Getdocumentbykey("frConfBonoTiempo", True)
+	Set ndCfgHorarioFlexible = vwCfg.Getdocumentbykey("frConfHorarioFlexible", True)
+	Set ndCfgLactancia = vwCfg.Getdocumentbykey("frConfLactancia", True)
+	Set ndCfgCalamidad = vwCfg.Getdocumentbykey("frConfCalamidad", True)
+	Set ndCfgAcompaniamiento = vwCfg.Getdocumentbykey("frConfAcompaniamiento", True)
+	Set ndCfgPermisosEspeciales = vwCfg.Getdocumentbykey("frConfPermisosEspeciales", True)
+	Set ndCfgBonoEspacio = vwCfg.Getdocumentbykey("frConfBonoEspacio", True)
+	
+	ndCfg.anioActual = Now 
+	Call ndCfg.Save(True, False)
+	Call ajustarFechas(ndCfg2, db,"frConfBonoTiempo")
+	Call ajustarFechas(ndCfgHorarioFlexible, db,"frConfHorarioFlexible")
+	Call ajustarFechas(ndCfgLactancia, db, "frConfLactancia")
+	Call ajustarFechas(ndCfgCalamidad, db, "frConfCalamidad")
+	Call ajustarFechas(ndCfgAcompaniamiento, db, "frConfAcompaniamiento")
+	Call ajustarFechas(ndCfgPermisosEspeciales, db, "frConfPermisosEspeciales")
+	Call ajustarFechas(ndCfgBonoEspacio, db, "frConfBonoEspacio")
+	
+	
+	
+salir:
+	Exit Sub
+label:
+	MsgBox "Error en agAsignarFecha. " &amp; " (" &amp; CStr(Erl) &amp; ") " &amp; Error$
+	Resume salir
+End Sub
+
+
+</lotusscript></code><code event='ajustarFechas'><lotusscript>%REM
+	Sub reporteEncuestas
+	Description: Comments for Sub
+%END REM
+Sub ajustarFechas (nd As NotesDocument, db As NotesDatabase,form As string)
+	Dim ndAux As NotesDocument
+	Dim item As NotesItem 
+	
+	If nd.bonosAnioPro(0) &lt;&gt; "" And nd.bonosMesPro(0) &lt;&gt; "" Then 
+		If Year(nd.anioActual(0)) &lt;&gt; Year(Now) Then 
+			nd.anioActual = Now 
+			nd.bonosAnio = nd.bonosAnioPro
+			nd.bonosMes = nd.bonosMesPro
+			nd.bonosAnioPro = ""
+			nd.bonosMesPro = ""
+
+			If nd.Save(False, False) Then 
+				Set ndAux = New NotesDocument(db)
+				ndAux.anio = Evaluate(|@Adjust(@Now;-1;0;0;0;0;0)|)
+				ndAux.form = "frHistoricoBonosAnio"
+				ndAux.keyForm = "Historico bonos por año"
+				ndAux.unique = Evaluate("@Unique")
+				Set item = New NotesItem(ndAux, "administrador", "[Administrador]", AUTHORS)		
+				item.Issummary = True
+				ndAux.cargosBonos = nd.keyForm
+				ndAux.bonosAnio = nd.bonosAnio 
+				ndAux.bonosMes = nd.bonosMes
+				ndAux.formConfiguracion = form
+				ndAux.idPadre = nd.unique
+				Call ndAux.Save(True, False)
+				
+				Call nd.Save(True, False)
+			End If
+		End If
+	End If 
+End Sub</lotusscript></code>
+<rundata processeddocs='0' exitcode='0' agentdata='DBCC0138A59A92C705257FB6005BF542'>
+<agentmodified><datetime>20170724T082909,92-05</datetime></agentmodified>
+<agentrun><datetime>20180417T000437,11-05</datetime></agentrun>
+<runlog>Started running agent 'agAsignarFecha|agAsignarFecha' on 17/04/2018 12:04:37 a. m.
+Running on new or modified documents: 157 total
+Found 157 document(s) that match search criteria
+Ran LotusScript code
+Done running agent 'agAsignarFecha|agAsignarFecha' on 17/04/2018 12:04:37 a. m.
+</runlog></rundata>
+<item name='$POID'><datetime>20170323T155823,82-05</datetime></item></agent>
+

@@ -1,0 +1,144 @@
+<?xml version='1.0' encoding='utf-8'?>
+<form name='Anexo' alias='frAnexo' xmlns='http://www.lotus.com/dxl' version='9.0'
+ maintenanceversion='1.9' replicaid='052581670049F6C5' nocompose='true' publicaccess='false'
+ designerversion='8.5.3' renderpassthrough='true'>
+<noteinfo noteid='d6a' unid='D548B4F437E894B805257CA70066B28E' sequence='72'>
+<created><datetime>20140326T134143,82-05</datetime></created>
+<modified><datetime>20170724T082910,06-05</datetime></modified>
+<revised><datetime>20170724T082910,05-05</datetime></revised>
+<lastaccessed><datetime>20170724T082910,06-05</datetime></lastaccessed>
+<addedtofile><datetime>20170724T082808,80-05</datetime></addedtofile></noteinfo>
+<updatedby><name>CN=Admin Desarrollo/O=cognox</name><name>CN=Administrador Aplicaciones/O=GNCH</name><name
+>CN=Admin Desarrollo/O=cognox</name><name>CN=Administrador Aplicaciones/O=GNCH</name><name
+>CN=Admin Desarrollo/O=cognox</name><name>CN=Administrador Aplicaciones/O=GNCH</name><name
+>CN=Admin Desarrollo/O=cognox</name><name>CN=Administrador Aplicaciones/O=GNCH</name><name
+>CN=Admin Desarrollo/O=cognox</name><name>CN=Administrador Aplicaciones/O=GNCH</name><name
+>CN=Admin Desarrollo/O=cognox</name><name>CN=Administrador Aplicaciones/O=GNCH</name><name
+>CN=Admin Desarrollo/O=cognox</name><name>CN=Administrador Aplicaciones/O=GNCH</name><name
+>CN=Admin Desarrollo/O=cognox</name><name>CN=Administrador Aplicaciones/O=GNCH</name><name
+>CN=Admin Desarrollo/O=cognox</name><name>CN=Administrador Aplicaciones/O=GNCH</name><name
+>CN=Admin Desarrollo/O=cognox</name><name>CN=Administrador Aplicaciones/O=GNCH</name><name
+>CN=Admin Desarrollo/O=cognox</name><name>CN=Administrador Aplicaciones/O=GNCH</name><name
+>CN=Admin Desarrollo/O=cognox</name><name>CN=Administrador DEV/O=DEV</name><name
+>CN=Admin Desarrollo/O=cognox</name><name>CN=Administrador DEV/O=DEV</name><name
+>CN=Admin Desarrollo/O=cognox</name><name>CN=Administrador DEV/O=DEV</name><name
+>CN=Administrador Aplicaciones/O=GNCH</name><name>CN=Admin Desarrollo/O=cognox</name><name
+>CN=Administrador Aplicaciones/O=GNCH</name><name>CN=Admin Desarrollo/O=cognox</name><name
+>CN=Administrador Aplicaciones/O=GNCH</name><name>CN=Admin Desarrollo/O=cognox</name><name
+>CN=Administrador Aplicaciones/O=GNCH</name><name>CN=Admin Desarrollo/O=cognox</name><name
+>CN=Administrador Aplicaciones/O=GNCH</name><name>CN=Admin Desarrollo/O=cognox</name><name
+>CN=Administrador Aplicaciones/O=GNCH</name><name>CN=Diego Alexander Velasco Acevedo/O=desarrollo</name></updatedby>
+<wassignedby><name>CN=Diego Alexander Velasco Acevedo/O=desarrollo</name></wassignedby><code
+ event='webquerysave'><formula>@Command([ToolsRunMacro]; "agGuardarAnexo")</formula></code><code
+ event='htmlbody'><formula>"style=margin:0px;padding:0px"</formula></code>
+<body><richtext>
+<pardef id='1' leftmargin='1in' tabs='L0.5000in L1in L1.1806in L1.3778in L1.5743in L1.7715in L1.9681in L2.1653in L2.3618in L2.5590in L2.7556in L2.9521in L3.1493in L3.3458in L3.5431in L3.7396in L3.9368in'/><subformref
+><code event='value'><formula>"sfrHeaderSinMenu"</formula></code></subformref>
+<pardef id='2' hide='notes web mobile'/>
+<par def='2'><run><font color='red'/><field type='text' kind='editable' name='form'><code
+ event='defaultvalue'><formula>"frAnexo"</formula></code></field></run><compositedata
+ type='98' prevtype='65418' nexttype='222' afterparcount='7' containertype='65418'
+ aftercontainercount='1' afterbegincount='3'>
+Yg4BAIQAAAAAAAAAAAA=
+</compositedata><run><font color='red'/></run><run
+><font color='red'/><field type='text' kind='computedfordisplay' name='SaveOptions'><code
+ event='defaultvalue'><formula>"1"</formula></code></field></run><compositedata
+ type='98' prevtype='65418' nexttype='222' afterparcount='16' containertype='65418'
+ aftercontainercount='1' afterbegincount='3'>
+Yg4BAIQAAAAAAAAAAAA=
+</compositedata><run><font color='red'/><field
+ type='text' kind='editable' name='uniquePadre'><code event='defaultvalue'><formula
+>@UrlQueryString("unique")</formula></code></field></run><compositedata type='98'
+ prevtype='65418' nexttype='222' afterparcount='22' containertype='65418'
+ aftercontainercount='1' afterbegincount='3'>
+Yg4BAIQAAAAAAAAAAAA=
+</compositedata><run><font color='red'/><field
+ type='text' kind='editable' name='seccion'><code event='defaultvalue'><formula
+>@UrlQueryString("seccion")</formula></code></field></run><compositedata type='98'
+ prevtype='65418' nexttype='222' afterparcount='28' containertype='65418'
+ aftercontainercount='1' afterbegincount='3'>
+Yg4BAIQAAAAAAAAAAAA=
+</compositedata><run><font color='red'/><field
+ type='text' kind='computedfordisplay' name='requerido'><code event='defaultvalue'><formula
+>@UrlQueryString("requerido")</formula></code></field></run><compositedata
+ type='98' prevtype='65418' nexttype='222' afterparcount='34' containertype='65418'
+ aftercontainercount='1' afterbegincount='3'>
+Yg4BAIQAAAAAAAAAAAA=
+</compositedata><run><font color='red'/><field
+ type='text' kind='computedfordisplay' name='tabla'><code event='defaultvalue'><formula
+>@UrlQueryString("tabla")</formula></code></field></run><compositedata type='98'
+ prevtype='65418' nexttype='222' afterparcount='40' containertype='65418'
+ aftercontainercount='1' afterbegincount='3'>
+Yg4BAIQAAAAAAAAAAAA=
+</compositedata><run><font color='red'/><field
+ type='text' kind='computedfordisplay' name='indice'><code event='defaultvalue'><formula
+>@UrlQueryString("indice")</formula></code></field></run><compositedata type='98'
+ prevtype='65418' nexttype='222' afterparcount='46' containertype='65418'
+ aftercontainercount='1' afterbegincount='3'>
+Yg4BAIQAAAAAAAAAAAA=
+</compositedata><run><font color='red'/><field
+ type='text' kind='computedfordisplay' name='tipo'><code event='defaultvalue'><formula
+>@UrlQueryString("tipo")</formula></code></field></run><compositedata type='98'
+ prevtype='65418' nexttype='222' afterparcount='54' containertype='65418'
+ aftercontainercount='1' afterbegincount='3'>
+Yg4BAIQAAAAAAAAAAAA=
+</compositedata><run><font color='red'/><field
+ type='text' kind='computedfordisplay' name='multiple'><code event='defaultvalue'><formula
+>@UrlQueryString("multiple")</formula></code></field></run><compositedata
+ type='98' prevtype='65418' nexttype='222' afterparcount='60' containertype='65418'
+ aftercontainercount='1' afterbegincount='3'>
+Yg4BAIQAAAAAAAAAAAA=
+</compositedata></par>
+<pardef id='3' tabs='L0.5000in L1in L1.1806in L1.3778in L1.5743in L1.7715in L1.9681in L2.5000in L3in L3.5000in L4in'/>
+<par def='3'><embeddedfileuploadcontrol htmlid='fileUpload' htmlstyle='display:none'/></par>
+<table widthtype='fitmargins' refwidth='9.6771in'><tablecolumn width='13.9826%'/><tablecolumn
+ width='86.0174%'/>
+<tablerow>
+<tablecell borderwidth='0px'>
+<pardef id='5' keepwithnext='true' keeptogether='true'/>
+<par def='5'>Nombre</par></tablecell>
+<tablecell borderwidth='0px'>
+<pardef id='6' keepwithnext='true' keeptogether='true'/>
+<par def='6'><field type='text' kind='editable' name='nombre'/><compositedata
+ type='98' prevtype='65418' nexttype='222' afterparcount='7' containertype='65418'
+ aftercontainercount='1' afterbegincount='3'>
+Yg4BAIQAAAAAAAAAAAA=
+</compositedata></par></tablecell></tablerow>
+<tablerow>
+<tablecell borderwidth='0px'>
+<par def='5'>Archivo</par></tablecell>
+<tablecell borderwidth='0px'>
+<pardef id='7' tabs='L0.5000in L1in L1.1806in L1.3778in L1.5743in L1.7715in L1.9681in L2.5000in L3in L3.5000in L4in'
+ keepwithnext='true' keeptogether='true'/>
+<par def='7'><run html='true'>&lt;div class="fileupload fileupload-new" data-provides="fileupload"&gt;</run></par>
+<par def='7'><run html='true'>	&lt;div class="input-append"&gt;</run></par>
+<par def='7'><run html='true'>		&lt;div class="uneditable-input span3" style="width:200px;min-height:22px;font-size:12px;line-height:12px"&gt;</run></par>
+<par def='7'><run html='true'>			&lt;i class="icon-file fileupload-exists"&gt;&lt;/i&gt;</run></par>
+<par def='7'><run html='true'>			&lt;span class="fileupload-preview"&gt;&lt;/span&gt;</run></par>
+<par def='7'><run html='true'>		&lt;/div&gt;</run></par>
+<par def='7'><run html='true'>		&lt;span class="btn btn-file btn-primary btn-mini"&gt;</run></par>
+<par def='7'><run html='true'>			&lt;span&gt;&lt;i class="icon-folder-open icon-white"&gt;&lt;/i&gt; Seleccionar &lt;/span&gt;</run></par>
+<par def='7'><run html='true'>			&lt;input id="cargador" type="file" /&gt;</run></par>
+<par def='7'><run html='true'>		&lt;/span&gt;</run></par>
+<par def='7'><run html='true'>		&lt;a class="btn btn-success btn-mini" href="javascript:void(0)" onclick="cargar()"&gt;&lt;i class="icon-upload-alt icon-white"&gt;&lt;/i&gt; Cargar &lt;/a&gt;</run></par>
+<par def='7'><run html='true'>	&lt;/div&gt;</run></par>
+<par def='7'><run html='true'>&lt;/div&gt;</run></par></tablecell></tablerow></table>
+<par def='3'/>
+<pardef id='8'/>
+<par def='8'><run html='true'>&lt;script&gt;</run></par>
+<pardef id='9' tabs='L1.1806in'/>
+<par def='9'><run html='true'>	var documento = {</run></par>
+<pardef id='10' tabs='L1.1806in L1.3778in'/>
+<par def='10'><run html='true'>		sTipo : "</run><run html='true'><computedtext
+><code event='value'><formula>tipo</formula></code></computedtext></run><run
+ html='true'>"</run></par>
+<par def='10'><run html='true'>}</run></par>
+<par def='9'><run html='true'>&lt;/script&gt;</run></par>
+<par def='9'/><subformref><code event='value'><formula>"sfrFooter"</formula></code></subformref>
+<pardef id='11' leftmargin='1in' tabs='L0.5000in L1in L1.5000in L2in L2.5000in L3in L3.5000in L4in'/>
+<par def='11'/>
+<par def='11'><run html='true'>&lt;script src="/</run><run html='true'><computedtext
+><code event='value'><formula>webDbName</formula></code></computedtext></run><run
+ html='true'>/JSFrAnexo?Open"&gt;&lt;/script&gt;</run></par></richtext></body>
+<item name='$$ScriptName' summary='false' sign='true'><text>frAnexo</text></item></form>
+

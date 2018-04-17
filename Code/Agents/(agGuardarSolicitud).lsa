@@ -1,0 +1,215 @@
+<?xml version='1.0' encoding='utf-8'?>
+<agent name='(agGuardarSolicitud)' alias='agGuardarSolicitud' xmlns='http://www.lotus.com/dxl'
+ version='9.0' maintenanceversion='1.9' replicaid='052581670049F6C5' hide='v3'
+ publicaccess='false' designerversion='8.5.3' restrictions='fulladminunrestricted'>
+<noteinfo noteid='65e' unid='55B0058957DA49E705257C2F000B3CA6' sequence='205'>
+<created><datetime>20131125T210244,22-05</datetime></created>
+<modified><datetime>20170724T082913,46-05</datetime></modified>
+<revised><datetime>20170724T082913,45-05</datetime></revised>
+<lastaccessed><datetime>20170724T082913,46-05</datetime></lastaccessed>
+<addedtofile><datetime>20170724T082759,94-05</datetime></addedtofile></noteinfo>
+<updatedby><name>CN=Administrador Aplicaciones/O=GNCH</name><name>CN=Admin Desarrollo/O=cognox</name><name
+>CN=Administrador Aplicaciones/O=GNCH</name><name>CN=Diego Alexander Velasco Acevedo/O=desarrollo</name></updatedby>
+<wassignedby><name>CN=Diego Alexander Velasco Acevedo/O=desarrollo</name></wassignedby>
+<designchange><datetime>20170724T082910,54-05</datetime></designchange>
+<trigger type='agentlist'/>
+<documentset type='runonce'/><code event='options'><lotusscript>Option Public
+Option Declare
+Use "LSFlujo"
+Use "LsComunes"
+
+</lotusscript></code><code event='declarations'><lotusscript>Dim ns As NotesSession
+Dim db As NotesDatabase
+Dim nd As NotesDocument
+Dim ndCfg As NotesDocument
+Dim ndCfg2 As NotesDocument
+Dim ndCfg3 As NotesDocument
+Dim vwTodos As NotesView  
+Dim sError As String 
+Dim objComunes As Comunes
+Dim objFlujo As Flujo
+Dim objCorreo As Correo
+	
+
+
+</lotusscript></code><code event='initialize'><lotusscript>Sub Initialize
+	On Error GoTo label
+	
+	Dim webDbName As Variant
+	Dim ndAnexo As NotesDocument 
+	Dim vwAnexos As NotesView 
+	Dim evento As String 
+	Dim mensaje(7) As String 
+	Dim nombre As NotesName
+	Dim jornada As String 
+	
+	Dim vwUniques As NotesView
+	Dim ndEstado As NotesDocument
+	
+	webDbName = Evaluate(|@WebDBName|)
+	
+	Set ns = New NotesSession
+	Set db = ns.CurrentDatabase
+	Set nd = ns.DocumentContext
+	Set vwTodos = db.Getview("vwProgTodos")
+	Set vwUniques = db.Getview("vwProgUniques")
+	Set ndCfg = vwTodos.Getdocumentbykey("frGeneral", True)
+	Set ndCfg2 = vwTodos.Getdocumentbykey("frConfBonoTiempo", True)
+	Set ndCfg3 = vwTodos.Getdocumentbykey("frConfBonoEspacio", True)
+	Set vwAnexos = db.Getview("vwProgAnexos")
+	Set ndAnexo = vwAnexos.Getdocumentbykey(ndCfg.unique(0)+"ANE1", True)
+	Set objComunes = New Comunes
+	Set objCorreo = New Correo
+	
+	evento = nd.evento(0)
+		
+	If nd.HasItem("$Conflict") Then
+		sError = "1"
+	Else
+		evento = nd.evento(0)
+		If evento &lt;&gt; ""  Then 
+			Select Case evento
+			Case "CE" 
+				Dim objFlujo As New Flujo(nd)
+				sError = objFlujo.cambiarEstado
+				If sError = "" Then
+					Call objFlujo.registrarHistorico
+					Call objFlujo.ejecutarAcciones
+				End If 
+			Case "E"
+				nd.fechaEliminacion = Now 
+				nd.autorEliminacion = nd.usuario
+				nd.form = "frLog"
+				
+				If Not ndCfg2 Is Nothing Then
+					If ndCfg2.notificacionEliminacion(0) = "S" Then 
+						If Not ndAnexo Is Nothing Then 
+							mensaje(0) = |&lt;img src='|+ndCfg.host(0)+|/|+webDbName(0)+|/0/|+ndAnexo.UniversalID+|/$file/|+ndAnexo.archivo(0)+|'"&gt;&lt;br&gt;|+Join(ndCfg2.mensajeEliminacion,|"&lt;br&gt;"|)+"&lt;br&gt;"
+						Else
+							mensaje(0) = Join(ndCfg2.mensajeEliminacion,|"&lt;br&gt;"|)+"&lt;br&gt;"
+						End If
+						mensaje(1) = "&lt;b&gt;Datos solicitud&lt;/b&gt;"
+						mensaje(2) = "Consecutivo: "+nd.consecutivo(0)
+						Set nombre = New NotesName(nd.autor(0))
+						mensaje(3) = "Autor: "+nombre.Common
+						If nd.jornada(0) = "M" Then
+							jornada = "Mañana"
+						ElseIf nd.jornada(0) = "D" Then
+							jornada = "Dia completo"
+						Else
+							jornada = "Tarde"
+						End If
+						mensaje(4) = "Jornada: "+jornada
+						mensaje(5) = "Fecha de redención: "+nd.fechaRedencion(0)
+						Set nombre = New NotesName(nd.autorEliminacion(0))
+						mensaje(6) = "Autor eliminación: "+nombre.Common
+						mensaje(7) = "Justificación eliminación: "+Join(nd.comentarioEliminacion,|&lt;br&gt;|)
+						Call objCorreo.notificar(nd.jefe, ndCfg2.asuntoEliminacion(0), mensaje, ndCfg.remitenteCorreos(0))
+					End If	
+				End If  
+				
+				If Not ndCfg3 Is Nothing Then 
+					If ndCfg3.notificacionEliminacion(0) = "S" Then 
+						If Not ndAnexo Is Nothing Then 
+							mensaje(0) = |&lt;img src='|+ndCfg.host(0)+|/|+webDbName(0)+|/0/|+ndAnexo.UniversalID+|/$file/|+ndAnexo.archivo(0)+|'"&gt;&lt;br&gt;|+Join(ndCfg3.mensajeEliminacion,|"&lt;br&gt;"|)+"&lt;br&gt;"
+						Else
+							mensaje(0) = Join(ndCfg3.mensajeEliminacion,|"&lt;br&gt;"|)+"&lt;br&gt;"
+						End If
+						mensaje(1) = "&lt;b&gt;Datos solicitud&lt;/b&gt;"
+						mensaje(2) = "Consecutivo: "+nd.consecutivo(0)
+						Set nombre = New NotesName(nd.autor(0))
+						mensaje(3) = "Autor: "+nombre.Common
+						If nd.jornada(0) = "M" Then
+							jornada = "Mañana"
+						ElseIf nd.jornada(0) = "D" Then
+							jornada = "Dia completo"
+						Else
+							jornada = "Tarde"
+						End If
+						mensaje(4) = "Jornada: "+jornada
+						mensaje(5) = "Fecha de redención: "+nd.fechaRedencion(0)
+						Set nombre = New NotesName(nd.autorEliminacion(0))
+						mensaje(6) = "Autor eliminación: "+nombre.Common
+						mensaje(7) = "Justificación eliminación: "+Join(nd.comentarioEliminacion,|&lt;br&gt;|)
+						Call objCorreo.notificar(nd.jefe, ndCfg3.asuntoEliminacion(0), mensaje, ndCfg.remitenteCorreos(0))
+					End If	
+				End If
+								
+			End Select	
+		Else
+			Set ndEstado = vwUniques.Getdocumentbykey(nd.uniqueEstado(0))
+			If Not ndEstado Is Nothing Then 
+				If ndEstado.inicial(0) &lt;&gt; "Si" Then 	
+					nd.responsables = getPersonas(ndEstado.resCampo(0))
+					nd.editores = getPersonas(ndEstado.ediCampo(0))
+				End If
+			End If		
+		End If
+		
+	End If
+		
+	
+	
+salir:
+	Print |&lt;script&gt;|
+	
+	If sError = "" Then
+		If evento &lt;&gt; "" Then
+			If evento = "E" Then 
+				Print |location.href = "/|+webDbName(0)+|/frRespuesta?OpenForm&amp;msg=2&amp;redirect=vwMisPendientes?Open"|
+			Else
+				Print |location.href = "/|+webDbName(0)+|/frRespuesta?OpenForm&amp;msg=1&amp;redirect=vwMisPendientes?Open"|
+			End If
+			
+		Else
+			Print {location.href = "/}+webDbName(0)+{/frAlert?Open&amp;msg=1&amp;unid=}+nd.UniversalID+{"}
+		End If	
+
+	Else
+		nd.saveOptions = "0"	
+		Print |location.href = "/|+webDbName(0)+|/frError?OpenForm&amp;msg=|+sError+|"|
+	End If
+	Print |&lt;/script&gt;|	
+	
+	Exit Sub	
+label:
+	sError = "Error al guardar la solicitud. " &amp; " (" &amp; CStr(Erl) &amp; ") " &amp; Error$
+	MsgBox "Error en agGuardarSolicitud. " &amp; " (" &amp; CStr(Erl) &amp; ") " &amp; Error$
+	Resume salir
+End Sub
+
+
+
+	
+
+</lotusscript></code><code event='getPersonas'><lotusscript>Function getPersonas(campo As String) As Variant
+	Dim personas As Variant 
+	Dim ns As NotesSession
+	Dim db As NotesDatabase
+	Dim nd As NotesDocument
+	
+	Set ns = New NotesSession
+	Set db = ns.CurrentDatabase
+	Set nd = ns.DocumentContext
+	
+		Select Case campo
+			Case "autor":
+				personas = nd.autor
+			Case "jefe":
+				personas = nd.jefe
+			Case "bienestar":
+				personas = ndCfg.bienestar
+			Case Else
+				personas = ""
+		End Select
+		getPersonas = personas
+End Function</lotusscript></code>
+<rundata processeddocs='0' exitcode='0' agentdata='AAE6140AA8A8390D052580E400664C10'>
+<agentmodified><datetime>20170724T082913,46-05</datetime></agentmodified>
+<agentrun><datetime>20170801T154904,09-05</datetime></agentrun>
+<runlog>Started running agent '(agGuardarSolicitud)|agGuardarSolicitud' on 01/08/2017 03:49:04 p. m.
+Ran LotusScript code
+Done running agent '(agGuardarSolicitud)|agGuardarSolicitud' on 01/08/2017 03:49:04 p. m.
+</runlog></rundata>
+<item name='$POID'><datetime>20170323T155827,36-05</datetime></item></agent>
+

@@ -1,0 +1,191 @@
+<?xml version='1.0' encoding='utf-8'?>
+<form name='Admon / Permisos especiales' alias='frConfPermisosEspeciales'
+ xmlns='http://www.lotus.com/dxl' version='9.0' maintenanceversion='1.9' replicaid='052581670049F6C5'
+ nocompose='true' publicaccess='false' designerversion='8.5.3' editonopen='true'
+ renderpassthrough='true'>
+<noteinfo noteid='10d6' unid='26FADB46C972560505257FB00057456C' sequence='35'>
+<created><datetime>20160511T105314,04-05</datetime></created>
+<modified><datetime>20170724T082909,74-05</datetime></modified>
+<revised><datetime>20170724T082909,73-05</datetime></revised>
+<lastaccessed><datetime>20170724T082909,74-05</datetime></lastaccessed>
+<addedtofile><datetime>20170724T082812,90-05</datetime></addedtofile></noteinfo>
+<updatedby><name>CN=Admin Desarrollo/O=cognox</name><name>CN=Administrador Aplicaciones/O=GNCH</name><name
+>CN=Admin Desarrollo/O=cognox</name><name>CN=Administrador Aplicaciones/O=GNCH</name><name
+>CN=Diego Alexander Velasco Acevedo/O=desarrollo</name></updatedby>
+<wassignedby><name>CN=Diego Alexander Velasco Acevedo/O=desarrollo</name></wassignedby><code
+ event='webquerysave'><formula>@Command([ToolsRunMacro]; "agGuardarConfiguracion")</formula></code><code
+ event='htmlhead'><formula>unid:=@DbLookup("":"NoCache";"";"vwProgTodos";"frConfPermisosEspeciales";1;[FailSilent]:[ReturnDocumentUniqueID]);
+"&lt;script&gt;"+
+@If(@IsNewDoc &amp; unid != "";
+"location.href = '/"+webDbName+"/vwProgTodos/"+unid+"?OpenDocument&amp;id='+Math.random();";
+"")+
+"&lt;/script&gt;"</formula></code>
+<body><richtext>
+<pardef id='1' leftmargin='1in' tabs='L0.5000in L1in L1.1806in L1.3778in L1.5743in L1.7715in L1.9681in L2.1653in L2.3618in L2.5590in L2.7556in L2.9521in L3.1493in L3.3458in L3.5431in L3.7396in L3.9368in'/><subformref
+><code event='value'><formula>"sfrHeader"</formula></code></subformref>
+<par def='1'/>
+<pardef id='2' hide='notes web mobile'/>
+<par def='2'><run><font color='red'/></run><run><font color='red'/><field
+ type='text' kind='editable' name='form'><code event='defaultvalue'><formula
+>"frConfPermisosEspeciales"</formula></code></field></run><compositedata type='98'
+ prevtype='65418' nexttype='222' afterparcount='10' containertype='65418'
+ aftercontainercount='1' afterbegincount='3'>
+Yg4BAIQAAAAAAAAAAAA=
+</compositedata><run><font color='red'/></run><run
+><font color='red'/><field type='text' kind='editable' name='keyForm'><code
+ event='defaultvalue'><formula>"Admon / Permisos especiales"</formula></code></field></run><compositedata
+ type='98' prevtype='65418' nexttype='222' afterparcount='19' containertype='65418'
+ aftercontainercount='1' afterbegincount='3'>
+Yg4BAIQAAAAAAAAAAAA=
+</compositedata><run><font color='red'/></run><run
+><font color='red'/><field type='text' kind='computedfordisplay' name='SaveOptions'><code
+ event='defaultvalue'><formula>"1"</formula></code></field></run><compositedata
+ type='98' prevtype='65418' nexttype='222' afterparcount='28' containertype='65418'
+ aftercontainercount='1' afterbegincount='3'>
+Yg4BAIQAAAAAAAAAAAA=
+</compositedata><run><font color='red'/></run><run
+><font color='red'/><field type='text' kind='computedfordisplay' name='redireccion'><code
+ event='defaultvalue'><formula>"?Open"</formula></code></field></run><compositedata
+ type='98' prevtype='65418' nexttype='222' afterparcount='37' containertype='65418'
+ aftercontainercount='1' afterbegincount='3'>
+Yg4BAIQAAAAAAAAAAAA=
+</compositedata><run><font color='red'/><field
+ type='datetime' kind='editable' name='anioActual'><datetimeformat show='date'
+ date='yearmonthday' fourdigityearfor21stcentury='true' zone='never' dateformat='weekdaydaymonthyear'
+ dayformat='twodigitday' monthformat='twodigitmonth' yearformat='fourdigityear'
+ weekdayformat='shortname' dateseparator1=' ' dateseparator2='/' dateseparator3='/'
+ timeseparator=':' preference='custom'/><code event='defaultvalue'><formula
+>@Now</formula></code></field></run><run><font color='red'/><field type='datetime'
+ kind='editable' name='fechaNotiJefe'><datetimeformat show='date' date='yearmonthday'
+ fourdigityearfor21stcentury='true' zone='never' dateformat='weekdaydaymonthyear'
+ dayformat='twodigitday' monthformat='twodigitmonth' yearformat='fourdigityear'
+ weekdayformat='shortname' dateseparator1=' ' dateseparator2='/' dateseparator3='/'
+ timeseparator=':' preference='custom'/></field></run></par>
+<pardef id='3'/>
+<par def='3'/><subformref><code event='value'><formula>"sfrHeaderConfiguracion"</formula></code></subformref>
+<par def='3'/>
+<table widthtype='fitmargins' refwidth='9.2083in'><tablecolumn width='21.3194%'/><tablecolumn
+ width='21.0625%'/><tablecolumn width='8.8472%'/><tablecolumn width='9.5625%'/><tablecolumn
+ width='39.2083%'/>
+<tablerow>
+<tablecell borderwidth='0px'>
+<pardef id='5' keepwithnext='true' keeptogether='true'/>
+<par def='5'>¿Solicitud Activa?</par></tablecell>
+<tablecell columnspan='4' borderwidth='0px'>
+<pardef id='9' keepwithnext='true' keeptogether='true'/>
+<par def='9'><field borderstyle='inset' lookupeachchar='false' lookupaddressonrefresh='false'
+ type='keyword' kind='editable' name='solicitudActiva' htmlclass='campoRadio'><keywords
+ helperbutton='false' columns='2' ui='radiobutton'><textlist><text>Si | S</text><text
+>No | N</text></textlist></keywords><code event='defaultvalue'><formula>"S"</formula></code></field><run
+><font name='Verdana' pitch='variable' truetype='true' familyid='20'/></run></par></tablecell></tablerow>
+<tablerow>
+<tablecell borderwidth='0px'>
+<pardef id='10' keepwithnext='true' keeptogether='true'/>
+<par def='10'><run html='true'>&lt;i class="icon-asterisk icon-red"&gt; &lt;/i&gt;</run>Nombre solicitud</par></tablecell>
+<tablecell columnspan='4' borderwidth='0px'>
+<par def='9'><run><font name='Verdana' pitch='variable' truetype='true' familyid='20'/><field
+ type='text' kind='editable' name='nombreSolicitud' htmlclass='input-xxlarge'/></run><compositedata
+ type='98' prevtype='65402' nexttype='222' afterparcount='7' containertype='65418'
+ aftercontainercount='2' afterbegincount='4'>
+Yg4BAIQAAAAAAAAAAAA=
+</compositedata></par></tablecell></tablerow>
+<tablerow>
+<tablecell borderwidth='0px'>
+<par def='10'>Códigos de compañías para las que aplica</par></tablecell>
+<tablecell columnspan='4' borderwidth='0px'>
+<par def='9'><field type='keyword' allowmultivalues='true' kind='editable'
+ name='codigoCompania' listinputseparators='comma' listdisplayseparator='comma'
+ htmlclass='input-xxlarge'><keywords ui='dialoglist'><formula>lista:=@DbLookup("":"NoCache";"";"vwProgTodos";"frGeneral";"codigoCompania";[FailSilent]);
+lista+"|"+lista</formula></keywords></field></par></tablecell></tablerow>
+<tablerow>
+<tablecell borderwidth='0px'>
+<par def='10'><run><font name='Verdana' pitch='variable' truetype='true' familyid='20'/>Tipos de permisos</run><run
+ html='true'>&lt;br&gt;&lt;span class=text-info&gt;</run>Uno por línea<run
+ html='true'>&lt;/span&gt;</run></par></tablecell>
+<tablecell columnspan='4' borderwidth='0px'>
+<par def='9'><run><font name='Verdana' pitch='variable' truetype='true' familyid='20'/></run><run
+><font name='Verdana' pitch='variable' truetype='true' familyid='20'/><field
+ type='text' allowmultivalues='true' kind='editable' name='tipoPermiso' listinputseparators='newline'
+ listdisplayseparator='newline' htmlclass='input-xxlarge'><code event='defaultvalue'><formula
+>"Salud":
+"Educación":
+"Luto":
+"Deporte":
+"Hijos"</formula></code></field></run><compositedata type='98' prevtype='65402'
+ nexttype='222' afterparcount='7' containertype='65418' aftercontainercount='2'
+ afterbegincount='4'>
+Yg4BAIQAAAAAAAAAAAA=
+</compositedata><run><font name='Verdana' pitch='variable'
+ truetype='true' familyid='20'/></run></par></tablecell></tablerow>
+<tablerow>
+<tablecell borderwidth='0px'>
+<par def='10'>Días de permisos<run html='true'>&lt;br&gt;&lt;span class=text-info&gt;</run>Uno por línea<run
+ html='true'>&lt;/span&gt;</run></par></tablecell>
+<tablecell columnspan='4' borderwidth='0px'>
+<par def='9'><field type='text' allowmultivalues='true' kind='editable' name='diasPermiso'
+ listinputseparators='newline' listdisplayseparator='newline' htmlclass='input-xxlarge'><code
+ event='defaultvalue'><formula>"Lunes":
+"Martes":
+"Miércoles":
+"Jueves":
+"Viernes"</formula></code></field><compositedata type='98' prevtype='65402'
+ nexttype='222' afterparcount='7' containertype='65418' aftercontainercount='2'
+ afterbegincount='4'>
+Yg4BAIQAAAAAAAAAAAA=
+</compositedata></par></tablecell></tablerow>
+<tablerow>
+<tablecell borderwidth='0px'>
+<par def='10'><run><font name='Verdana' pitch='variable' truetype='true' familyid='20'/>Nota solicitud de bonos</run></par></tablecell>
+<tablecell columnspan='4' borderwidth='0px'>
+<par def='9'><run><font name='Verdana' pitch='variable' truetype='true' familyid='20'/></run><run
+><font name='Verdana' pitch='variable' truetype='true' familyid='20'/><field
+ type='text' allowmultivalues='true' kind='editable' name='notaSolicitud'
+ listinputseparators='newline' listdisplayseparator='newline' htmlclass='input-xxlarge'/></run><compositedata
+ type='98' prevtype='65402' nexttype='222' afterparcount='7' containertype='65418'
+ aftercontainercount='2' afterbegincount='4'>
+Yg4BAIQAAAAAAAAAAAA=
+</compositedata></par></tablecell></tablerow></table>
+<par def='1'><run html='true'>&lt;p&gt;&lt;/p&gt;</run></par>
+<par def='3'><run html='true'>&lt;div align="left"&gt;</run></par>
+<par def='3'><run html='true'>&lt;i class="icon-asterisk icon-red"&gt;&lt;span class="textoAsterisco"&gt; Campo requerido &lt;/i&gt;&lt;/span&gt;</run></par>
+<par def='3'><run html='true'>&lt;/div&gt;</run></par><subformref><code event='value'><formula
+>"sfrFooter"</formula></code></subformref>
+<pardef id='11' leftmargin='1in' tabs='L0.5000in L1in L1.5000in L2in L2.5000in L3in L3.5000in L4in'/>
+<par def='11'><run html='true'>&lt;script src="/</run><run html='true'><computedtext
+><code event='value'><formula>webDbName</formula></code></computedtext></run><run
+ html='true'>/</run><run html='true'>JSFrConfPermisosEspeciales</run><run
+ html='true'>?Open"&gt;&lt;/script&gt;</run></par>
+<par def='11'/></richtext></body>
+<item name='OriginalModTime' sign='true'><datetime>20100916T112413,96-05</datetime></item>
+<item name='$SubForm_RepIDs' sign='true'><textlist><text>0000000000000000</text><text
+>0000000000000000</text><text>0000000000000000</text></textlist></item>
+<item name='fechaNotificacion' summary='false' sign='true'>
+<rawitemdata type='400'>
+AAAAAAAAAAA=
+</rawitemdata></item>
+<item name='fechaNotiJefe_1' summary='false' sign='true'>
+<rawitemdata type='400'>
+AAAAAAAAAAA=
+</rawitemdata></item>
+<item name='fechaValiJefe' summary='false' sign='true'>
+<rawitemdata type='400'>
+AAAAAAAAAAA=
+</rawitemdata></item>
+<item name='fechaEnvioJefe' summary='false' sign='true'>
+<rawitemdata type='400'>
+AAAAAAAAAAA=
+</rawitemdata></item>
+<item name='fechaFin_1_1' summary='false' sign='true'>
+<rawitemdata type='400'>
+AAAAAAAAAAA=
+</rawitemdata></item>
+<item name='fechaFin_1' summary='false' sign='true'>
+<rawitemdata type='400'>
+AAAAAAAAAAA=
+</rawitemdata></item>
+<item name='fechaFin' summary='false' sign='true'>
+<rawitemdata type='400'>
+AAAAAAAAAAA=
+</rawitemdata></item>
+<item name='$$ScriptName' summary='false' sign='true'><text>frGeneral</text></item></form>
+

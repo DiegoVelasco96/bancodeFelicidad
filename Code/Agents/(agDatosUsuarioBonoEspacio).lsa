@@ -1,0 +1,153 @@
+<?xml version='1.0' encoding='utf-8'?>
+<agent name='(agDatosUsuarioBonoEspacio)' alias='agDatosUsuarioBonoEspacio'
+ xmlns='http://www.lotus.com/dxl' version='9.0' maintenanceversion='1.9' replicaid='052581670049F6C5'
+ hide='v3' publicaccess='false' designerversion='8.5.3'>
+<noteinfo noteid='111a' unid='3E9A40D0EE38897B05257FBC006FEBCC' sequence='18'>
+<created><datetime>20160523T152228,60-05</datetime></created>
+<modified><datetime>20170724T082913,34-05</datetime></modified>
+<revised><datetime>20170724T082913,33-05</datetime></revised>
+<lastaccessed><datetime>20170724T082913,34-05</datetime></lastaccessed>
+<addedtofile><datetime>20170724T082813,16-05</datetime></addedtofile></noteinfo>
+<updatedby><name>CN=Administrador Aplicaciones/O=GNCH</name><name>CN=Admin Desarrollo/O=cognox</name><name
+>CN=Administrador Aplicaciones/O=GNCH</name><name>CN=Diego Alexander Velasco Acevedo/O=desarrollo</name></updatedby>
+<wassignedby><name>CN=Diego Alexander Velasco Acevedo/O=desarrollo</name></wassignedby>
+<designchange><datetime>20170724T082910,51-05</datetime></designchange>
+<trigger type='agentlist'/>
+<documentset type='runonce'/><code event='options'><lotusscript>Option Public
+Option Declare
+
+</lotusscript></code><code event='declarations'><lotusscript>Dim vwSolicitudes As NotesView 
+Dim claves(2) As String 
+
+</lotusscript></code><code event='initialize'><lotusscript>Sub Initialize
+	On Error Goto label
+	
+	Dim ns As New NotesSession
+	Dim db As NotesDatabase
+	Dim webDbName As Variant
+	Dim dbNomina As NotesDatabase
+	Dim dbDirectorio As NotesDatabase
+	Dim dbNames As NotesDatabase 
+	Dim vwCfg As NotesView
+	Dim ndCfg2 As NotesDocument
+	Dim vwPersonas As NotesView
+	Dim vwPersonasNames As NotesView 
+	Dim nd As NotesDocument
+	Dim ndCfg As NotesDocument
+	Dim ndPersona As NotesDocument
+	Dim ndAux As NotesDocument
+	Dim dcEmpleado As NotesDocumentCollection		
+	Dim ndAuxDire As NotesDocument 
+	Dim nombre As NotesName
+	Dim sError As String
+	Dim item As NotesItem
+	Dim usuario As Variant
+	Dim solicitudes As Integer   
+	Dim posicion As Variant
+	Dim resultados As Long 
+	Dim cargo As String   
+	Dim ndBonosCargos As NotesDocument
+	Dim vwBonosCargos As NotesView
+	Dim anioConfi As String
+	
+	webDbName = Evaluate({@WebDBName})
+	
+	Set db = ns.CurrentDatabase
+	Set nd = ns.DocumentContext
+	Set ndAux = New NotesDocument(db)
+	Set vwCfg = db.GetView("vwProgTodos")
+	Set ndCfg = vwCfg.GetDocumentByKey("frGeneral", True)
+	Set ndCfg2 = vwCfg.GetDocumentByKey("frConfBonoEspacio", True)
+	Set dbNomina = New NotesDatabase("", ndCfg.rutaNomina(0))
+	Set dbDirectorio = New NotesDatabase("", ndCfg.rutadirectorio(0))
+	Set dbNames = New NotesDatabase("", "names.nsf")
+	Set vwPersonas = dbDirectorio.GetView("dnvwFVValidacion")
+	Set vwSolicitudes = db.getview("vwProgSolicitudesBonos")
+	Set nombre = New NotesName(nd.autor(0))
+	Set vwPersonasNames = dbNames.Getview("($People)")
+	Set vwBonosCargos = db.Getview("vwProgCargosEspecificos")
+	
+	If nd.Isnewnote Then 
+		Set ndAux = vwPersonas.Getdocumentbykey(nd.autor(0), True) 
+		If Not ndAux Is Nothing Then
+			Set vwPersonas = dbNomina.GetView("dnvwCedula")	
+			Set ndPersona = vwPersonas.Getdocumentbykey(ndAux.EmployeeID(0), True)
+			If Not ndPersona Is Nothing Then
+				posicion = ArrayGetIndex(ndCfg.codigoCompania, ndPersona.dnfdCodigoCia(0))
+				If Not IsNull(posicion) Then 
+					nd.cedula = ndPersona.dnfdCedula(0)
+					nd.correo = ndPersona.dnfdCorreo(0)
+					nd.gerencia = ndPersona.dnfdGerencia(0)
+					nd.cargo = ndPersona.dnfdCargo(0)
+					cargo = ndPersona.dnfdCargo(0)
+					nd.fechaIngreso = ndPersona.dnfdFechaIng(0)
+					
+					If Trim(ndPersona.dnfdCedulaJefe(0)) &lt;&gt; "" And  Trim(ndPersona.dnfdCedulaJefe(0)) &lt;&gt; "-" Then 
+						resultados = vwPersonasNames.Ftsearch("FIELD EmployeeID = " + Trim(ndPersona.dnfdCedulaJefe(0)) , 1)			
+						Set ndAuxDire = vwPersonasNames.Getfirstdocument()
+						If resultados &gt; 0 Then 
+							nd.jefe = ndAuxDire.fullName(0)
+						End If
+					End If
+				Else
+					nd.error = "4"
+				End If 
+			Else
+				nd.error = "4"
+			End If
+		Else
+			nd.error = "4"
+		End If 
+		
+		If nd.error(0) = "" Then 
+			claves(0) = nombre.Abbreviated
+			claves(1) = "frSolicitudBonoEspacio"
+			claves(2) = Year(Now)
+			solicitudes = validarBonoAnio
+			
+			Set ndBonosCargos = vwBonosCargos.Getdocumentbykey(cargo, True)					
+			If Not ndBonosCargos Is Nothing Then 
+				anioConfi = ndBonosCargos.bonosAnioC(0)
+			Else
+				anioConfi = ndCfg2.bonosAnio(0)		
+			End If
+			
+			If solicitudes &gt;= CInt(anioConfi) Then 
+				nd.error = "7"
+				nd.solicitudes = CStr(solicitudes)
+			End If
+		End If 
+	End if
+salir:
+	
+	If sError &lt;&gt; "" Then
+		nd.error = sError
+	End If
+	
+	Exit Sub
+label:
+	sError = "Error en la carga de datos usuario. " &amp; " (" &amp; Cstr(Erl) &amp; ") " &amp; Error$
+	Msgbox "Error en agDatosUsuario. " &amp; " (" &amp; Cstr(Erl) &amp; ") " &amp; Error$
+	Resume salir
+End Sub
+
+
+
+</lotusscript></code><code event='validarBonoAnio'><lotusscript>Function validarBonoAnio As String 
+	Dim dcAnio As NotesDocumentCollection 
+
+	validarBonoanio = ""
+	
+	Set dcAnio = vwSolicitudes.Getalldocumentsbykey(claves, True)
+	validarBonoanio = dcAnio.count
+	
+End Function</lotusscript></code>
+<rundata processeddocs='0' exitcode='0' agentdata='703C5FD19E263F10052580590048B490'>
+<agentmodified><datetime>20170724T082913,34-05</datetime></agentmodified>
+<agentrun><datetime>20170724T103755,83-05</datetime></agentrun>
+<runlog>Started running agent '(agDatosUsuarioBonoEspacio)|agDatosUsuarioBonoEspacio' on 24/07/2017 10:37:55 a. m.
+Ran LotusScript code
+Done running agent '(agDatosUsuarioBonoEspacio)|agDatosUsuarioBonoEspacio' on 24/07/2017 10:37:55 a. m.
+</runlog></rundata>
+<item name='$POID'><datetime>20170323T155827,24-05</datetime></item></agent>
+

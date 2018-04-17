@@ -1,0 +1,281 @@
+<?xml version='1.0' encoding='utf-8'?>
+<agent name='(agValidarSolicitudMes)' alias='agValidarSolicitudMes' xmlns='http://www.lotus.com/dxl'
+ version='9.0' maintenanceversion='1.9' replicaid='052581670049F6C5' hide='v3'
+ publicaccess='false' designerversion='8.5.3'>
+<noteinfo noteid='a66' unid='4533AAE17D38A38405257C9A0056BE10' sequence='272'>
+<created><datetime>20140313T104727,52-05</datetime></created>
+<modified><datetime>20170724T162003,56-05</datetime></modified>
+<revised><datetime>20170724T162003,55-05</datetime></revised>
+<lastaccessed><datetime>20170724T162003,56-05</datetime></lastaccessed>
+<addedtofile><datetime>20170724T082804,98-05</datetime></addedtofile></noteinfo>
+<updatedby><name>CN=Diego Alexander Velasco Acevedo/O=desarrollo</name></updatedby>
+<wassignedby><name>CN=Diego Alexander Velasco Acevedo/O=desarrollo</name></wassignedby>
+<designchange><datetime>20170724T162003,53-05</datetime></designchange>
+<trigger type='agentlist'/>
+<documentset type='runonce'/><code event='options'><lotusscript>Option Public
+Option Declare
+Use "LsComunes"
+
+</lotusscript></code><code event='declarations'><lotusscript>Dim db As NotesDatabase
+Dim nd As NotesDocument
+Dim vwSolicitudes As NotesView 
+Dim claves(3) As String
+Dim ndAdmonSolicitud As NotesDocument
+
+</lotusscript></code><code event='initialize'><lotusscript>Sub Initialize
+	On Error GoTo label
+	Print "Cache-Control:no-cache"
+	Print "Content-Type:application/json;charset=ISO-8859-1"
+	
+	Dim ns As New NotesSession
+	Dim ndAux As NotesDocument
+	Dim vwTodos As NotesView 
+	Dim objComunes As New Comunes 
+	Dim arrParametros As Variant	
+	Dim sParametros As String
+	Dim sError As String 
+	Dim bonoAnioMesValido As String   
+	Dim bonoAnioValido As String  
+	Dim bonoJornada As String   
+	Dim fechaRedencion As Variant 
+	Dim dia As String 
+	Dim anio As String 
+	Dim mes As String 
+	Dim fechaCorte As String
+	Dim fechaVencimiento As Variant 
+	Dim fechaRe As Variant 
+	Dim fechaValida As String  
+	Dim nomMes As String  
+	Dim anioActual As String 
+	Dim ndBonosCargos As NotesDocument
+	Dim vwBonosCargos As NotesView
+	Dim dbNomina As NotesDatabase
+	Dim ndCfg As NotesDocument
+	Dim vwPersonas As NotesView
+	Dim ndPersona As NotesDocument
+	Dim fechaIngreso As NotesDateTime
+	Dim fechaLimite As NotesDateTime
+	Dim fechaLimiteAux As Variant
+	Dim mesConfi As String
+	Dim anioConfi As String
+	Dim diaCompletoDisponible As String 
+	Dim diasDisponibles As Long 
+	
+	Set nd = ns.Documentcontext
+	Set db = ns.CurrentDatabase
+	Set ndAux = New NotesDocument(db)
+	Set vwSolicitudes = db.getview("vwProgSolicitudesBonos")	
+	Set vwTodos = db.Getview("vwProgTodos")
+	Set ndAdmonSolicitud = vwTodos.Getdocumentbykey("frConfBonoTiempo", True)
+	Set vwBonosCargos = db.Getview("vwProgCargosEspecificos")
+	Set ndCfg = vwTodos.GetDocumentByKey("frGeneral", True)
+	Set dbNomina = New NotesDatabase("", ndCfg.rutaNomina(0))
+	
+	Set vwPersonas = dbNomina.GetView("dnvwCedula")
+	
+	diaCompletoDisponible = "true"
+	
+	sParametros = StrRightBack(nd.Query_String_Decoded(0),"Open&amp;")
+	arrParametros = Split(sParametros,"&amp;")
+	
+	ForAll parametro In arrParametros
+		Call ndAux.ReplaceItemValue(StrLeftBack(parametro,"="), StrRightBack(parametro,"="))
+	End ForAll
+	
+	fechaRedencion = Split(ndAux.fechaRedencion(0),"/")
+	dia = fechaRedencion(0)
+	mes = fechaRedencion(1)
+	anio = fechaRedencion(2)
+	
+	fechaValida = "false"
+	
+	fechaVencimiento =  Evaluate(|@Date(@Year(@Now);|+ndAdmonSolicitud.mesVencimiento(0)+|;|+ndAdmonSolicitud.diaVencimiento(0)+|) &gt;= @Date(|+anio+|;|+mes+|;|+dia+|)|)
+	If fechaVencimiento(0) = 1 Then 
+		fechaValida = "true"
+	End If
+	
+	If ndAux.solicitud(0) = "frConfBonoTiempo" Then
+		fechaLimiteAux = Evaluate(|@Date(@Year(@Now);6;30)|)
+		
+		Set ndPersona = vwPersonas.Getdocumentbykey(ndAux.cedula(0), True)
+		If Not ndPersona Is Nothing Then
+			Set fechaIngreso = New NotesDateTime(ndPersona.dnfdFechaIng(0))
+			Set fechaLimite = New NotesDateTime(fechaLimiteAux(0))
+		End If
+	End If
+	
+	claves(0) = ndAux.autor(0)
+	claves(1) = ndAux.form(0)
+	claves(2) = anio
+	claves(3) = mes
+	anioActual = Year(Now)
+	
+	Set ndBonosCargos = vwBonosCargos.Getdocumentbykey(ndAux.cargo(0), True)					
+	If Not ndBonosCargos Is Nothing Then 
+		mesConfi = ndBonosCargos.bonosMesC(0)
+		anioConfi = ndBonosCargos.bonosAnioC(0)
+	Else 
+		mesConfi = ndAdmonSolicitud.bonosMes(0)
+		If ndAux.solicitud(0) = "frConfBonoTiempo" Then
+			If fechaIngreso.Timedifference(fechaLimite) &gt; 0 Then
+				anioConfi = ndAdmonSolicitud.bonosEmpleadosNuevos(0)
+			Else
+				anioConfi = ndAdmonSolicitud.bonosAnio(0)
+			End If
+		Else
+			anioConfi = ndAdmonSolicitud.bonosAnio(0)
+		End If		
+	End If
+	
+	nomMes = objComunes.getNombreMes(CInt(mes))
+	bonoAnioMesValido = validarBonoAnioMes(ndAux)
+	
+	If bonoAnioMesValido &gt; 0 Then
+		If ndAux.jornada(0) = "D" Then
+			bonoAnioMesValido = bonoAnioMesValido+CLng(ndAdmonSolicitud.equivalenteBono(0))
+		Else
+			bonoAnioMesValido = bonoAnioMesValido+(CLng(ndAdmonSolicitud.equivalenteBono(0))/2)
+		End If
+	Else
+		If ndAux.jornada(0) = "D" Then
+			bonoAnioMesValido = bonoAnioMesValido+CLng(ndAdmonSolicitud.equivalenteBono(0))
+		End If
+	End If
+	 	
+	If bonoAnioMesValido &lt;= CInt(mesConfi) Then 
+		bonoAnioMesValido = 0 
+	End If
+	
+	bonoAnioValido = validarBonoAnio(ndAux)
+	
+	If ndAux.jornada(0) = "D" Then
+		MsgBox anioConfi 
+		diasDisponibles = CLng(anioConfi) - CLng(bonoAnioValido)
+		If CLng(ndAdmonSolicitud.equivalenteBono(0)) = 2 Then
+			If diasDisponibles &lt;= 1 Then 
+				diaCompletoDisponible = "false"
+			End If
+		End If
+	End If
+	
+	If bonoAnioValido &lt; CInt(anioConfi) Then 
+		bonoAnioValido = 0
+	End If
+	
+	bonoJornada = validarBonoJornada(dia,ndAux)
+	
+	
+	salir:
+	Print |{"msgError":"|+sError+|","dia":"|+dia+|","nomMes":"|+nomMes+|","mes":|+CStr(bonoAnioMesValido)+|,"anio":|+CStr(bonoAnioValido)+|,"fechaValida":|+fechaValida+|,"anioActual":"|+anioActual+|","jornadaRepetida":|+CStr(bonoJornada)+|, "diaCompletoDisponible": |+diaCompletoDisponible+|}|
+	Exit Sub
+label:
+	sError = "Error al validar solicitud. " &amp; " (" &amp; CStr(Erl) &amp; ") " &amp; Error$
+	MsgBox "Error en agValidarSolicitud. " &amp; " (" &amp; CStr(Erl) &amp; ") " &amp; Error$
+	Resume salir	
+End Sub
+
+</lotusscript></code><code event='validarBonoJornada'><lotusscript>Function validarBonoJornada(dia As String , ndJornada As NotesDocument) As Long   
+	Dim clavesJornada(5) As String 
+	Dim dcAnioMes As NotesDocumentCollection
+	Dim cont As Long  
+	Dim ndAux As NotesDocument
+	
+	validarBonoJornada = 0
+	clavesJornada(0) = claves(0)
+	clavesJornada(1) = claves(1)
+	clavesJornada(2) = claves(2)
+	clavesJornada(3) = claves(3)
+	clavesJornada(4) = dia
+	clavesJornada(5) = ndJornada.jornada(0)
+	
+	Set dcAnioMes = vwSolicitudes.Getalldocumentsbykey(clavesJornada, True)
+	Set ndAux = dcAnioMes.Getfirstdocument()
+	
+	While Not ndAux Is Nothing 
+		If ndAux.unique(0) &lt;&gt; ndJornada.unique(0) Then 
+			cont = cont + CInt(ndAdmonSolicitud.equivalenteBono(0))
+		End If
+		Set ndAux = dcAnioMes.Getnextdocument(ndAux)
+	Wend
+	
+	validarBonoJornada = cont
+	
+End Function
+
+</lotusscript></code><code event='validarBonoAnioMes'><lotusscript>Function validarBonoAnioMes(ndAnioMes As NotesDocument) As Long    
+	
+	Dim dcAnioMes As NotesDocumentCollection 
+	Dim ndAux As NotesDocument
+	Dim cont As Long  
+	
+	validarBonoAnioMes = 0
+	
+	Set dcAnioMes = vwSolicitudes.Getalldocumentsbykey(claves, True)
+	Set ndAux = dcAnioMes.Getfirstdocument()
+	
+	While Not ndAux Is Nothing 
+		If ndAux.unique(0) &lt;&gt; ndAnioMes.unique(0) Then 
+			If CLng(ndAdmonSolicitud.equivalenteBono(0)) = 2 Then
+				If ndAux.jornada(0) = "D" Then
+					cont = cont + CInt(ndAdmonSolicitud.equivalenteBono(0))
+				Else
+					cont = cont + (CInt(ndAdmonSolicitud.equivalenteBono(0))/2)
+				End If
+			Else
+				cont = cont + CInt(ndAdmonSolicitud.equivalenteBono(0))
+			End If
+		End If
+		Set ndAux = dcAnioMes.Getnextdocument(ndAux)
+	Wend
+	
+	validarBonoAnioMes = cont
+
+	
+	
+End Function
+
+
+
+
+
+</lotusscript></code><code event='validarBonoAnio'><lotusscript>Function validarBonoAnio(ndAnio As NotesDocument) As Long    
+	Dim dcAnio As NotesDocumentCollection 
+	Dim clavesAnio(2) As String 
+	Dim ndAux As NotesDocument
+	Dim cont As Long  
+	
+	validarBonoanio = 0
+	clavesAnio(0) = claves(0)
+	clavesAnio(1) = claves(1)
+	clavesAnio(2) = claves(2)
+	
+	Set dcAnio = vwSolicitudes.Getalldocumentsbykey(clavesAnio, True)
+	Set ndAux = dcAnio.Getfirstdocument()
+	
+	While Not ndAux Is Nothing 
+		If ndAux.unique(0) &lt;&gt; ndAnio.unique(0) Then 
+			If CLng(ndAdmonSolicitud.equivalenteBono(0)) = 2 Then
+				If ndAux.jornada(0) = "D" Then
+					cont = cont + CInt(ndAdmonSolicitud.equivalenteBono(0))
+				Else
+					cont = cont + (CInt(ndAdmonSolicitud.equivalenteBono(0))/2)
+				End If
+			Else
+				cont = cont + CInt(ndAdmonSolicitud.equivalenteBono(0))
+			End If
+		End If
+		Set ndAux = dcAnio.Getnextdocument(ndAux)
+	Wend
+	
+	validarBonoanio = cont
+	
+End Function</lotusscript></code>
+<rundata processeddocs='0' exitcode='0' agentdata='57A62ACBFF6152D305258167007532C1'>
+<agentmodified><datetime>20170724T162003,56-05</datetime></agentmodified>
+<agentrun><datetime>20170801T093351,72-05</datetime></agentrun>
+<runlog>Started running agent '(agValidarSolicitudMes)|agValidarSolicitudMes' on 01/08/2017 09:33:51 a. m.
+Ran LotusScript code
+Done running agent '(agValidarSolicitudMes)|agValidarSolicitudMes' on 01/08/2017 09:33:51 a. m.
+</runlog></rundata>
+<item name='$POID'><datetime>20170323T155827,54-05</datetime></item></agent>
+

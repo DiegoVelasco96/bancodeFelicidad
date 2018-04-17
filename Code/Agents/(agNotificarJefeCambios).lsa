@@ -1,0 +1,235 @@
+<?xml version='1.0' encoding='utf-8'?>
+<agent name='(agNotificarJefeCambios)' alias='agNotificarJefeCambios' xmlns='http://www.lotus.com/dxl'
+ version='9.0' maintenanceversion='1.9' replicaid='052581670049F6C5' hide='v3'
+ publicaccess='false' designerversion='8.5.3' enabled='false'>
+<noteinfo noteid='ec2' unid='0A9411295EB2CBDB05257E0D0064C7BE' sequence='115'>
+<created><datetime>20150319T132047,34-05</datetime></created>
+<modified><datetime>20170724T082913,48-05</datetime></modified>
+<revised><datetime>20170724T082913,47-05</datetime></revised>
+<lastaccessed><datetime>20170724T082913,48-05</datetime></lastaccessed>
+<addedtofile><datetime>20170724T082810,34-05</datetime></addedtofile></noteinfo>
+<updatedby><name>CN=Administrador Aplicaciones/O=GNCH</name><name>CN=Admin Desarrollo/O=cognox</name><name
+>CN=Administrador Aplicaciones/O=GNCH</name><name>CN=Admin Desarrollo/O=cognox</name><name
+>CN=Administrador Aplicaciones/O=GNCH</name><name>CN=Admin Desarrollo/O=cognox</name><name
+>CN=Administrador Aplicaciones/O=GNCH</name><name>CN=Admin Desarrollo/O=cognox</name><name
+>CN=Administrador Aplicaciones/O=GNCH</name><name>CN=Admin Desarrollo/O=cognox</name><name
+>CN=Administrador Aplicaciones/O=GNCH</name><name>CN=Diego Alexander Velasco Acevedo/O=desarrollo</name></updatedby>
+<wassignedby><name>CN=Diego Alexander Velasco Acevedo/O=desarrollo</name></wassignedby>
+<designchange><datetime>20170724T082910,55-05</datetime></designchange>
+<trigger type='agentlist'/>
+<documentset type='all'/><code event='options'><lotusscript>Option Public
+Option Declare
+Use "LSCorreo"
+
+</lotusscript></code><code event='initialize'><lotusscript>Sub Initialize
+	On Error GoTo label
+		
+	Dim sError As String
+	Dim nd As NotesDocument
+	Dim ns As New NotesSession
+	Dim db As NotesDatabase
+	Dim dbNomina As NotesDatabase
+	Dim dbNames As NotesDatabase 
+	Dim vwCfg As NotesView
+	Dim vwSolicitudes As NotesView
+	Dim vwUniques As NotesView 
+	Dim ndAux As NotesDocument 
+	Dim ndAuxEmple As NotesDocument 
+	Dim ndAuxDire As NotesDocument 
+	Dim ndAuxSolicitudes As NotesDocument 
+	Dim dc As NotesDocumentCollection 	
+	Dim dcEmple As NotesDocumentCollection 	
+	Dim dcEmpleado As NotesDocumentCollection
+	Dim webDbName As Variant
+	Dim ndCfg As NotesDocument
+	Dim ndCfg2 As NotesDocument
+	Dim ndConsulta As NotesDocument
+	Dim vwCedulaJefe As NotesView
+	Dim vwPersonas As NotesView
+	Dim encontro As String 
+	Dim ccJefe As String
+	Dim ccEmpleado As String
+	Dim dcVencidos As NotesDocumentCollection 	
+	Dim vwCedulaDispo As NotesView
+	Dim vwEstadoSolicitudes As NotesView
+	Dim count As Integer
+	Dim nBonoAnio As Integer
+	Dim NotificarJefe As Boolean  
+	Dim Notificar As Boolean  
+	Dim anio As String
+	Dim usuario As Variant
+	Dim asunto As String
+	Dim consecutivo As String
+	Dim html As String
+	Dim fechaPeriodicidad As Variant
+	Dim fechaEnviada As Variant
+	Dim fechaEnvio As Variant
+	Dim fechaActual As Variant
+	Dim fechaConfi As Variant 
+	Dim fec As NotesDateTime 
+	Dim fecEnvi As NotesDateTime 
+	Dim jornada As String
+	Dim objCorreo As New Correo
+	Dim mensaje(2) As String
+	Dim autor As NotesName
+	Dim codCompania As Variant 
+	Dim resultados As Long
+	Dim noNotificarPersonas As Variant
+	Dim vwEstado As NotesView
+	Dim estado As String
+	Dim ndBonosCargos As NotesDocument
+	Dim vwBonosCargos As NotesView
+	Dim bonos As Integer
+	Dim disponible As String
+	Dim diasCompletos As Integer
+	
+	webDbName = Evaluate("@WebDBName")	
+	Set db = ns.CurrentDatabase
+	Set vwCfg = db.Getview("vwProgTodos")
+	Set vwUniques = db.Getview("vwProgUniques")
+	Set vwSolicitudes = db.GetView("vwProgBonosCedula")
+	Set ndCfg = vwCfg.Getdocumentbykey("frGeneral", True)
+	Set ndCfg2 = vwCfg.Getdocumentbykey("frConfBonoTiempo", True)
+	Set ndConsulta = vwCfg.Getdocumentbykey("frConsultaJefe", True)
+	Set dbNomina = New NotesDatabase("", ndCfg.rutaNomina(0))
+	Set dbNames = New NotesDatabase("", "names.nsf")
+	Set ndAux = New NotesDocument(db)
+	Set ndAuxEmple = New NotesDocument(db)
+	Set dbNomina = ns.Getdatabase("",ndCfg.rutaNomina(0))
+	Set nd = ns.DocumentContext
+	Set vwCedulaJefe = dbNomina.getView("dnvwCedulaJefe")
+	Set vwCedulaDispo = db.GetView("vwProgBonosCedulaDispo")
+	Set vwPersonas = dbNames.Getview("($People)")
+	Set vwEstado = db.Getview("vwProgEstadosFlujo")
+	Set vwEstadoSolicitudes = db.Getview("vwProgBonosCedulaEstados")
+	Set vwBonosCargos = db.Getview("vwProgCargosEspecificos")
+	
+	anio = Year(Now)
+	
+
+	If ndCfg2.notificacionJefe(0) = "S" Then 
+		Dim macro1 As Variant 
+		Dim macro2 As Variant 
+		macro1 = Evaluate(|@Date(fechaEnvioJefe) = @Date(@Now)|, ndCfg2) 
+		macro2 = Evaluate(|@Date(@Adjust(fechaNotiJefe;0;@TextToNumber(periodicidadJefe);0;0;0;0)) = @Date(@Now)|, ndCfg2)
+			
+		'If macro1(0) = 1 Or macro2(0) = 1 Then 
+			ndCfg2.fechaNotiJefe = Now
+		Call ndCfg2.Save(True, False)
+		Call ndCfg.Save(True, False)				
+
+		Set ndAux = vwCedulaJefe.Getfirstdocument()
+			While Not ndAux Is Nothing 
+				codCompania = ArrayGetIndex(ndCfg2.codigoCompania,ndAux.dnfdCodigoCia(0))
+				If Not IsNull(codCompania) Then 
+					html = ""
+					Set dc = vwCedulaJefe.Getalldocumentsbykey(ndAux.dnfdCedula(0), True)		
+					If 	Trim(ndAux.dnfdCedula(0)) &lt;&gt; "" Then
+						resultados = vwPersonas.Ftsearch("FIELD EmployeeID = " + Trim(ndAux.dnfdCedula(0)) , 1)			
+						Set ndAuxDire = vwPersonas.Getfirstdocument()
+						If resultados &gt; 0 Then 
+							usuario = ndAuxDire.fullName(0)
+							noNotificarPersonas = ArrayGetIndex(ndCfg2.noNotificar, ndAuxDire.fullName(0))
+							
+							If IsNull(noNotificarPersonas) Then 
+								If usuario &lt;&gt; "" Then 
+									Set ndAuxEmple = dc.Getfirstdocument()
+									While Not ndAuxEmple Is Nothing 
+										html = html + |&lt;table border="1" cellpadding="0" cellspacing="0.5" bordercolor="#000000" style="border-collapse:collapse;"&gt;|
+										ccEmpleado = ndAuxEmple.dnfdCedula(0)
+										
+										Set dcEmple = vwCedulaDispo.Getalldocumentsbykey(ndAuxEmple.dnfdCedula(0)+anio, True)											
+										Set dcVencidos = vwEstadoSolicitudes.Getalldocumentsbykey(ndAuxEmple.dnfdCedula(0)+estado, True)
+										
+										Set ndBonosCargos = vwBonosCargos.Getdocumentbykey(ndAuxEmple.dnfdCargo(0), True)					
+										If Not ndBonosCargos Is Nothing Then 
+											count = CInt(ndBonosCargos.bonosAnioC(0)) - dcEmple.count
+											nBonoAnio =  CInt(ndBonosCargos.bonosAnioC(0))
+										Else
+											nBonoAnio =  CInt(ndCfg2.bonosAnio(0))
+										End If
+										'---------Conteo Dia Completo---------------
+										diasCompletos=0
+										Set ndAuxSolicitudes = dcEmple.Getfirstdocument()
+										While Not ndAuxSolicitudes	Is Nothing 							
+											If ndAuxSolicitudes.jornada(0) = "D" Then
+												diasCompletos = diasCompletos+1 
+											End If 	
+											Set ndAuxSolicitudes = dcEmple.Getnextdocument(ndAuxSolicitudes)
+										Wend	
+										'------------------------										
+										count = nBonoAnio - dcEmple.count -	diasCompletos
+										
+										If count = 0 Then 
+											disponible = "0"
+										Else 
+											disponible = CStr(count) 
+										End If
+										
+										Set autor = New NotesName(ndAuxEmple.FullName(0))
+										
+										html = html +|&lt;tr&gt;&lt;td&gt; Nombre &lt;/td&gt;&lt;td colspan="3"&gt;&amp;nbsp| + autor.common+ |&lt;/td&gt;&lt;/tr&gt;|
+										html = html +|&lt;tr&gt;&lt;td&gt; Cédula &lt;/td&gt;&lt;td colspan="3"&gt;&amp;nbsp| + ndAuxEmple.dnfdCedula(0) + |&lt;/td&gt;&lt;/tr&gt;|
+										html = html +|&lt;tr&gt;&lt;td&gt; Solicitudes disponibles &lt;/td&gt;&lt;td colspan="3"&gt;&amp;nbsp| + disponible + |&lt;/td&gt;&lt;/tr&gt;|
+										html = html +|&lt;tr&gt;&lt;td&gt; Solicitudes solicitadas &lt;/td&gt;&lt;td colspan="3"&gt;&amp;nbsp| + CStr(dcEmple.count) + |&lt;/td&gt;&lt;/tr&gt;|
+										html = html +|&lt;tr&gt;&lt;td&gt; Solicitudes vencidas &lt;/td&gt;&lt;td colspan="3"&gt;&amp;nbsp| + CStr(dcVencidos.Count) + |&lt;/td&gt;&lt;/tr&gt;|
+										html = html +|&lt;tr&gt;&lt;td&gt; Total &lt;/td&gt;&lt;td colspan="3"&gt;&amp;nbsp| + CStr(nBonoAnio) + | &lt;/td&gt;&lt;/tr&gt;| 
+										
+										If dcEmple.count &gt; 0 Then 
+											html = html +|&lt;tr style="background-color:#013ADF; color:#ffffff; font-weight:bold;"&gt;&lt;td&gt;&amp;nbsp Fecha de redención &amp;nbsp&lt;/td&gt;&lt;td&gt;&amp;nbsp Consecutivo &amp;nbsp&lt;/td&gt;&lt;td&gt;&amp;nbsp Jornada &amp;nbsp&lt;/td&gt;&lt;td&gt;&amp;nbsp Estado &amp;nbsp&lt;/td&gt;&lt;/tr&gt;|
+										End If 
+										
+										Set ndAuxSolicitudes = dcEmple.Getfirstdocument()
+										While Not ndAuxSolicitudes	Is Nothing 
+											
+											If ndAuxSolicitudes.consecutivo(0) &lt;&gt; "" Then 
+												consecutivo = ndAuxSolicitudes.consecutivo(0)
+											Else 
+												consecutivo = "Sin consecutivo"   
+											End If 		
+											
+											If ndAuxSolicitudes.jornada(0) = "T" Then 
+												jornada = "Tarde" 
+											ElseIf ndAuxSolicitudes.jornada(0) = "D" Then
+												jornada = "Dia completo" 
+											Else
+												jornada = "Mañana" 
+											End If 	
+											
+											html = html +|&lt;tr&gt;&lt;td&gt;|+ ndAuxSolicitudes.fechaRedencion(0) +|&lt;/td&gt;&lt;td&gt;| + consecutivo + |&lt;/td&gt;&lt;td&gt;| + jornada + |&lt;/td&gt;&lt;td&gt;| + ndAuxSolicitudes.estado(0)+ |&lt;/td&gt;&lt;/tr&gt;| 
+											
+											Set ndAuxSolicitudes = dcEmple.Getnextdocument(ndAuxSolicitudes)
+										Wend		
+										
+										html = html + |&lt;/table&gt;|
+										html = html + |&lt;br&gt;|
+										Set ndAuxEmple = dc.Getnextdocument(ndAuxEmple)
+									Wend 	
+									
+									If dc.count &gt; 0 Then 				
+										
+										asunto = ndCfg2.asuntoJefe(0)					
+										mensaje(0) = ndCfg2.mensajeJefe(0)+|&lt;br&gt;|
+										mensaje(1) = html
+										Call objCorreo.notificar(usuario, asunto, mensaje, ndCfg.remitenteCorreos(0))
+									End If		
+								End If
+							End If
+						End If
+					End If 
+				End If 
+				Set ndAux = vwCedulaJefe.Getnextdocument(ndAux)
+			Wend
+		'End If
+	End If 
+salir:
+	Exit Sub
+label:
+	sError = "Error en Notificar jefe cambios. " &amp; " (" &amp; CStr(Erl) &amp; ") " &amp; Error$
+	MsgBox "Error en agNoficarJefeCambios. " &amp; " (" &amp; CStr(Erl) &amp; ") " &amp; Error$
+	Resume salir
+End Sub</lotusscript></code>
+<rundata processeddocs='0' exitcode='0'>
+<agentmodified><datetime>20160129T080623,73-05</datetime></agentmodified></rundata>
+<item name='$POID'><datetime>20170323T155827,38-05</datetime></item></agent>
+

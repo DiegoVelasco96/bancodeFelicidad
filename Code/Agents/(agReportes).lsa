@@ -1,0 +1,145 @@
+<?xml version='1.0' encoding='utf-8'?>
+<agent name='(agReportes)' alias='agReportes' xmlns='http://www.lotus.com/dxl'
+ version='9.0' maintenanceversion='1.9' replicaid='052581670049F6C5' hide='v3'
+ publicaccess='false' designerversion='8.5.3'>
+<noteinfo noteid='78e' unid='D99DCBD481B4FF8405257C3600158680' sequence='70'>
+<created><datetime>20131202T225506,88-05</datetime></created>
+<modified><datetime>20170724T082913,58-05</datetime></modified>
+<revised><datetime>20170724T082913,57-05</datetime></revised>
+<lastaccessed><datetime>20170724T082913,58-05</datetime></lastaccessed>
+<addedtofile><datetime>20170724T082801,44-05</datetime></addedtofile></noteinfo>
+<updatedby><name>CN=Admin Desarrollo/O=cognox</name><name>CN=Administrador Aplicaciones/O=GNCH</name><name
+>CN=Admin Desarrollo/O=cognox</name><name>CN=Administrador Aplicaciones/O=GNCH</name><name
+>CN=Admin Desarrollo/O=cognox</name><name>CN=Administrador Aplicaciones/O=GNCH</name><name
+>CN=Diego Alexander Velasco Acevedo/O=desarrollo</name></updatedby>
+<wassignedby><name>CN=Diego Alexander Velasco Acevedo/O=desarrollo</name></wassignedby>
+<designchange><datetime>20170724T082910,58-05</datetime></designchange>
+<trigger type='agentlist'/>
+<documentset type='runonce'/><code event='options'><lotusscript>Option Public
+Option Declare
+
+
+</lotusscript></code><code event='initialize'><lotusscript>Sub Initialize
+	On Error GoTo label
+	
+	Dim ns As New NotesSession
+	Dim db As NotesDatabase
+	Dim vwUniques As NotesView
+	Dim dc As NotesDocumentCollection
+	Dim nd As NotesDocument
+	Dim ndPadre As NotesDocument
+	Dim ndAux As NotesDocument	
+	Dim ndReporte As NotesDocument
+	Dim arrParametros As Variant	
+	Dim sParametros As String
+	Dim webDbName As Variant
+	Dim aFecIni As Variant
+	Dim aFecFin As Variant
+	Dim sFecIni As String
+	Dim sFecFin As String 
+	Dim formula As String 
+	
+	webDbName = Evaluate(|@WebDbName|)
+	Set db = ns.CurrentDatabase
+	Set nd = ns.Documentcontext
+	Set ndAux = New NotesDocument(db)	
+	
+	sParametros = StrRightBack(nd.Query_String_Decoded(0),"Open&amp;")
+	arrParametros = Split(sParametros,"&amp;")
+	
+	ForAll parametro In arrParametros
+		Call ndAux.ReplaceItemValue(StrLeftBack(parametro,"="), StrRightBack(parametro,"="))
+	End ForAll
+		
+	Print "Cache-Control:no-cache"
+	Print {Content-Type:application/vnd.ms-excel;charset=ISO-8859-1}
+	Print {Content-Disposition: Attachment; filename="Reporte_}+db.title+{.xls"}
+	
+	Print |&lt;style&gt;
+		th{
+			font-weight:bold;			
+		}	
+	&lt;/style&gt;|
+	
+	Set vwUniques = db.Getview("vwProgUniques")
+	Set ndReporte = vwUniques.getdocumentbykey(ndAux.tipo(0), True)
+		
+	Print |&lt;table border="1"&gt;&lt;tr&gt;|
+	
+	If ndReporte.tienePadre(0) = "Si" Then 
+		ForAll x In ndReporte.columnasPadre
+			Print |&lt;th&gt;|+x+|&lt;/th&gt;|
+		End ForAll
+	End If
+	
+	ForAll x In ndReporte.columnas
+		Print |&lt;th&gt;|+x+|&lt;/th&gt;|
+	End ForAll
+	
+	Print |&lt;/tr&gt;|
+	
+	formula = |(| + ndReporte.formula(0) + |)|
+	aFecIni = Split(ndAux.fei(0), "/")
+	aFecFin = Split(ndAux.fef(0), "/")
+	sFecIni = ndReporte.campoFecha(0) + | &gt;= @Date(|+aFecIni(2)+|;|+aFecIni(1)+|;|+aFecIni(0)+|)|	
+	sFecFin = ndReporte.campoFecha(0) + | &lt;= @Date(|+aFecFin(2)+|;|+aFecFin(1)+|;|+aFecFin(0)+|)|	
+	
+	formula = formula + | &amp; | + sFecIni + | &amp; | + sFecFin
+		
+	Set dc = db.Search(formula, Nothing, 0)
+	Set nd = dc.Getfirstdocument()
+	While Not nd Is Nothing 
+		Print |&lt;tr&gt;|
+		
+		If ndReporte.tienePadre(0) = "Si" Then 
+			Set ndPadre = vwUniques.Getdocumentbykey(nd.uniquePadre(0), True)
+			ForAll x In ndReporte.camposPadre
+				Print |&lt;td&gt;|+getValor(ndPadre, x)+|&lt;/td&gt;|
+			End ForAll
+		End If
+		
+		ForAll x In ndReporte.campos
+			Print |&lt;td&gt;|+getValor(nd, x)+|&lt;/td&gt;|
+		End ForAll
+		
+		Print |&lt;/tr&gt;|
+		Set nd = dc.Getnextdocument(nd)
+	Wend
+		
+	Print |&lt;/table&gt;|
+	
+salir:
+	Exit Sub
+label:
+	MsgBox "Error al generar el reporte. " &amp; " (" &amp; CStr(Erl) &amp; ") " &amp; Error$
+	Resume salir
+End Sub
+
+
+
+
+</lotusscript></code><code event='getValor'><lotusscript>Function getValor(nd As NotesDocument, campo As String)
+	Dim item As NotesItem 
+	Dim valores As Variant
+	Dim valor As String
+	Set item = nd.getfirstitem(campo)
+	
+	If nd.Hasitem(campo) Then 
+		If item.Type = 1074 Or item.Type = 1075 Or item.Type = 1076 Then
+			valores = Evaluate({@Name([cn];}+campo+{)}, nd)
+			valor = Join(valores, "&lt;br&gt;")
+		ElseIf item.Type = 1024 Then
+			valor = {'}+Format$(nd.GetItemValue(campo)(0), "dd/mm/yyyy")+{'}
+			If valor = "'30/12/1899'" Then
+				valor = {'}+Format$(nd.GetItemValue(campo)(0), "hh:nn AM/PM")+{'}
+			End If					
+		Else
+			valor = Join(nd.GetItemValue(campo), "&lt;br&gt;")				
+		End If	
+	End If 
+	getValor = valor
+End Function</lotusscript></code>
+<rundata processeddocs='0' exitcode='0'>
+<agentmodified><datetime>20160523T075040,33-05</datetime></agentmodified></rundata>
+<item name='$POID'><datetime>20170323T155827,46-05</datetime></item></agent>
+

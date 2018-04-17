@@ -1,0 +1,82 @@
+<?xml version='1.0' encoding='utf-8'?>
+<agent name='agAsignarFechaCargo' alias='agAsignarFechaCargo' xmlns='http://www.lotus.com/dxl'
+ version='9.0' maintenanceversion='1.9' replicaid='052581670049F6C5' hide='v3'
+ publicaccess='false' designerversion='8.5.3' activatable='false'>
+<noteinfo noteid='eaa' unid='3D0771B3ED2FE5FC05257E0E006DEFE9' sequence='38'>
+<created><datetime>20150320T150048,41-05</datetime></created>
+<modified><datetime>20170724T082909,90-05</datetime></modified>
+<revised><datetime>20170724T082909,89-05</datetime></revised>
+<lastaccessed><datetime>20170724T082909,90-05</datetime></lastaccessed>
+<addedtofile><datetime>20170724T082810,28-05</datetime></addedtofile></noteinfo>
+<updatedby><name>CN=Administrador Aplicaciones/O=GNCH</name><name>CN=Admin Desarrollo/O=cognox</name><name
+>CN=Administrador Aplicaciones/O=GNCH</name><name>CN=Admin Desarrollo/O=cognox</name><name
+>CN=Administrador Aplicaciones/O=GNCH</name><name>CN=Admin Desarrollo/O=cognox</name><name
+>CN=Administrador Aplicaciones/O=GNCH</name><name>CN=Admin Desarrollo/O=cognox</name><name
+>CN=Administrador Aplicaciones/O=GNCH</name><name>CN=Admin Desarrollo/O=cognox</name><name
+>CN=Administrador Aplicaciones/O=GNCH</name><name>CN=Diego Alexander Velasco Acevedo/O=desarrollo</name></updatedby>
+<wassignedby><name>CN=Diego Alexander Velasco Acevedo/O=desarrollo</name></wassignedby>
+<designchange><datetime>20170724T082909,51-05</datetime></designchange>
+<trigger type='scheduled'>
+<schedule type='daily' runlocation='any'/></trigger>
+<documentset type='modified'/><code event='options'><lotusscript>Option Public
+Option Declare
+
+</lotusscript></code><code event='initialize'><lotusscript>
+Sub Initialize
+	On Error GoTo label
+	
+	Dim ns As New NotesSession
+	Dim db As NotesDatabase
+	Dim vwCargosEspecificos As NotesView
+	Dim ndCargos As NotesDocument
+	Dim ndAux As NotesDocument 
+	Dim item As NotesItem 	
+	
+	Set db = ns.CurrentDatabase
+	Set vwCargosEspecificos = db.GetView("vwCargosEspecificos")
+	Set ndCargos = vwCargosEspecificos.Getfirstdocument()
+	
+	While Not ndCargos Is Nothing
+		If ndCargos.bonosAnioProC(0) &lt;&gt; "" And ndCargos.bonosMesProC(0) &lt;&gt; "" Then 
+			If Year(ndCargos.anioActual(0)) &lt;&gt; Year(Now) Then 
+				ndCargos.anioActual = Now 
+				ndCargos.bonosAnioC = ndCargos.bonosAnioProC
+				ndCargos.bonosMesC = ndCargos.bonosMesProC
+				ndCargos.bonosAnioProC = ""
+				ndCargos.bonosMesProC = ""
+				If ndCargos.Save(False, False) Then 
+					Set ndAux = New NotesDocument(db)
+					ndAux.form = "frHistoricoBonosAnio"
+					ndAux.keyForm = "Histórico bonos por año"
+					ndAux.anio = Evaluate(|@Adjust(@Now;-1;0;0;0;0;0)|)
+					ndAux.unique = Evaluate("@Unique")
+					ndAux.cargosBonos = ndCargos.cargosBonos
+					Set item = New NotesItem(ndAux, "administrador", "[Administrador]", AUTHORS)		
+					item.Issummary = True
+					ndAux.bonosAnio = ndCargos.bonosAnioC
+					ndAux.bonosMes = ndCargos.bonosMesC 
+					Call ndAux.Save(True, False)
+				End If
+			End If
+		End If 
+		
+		Set ndCargos = vwCargosEspecificos.Getnextdocument(ndCargos)		
+	Wend
+	
+salir:
+	Exit Sub
+label:
+	MsgBox "Error en agAsignarFechaCargo. " &amp; " (" &amp; CStr(Erl) &amp; ") " &amp; Error$
+	Resume salir
+End Sub</lotusscript></code>
+<rundata processeddocs='0' exitcode='0' agentdata='6FE14E1D2626108B05257F420074C5B6'>
+<agentmodified><datetime>20170724T082909,90-05</datetime></agentmodified>
+<agentrun><datetime>20180417T000435,99-05</datetime></agentrun>
+<runlog>Started running agent 'agAsignarFechaCargo|agAsignarFechaCargo' on 17/04/2018 12:04:35 a. m.
+Running on new or modified documents: 157 total
+Found 157 document(s) that match search criteria
+Ran LotusScript code
+Done running agent 'agAsignarFechaCargo|agAsignarFechaCargo' on 17/04/2018 12:04:35 a. m.
+</runlog></rundata>
+<item name='$POID'><datetime>20170323T155823,80-05</datetime></item></agent>
+

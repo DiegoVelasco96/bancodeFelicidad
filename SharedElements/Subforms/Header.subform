@@ -1,0 +1,218 @@
+<?xml version='1.0' encoding='utf-8'?>
+<subform name='Header' alias='sfrHeader' xmlns='http://www.lotus.com/dxl'
+ version='9.0' maintenanceversion='1.9' replicaid='052581670049F6C5' designerversion='8.5.3'
+ renderpassthrough='true'>
+<noteinfo noteid='20a' unid='8E654447236781C905257B8D004FF53E' sequence='127'>
+<created><datetime>20130617T093321,26-05</datetime></created>
+<modified><datetime>20170724T082910,82-05</datetime></modified>
+<revised><datetime>20170724T082910,81-05</datetime></revised>
+<lastaccessed><datetime>20170724T082910,82-05</datetime></lastaccessed>
+<addedtofile><datetime>20170724T082754,54-05</datetime></addedtofile></noteinfo>
+<updatedby><name>CN=Admin Desarrollo/O=cognox</name><name>CN=Administrador Aplicaciones/O=GNCH</name><name
+>CN=Admin Desarrollo/O=cognox</name><name>CN=Administrador Aplicaciones/O=GNCH</name><name
+>CN=Diego Alexander Velasco Acevedo/O=desarrollo</name></updatedby>
+<wassignedby><name>CN=Diego Alexander Velasco Acevedo/O=desarrollo</name></wassignedby>
+<body><richtext>
+<pardef id='1'/><subformref name='Header sin menú |sfrHeaderSinMenu'/>
+<pardef id='2' leftmargin='1in' hide='notes mobile' tabs='L0.5000in L1in L1.1806in L1.3778in L1.5743in L1.7715in L1.9681in L2.1653in L2.3618in L2.5590in L2.7556in L2.9521in L3.1493in L3.3458in L3.5431in L3.7396in L3.9368in'/>
+<par def='2'><run html='true'>&lt;div class="contenedorCabezote"&gt;</run></par>
+<par def='2'><run html='true'>&lt;div align="left" class="fondoCabezote"&gt;</run></par>
+<par def='2'><run html='true'>	&lt;img src="</run><run html='true'><computedtext
+><code event='value'><formula>unique:=@DbLookup("":"NoCache";"";"vwProgTodos";"frGeneral";"unique";[FailSilent]);
+unid:=@DbLookup("":"NoCache";"";"vwProgAnexos";unique+"ANE2";1;[FailSilent]:[ReturnDocumentUniqueID]);
+@If(unid="";@Return("/"+@WebDbName+"/cabezote.jpg");@True);
+archivo:=@DbLookup("":"NoCache";"";"vwProgAnexos";unique+"ANE2";"archivo";[FailSilent]);
+"/"+@WebDbName+"/vwProgAnexos/"+unid+"/$FILE/"+archivo</formula></code></computedtext></run><run
+ html='true'>" class="imgCabezote"&gt;</run></par>
+<par def='2'><run html='true'>	&lt;div class="usuario" align="left"&gt;</run><run
+ html='true'><computedtext><code event='value'><formula>"Bienvenid@: &lt;b&gt;" + @Name([CN];usuario) + "&lt;/b&gt;"</formula></code></computedtext></run><run
+ html='true'>&lt;/div&gt;</run></par>
+<par def='2'><run html='true'>&lt;/div&gt;</run></par>
+<pardef id='3' leftmargin='1in' tabs='L0.5000in L1in L1.1806in L1.3778in L1.5743in L1.7715in L1.9681in L2.1653in L2.3618in L2.5590in L2.7556in L2.9521in L3.1493in L3.3458in L3.5431in L3.7396in L3.9368in'/>
+<par def='3'><run html='true'>&lt;div class="navbar" align="left"&gt;</run></par>
+<par def='3'><run html='true'>	&lt;div class="fondoMenu"&gt;</run></par>
+<par def='3'><run html='true'>		&lt;div class="container"&gt;</run></par>
+<par def='3'><run html='true'>			&lt;button data-target=".nav-collapse" data-toggle="collapse" class="btn btn-navbar" type="button"&gt;</run></par>
+<par def='3'><run html='true'>				&lt;span class="icon-bar"&gt;&lt;/span&gt;</run></par>
+<par def='3'><run html='true'>				&lt;span class="icon-bar"&gt;&lt;/span&gt;</run></par>
+<par def='3'><run html='true'>				&lt;span class="icon-bar"&gt;&lt;/span&gt;</run></par>
+<par def='3'><run html='true'>			&lt;/button&gt;</run></par>
+<par def='3'><run html='true'>			&lt;div class="nav-collapse collapse" style="width:100%"&gt;</run></par>
+<par def='3'><run html='true'>				&lt;ul class="nav" style="left:20px"&gt;</run></par>
+<pardef id='4' leftmargin='1in' tabs='L0.5000in L1in L1.5000in L2in L2.5000in L3in L3.5000in L4in'><code
+ event='hidewhen'><formula>@LowerCase(usernameCN) = "anonymous"</formula></code></pardef>
+<par def='4'><run html='true'>		&lt;li&gt;</run><run html='true'>&lt;a href="javascript:void(0)" onClick="abrirRuta('fvMisSolicitudes?Open')"&gt; &lt;i class="icon-home icon-white"&gt; &lt;/i&gt; Home</run><run
+ html='true'>&lt;/a&gt;&lt;/li&gt;</run></par>
+<pardef id='5' leftmargin='1in' tabs='L0.5000in L1in L1.1806in L1.3778in L1.5743in L1.7715in L1.9681in L2.1653in L2.3618in L2.5590in L2.7556in L2.9521in L3.1493in L3.3458in L3.5431in L3.7396in L3.9368in'><code
+ event='hidewhen'><formula>!esAdmin</formula></code></pardef>
+<par def='5'><run html='true'><font color='maroon'/>					&lt;li class="dropdown"&gt;</run></par>
+<par def='5'><run html='true'><font color='maroon'/>						&lt;a href="#" class="dropdown-toggle" data-toggle="dropdown"&gt; </run></par>
+<par def='5'><run html='true'><font color='maroon'/>							&lt;i class="icon-wrench icon-white"&gt; &lt;/i&gt;  </run></par>
+<par def='5'><run html='true'><font color='maroon'/>								Configuración</run></par>
+<par def='5'><run html='true'><font color='maroon'/>							&lt;b class="caret"&gt;&lt;/b&gt;</run></par>
+<par def='5'><run html='true'><font color='maroon'/>						&lt;/a&gt;</run></par>
+<par def='5'><run html='true'><font color='maroon'/>						&lt;ul class="dropdown-menu"&gt;</run></par>
+<par def='5'><run html='true'><font color='maroon'/>							&lt;li&gt;&lt;a href="javascript:void(0)" onClick="abrirRuta('frGeneral?Open')"&gt; General &lt;/a&gt;&lt;/li&gt;</run></par>
+<par def='5'><run html='true'><font color='maroon'/>                                           </run><run
+ html='true'><font color='blue'/>&lt;li class="dropdown-submenu"&gt;&lt;a href="javascript:void(0)"&gt; Solicitudes &lt;/a&gt;</run></par>
+<par def='5'><run html='true'><font color='blue'/>								&lt;ul class="dropdown-menu"&gt;</run></par>
+<par def='5'><run html='true'><font color='blue'/>									&lt;li&gt;&lt;a href="javascript:void(0)" onClick="abrirRuta('frConfBonoTiempo?Open')"&gt;Bonos de tiempo&lt;/a&gt;&lt;/li&gt;</run></par>
+<par def='5'><run html='true'><font color='blue'/>									&lt;li&gt;&lt;a href="javascript:void(0)" onClick="abrirRuta('frConfHorarioFlexible?Open')"&gt;Horarios flexibles&lt;/a&gt;&lt;/li&gt;</run></par>
+<par def='5'><run html='true'><font color='blue'/>									&lt;li&gt;&lt;a href="javascript:void(0)" onClick="abrirRuta('</run><run
+ html='true'><font color='blue'/>frConfLactancia</run><run html='true'><font
+ color='blue'/>?Open')"&gt;Horas por mes lactancia&lt;/a&gt;&lt;/li&gt;</run></par>
+<par def='5'><run html='true'><font color='blue'/>									&lt;li&gt;&lt;a href="javascript:void(0)" onClick="abrirRuta('frConfAcompaniamiento?Open')"&gt;Horas por mes acompañamiento&lt;/a&gt;&lt;/li&gt;</run></par>
+<par def='5'><run html='true'><font color='blue'/>									&lt;li&gt;&lt;a href="</run><urllink
+ showborder='false' href='javascript:void(0)'><run html='true'><font color='system'/>javascript:void(0)</run></urllink><run
+ html='true'><font color='blue'/>" onClick="abrirRuta('frConfCalamidad?Open')"&gt;Dias por calamidad&lt;/a&gt;&lt;/li&gt;</run></par>
+<par def='5'><run html='true'><font color='blue'/>									&lt;li&gt;&lt;a href="</run><urllink
+ showborder='false' href='javascript:void(0)'><run html='true'><font color='system'/>javascript:void(0)</run></urllink><run
+ html='true'><font color='blue'/>" onClick="abrirRuta('</run><run html='true'><font
+ color='blue'/>frConfPermisosEspeciales</run><run html='true'><font color='blue'/>?Open')"&gt;Permisos especiales&lt;/a&gt;&lt;/li&gt;</run></par>
+<par def='5'><run html='true'><font color='blue'/>									&lt;li&gt;&lt;a href="</run><urllink
+ showborder='false' href='javascript:void(0)'><run html='true'><font color='system'/>javascript:void(0)</run></urllink><run
+ html='true'><font color='blue'/>" onClick="abrirRuta('</run><run html='true'><font
+ color='blue'/>frConfBonoEspacio</run><run html='true'><font color='blue'/>?Open')"&gt;Bono espacio&lt;/a&gt;&lt;/li&gt;</run></par>
+<par def='5'><run html='true'><font color='blue'/>								&lt;/ul&gt;</run></par>
+<par def='5'><run html='true'><font color='maroon'/>							</run><run html='true'><font
+ color='blue'/>&lt;/li&gt;</run></par>
+<par def='5'><run html='true'><font color='maroon'/>							&lt;li&gt;&lt;a href="javascript:void(0)" onClick="abrirRuta('vwFlujos?Open')"&gt; Flujos &lt;/a&gt;&lt;/li&gt;</run></par>
+<par def='5'><run html='true'><font color='maroon'/>							&lt;li&gt;&lt;a href="javascript:void(0)" onClick="abrirRuta('vwEstados?Open')"&gt; Estados &lt;/a&gt;&lt;/li&gt;</run></par>
+<par def='5'><run html='true'><font color='maroon'/>							&lt;li&gt;&lt;a href="javascript:void(0)" onClick="abrirRuta('vwNotificaciones ?Open')"&gt; Notificaciones &lt;/a&gt;&lt;/li&gt;</run></par>
+<par def='5'><run html='true'><font color='maroon'/>							&lt;li&gt;&lt;a href="javascript:void(0)" onClick="abrirRuta('vwTransiciones?Open')"&gt; Transiciones &lt;/a&gt;&lt;/li&gt;</run></par>
+<par def='5'><run html='true'><font color='maroon'/>							&lt;li&gt;&lt;a href="javascript:void(0)" onClick="abrirRuta('vwReportes?Open')"&gt; Reportes &lt;/a&gt;&lt;/li&gt;</run></par>
+<par def='5'><run html='true'><font color='maroon'/>							&lt;li&gt;&lt;a href="javascript:void(0)" onClick="abrirRuta('vwCargosEspecificos?Open')"&gt; Bonos por cargos&lt;/a&gt;&lt;/li&gt;</run></par>
+<par def='5'><run html='true'><font color='maroon'/>							&lt;li&gt;&lt;a href="javascript:void(0)" onClick="abrirRuta('vwHistoricosBonosAnios?Open')"&gt; Histórico de bonos por año&lt;/a&gt;&lt;/li&gt;</run></par>
+<par def='5'><run html='true'><font color='maroon'/>						&lt;/ul&gt;</run></par>
+<par def='5'><run html='true'><font color='maroon'/>					&lt;/li&gt;</run></par>
+<pardef id='6' leftmargin='1in' tabs='L0.5000in L1in L1.1806in L1.3778in L1.5743in L1.7715in L1.9681in L2.1653in L2.3618in L2.5590in L2.7556in L2.9521in L3.1493in L3.3458in L3.5431in L3.7396in L3.9368in'><code
+ event='hidewhen'><formula>!esAdmin &amp; formulariosPermitidos= ""</formula></code></pardef>
+<par def='6'><run html='true'>					&lt;li class="dropdown"&gt;</run></par>
+<par def='6'><run html='true'>						&lt;a href="#" class="dropdown-toggle" data-toggle="dropdown"&gt; </run></par>
+<par def='6'><run html='true'>							&lt;i class="</run><run html='true'><font
+ color='#333333'/>icon-file</run><run html='true'> icon-white"&gt;&lt;/i&gt;</run></par>
+<par def='6'><run html='true'>								Solicitudes</run></par>
+<par def='6'><run html='true'>							&lt;b class="caret"&gt;&lt;/b&gt;</run></par>
+<par def='6'><run html='true'>						&lt;/a&gt;</run></par>
+<par def='6'><run html='true'>						&lt;ul class="dropdown-menu"&gt;</run></par>
+<par def='6'><run html='true'>							</run></par>
+<pardef id='7' leftmargin='1in' tabs='L0.5000in L1in L1.1806in L1.3778in L1.5743in L1.7715in L1.9681in L2.1653in L2.3618in L2.5590in L2.7556in L2.9521in L3.1493in L3.3458in L3.5431in L3.7396in L3.9368in'><code
+ event='hidewhen'><formula>formulariosPermitidos= ""</formula></code></pardef>
+<par def='7'><run html='true'><font color='maroon'/>							</run><run html='true'><font
+ color='blue'/>&lt;li class="dropdown-submenu"&gt;&lt;a href="javascript:void(0)"&gt;Crear Solicitud &lt;/a&gt;</run></par>
+<par def='7'><run html='true'><font color='blue'/>								&lt;ul class="dropdown-menu"&gt;</run></par>
+<pardef id='8' leftmargin='1in' tabs='L0.5000in L1in L1.1806in L1.3778in L1.5743in L1.7715in L1.9681in L2.1653in L2.3618in L2.5590in L2.7556in L2.9521in L3.1493in L3.3458in L3.5431in L3.7396in L3.9368in'><code
+ event='hidewhen'><formula>@IsNotMember("frSolicitudBono"; formulariosPermitidos)</formula></code></pardef>
+<par def='8'><run html='true'><font color='blue'/>									&lt;li&gt;&lt;a href="javascript:void(0)" onClick="abrirRuta('frSolicitudBono?Open')"&gt;</run><run
+ html='true'><font color='blue'/><computedtext><code event='value'><formula
+>@DbLookup("":"NoCache";"";"vwProgTodos";"frConfBonoTiempo";"nombreSolicitud";[FailSilent])</formula></code></computedtext></run><run
+ html='true'><font color='blue'/>&lt;/a&gt;&lt;/li&gt;</run></par>
+<pardef id='9' leftmargin='1in' tabs='L0.5000in L1in L1.1806in L1.3778in L1.5743in L1.7715in L1.9681in L2.1653in L2.3618in L2.5590in L2.7556in L2.9521in L3.1493in L3.3458in L3.5431in L3.7396in L3.9368in'><code
+ event='hidewhen'><formula>@IsNotMember("frSolicitudHorarioFlexible"; formulariosPermitidos)</formula></code></pardef>
+<par def='9'><run html='true'><font color='blue'/>									&lt;li&gt;&lt;a href="javascript:void(0)" onClick="abrirRuta('frSolicitudHorarioFlexible?Open')"&gt;</run><run
+ html='true'><font color='blue'/><computedtext><code event='value'><formula
+>@DbLookup("":"NoCache";"";"vwProgTodos";"frConfHorarioFlexible";"nombreSolicitud";[FailSilent])</formula></code></computedtext></run><run
+ html='true'><font color='blue'/>&lt;/a&gt;&lt;/li&gt;</run></par>
+<pardef id='10' leftmargin='1in' tabs='L0.5000in L1in L1.1806in L1.3778in L1.5743in L1.7715in L1.9681in L2.1653in L2.3618in L2.5590in L2.7556in L2.9521in L3.1493in L3.3458in L3.5431in L3.7396in L3.9368in'><code
+ event='hidewhen'><formula>@IsNotMember("frSolicitudLactancia"; formulariosPermitidos)</formula></code></pardef>
+<par def='10'><run html='true'><font color='blue'/>									&lt;li&gt;&lt;a href="javascript:void(0)" onClick="abrirRuta('frSolicitudLactancia?Open')"&gt;</run><run
+ html='true'><font color='blue'/><computedtext><code event='value'><formula
+>@DbLookup("":"NoCache";"";"vwProgTodos";"frConfLactancia";"nombreSolicitud";[FailSilent])</formula></code></computedtext></run><run
+ html='true'><font color='blue'/>&lt;/a&gt;&lt;/li&gt;</run></par>
+<pardef id='11' leftmargin='1in' tabs='L0.5000in L1in L1.1806in L1.3778in L1.5743in L1.7715in L1.9681in L2.1653in L2.3618in L2.5590in L2.7556in L2.9521in L3.1493in L3.3458in L3.5431in L3.7396in L3.9368in'><code
+ event='hidewhen'><formula>@IsNotMember("frSolicitudPermisoEspecial"; formulariosPermitidos)</formula></code></pardef>
+<par def='11'><run html='true'><font color='blue'/>									&lt;li&gt;&lt;a href="javascript:void(0)" onClick="abrirRuta('frSolicitudPermisoEspecial?Open')"&gt;</run><run
+ html='true'><font color='blue'/><computedtext><code event='value'><formula
+>@DbLookup("":"NoCache";"";"vwProgTodos";"frConfPermisosEspeciales";"nombreSolicitud";[FailSilent])</formula></code></computedtext></run><run
+ html='true'><font color='blue'/>&lt;/a&gt;&lt;/li&gt;</run></par>
+<pardef id='12' leftmargin='1in' tabs='L0.5000in L1in L1.1806in L1.3778in L1.5743in L1.7715in L1.9681in L2.1653in L2.3618in L2.5590in L2.7556in L2.9521in L3.1493in L3.3458in L3.5431in L3.7396in L3.9368in'><code
+ event='hidewhen'><formula>@IsNotMember("frSolicitudAcompaniamiento"; formulariosPermitidos)</formula></code></pardef>
+<par def='12'><run html='true'><font color='blue'/>									&lt;li&gt;&lt;a href="javascript:void(0)" onClick="abrirRuta('frSolicitudAcompaniamiento?Open')"&gt;</run><run
+ html='true'><font color='blue'/><computedtext><code event='value'><formula
+>@DbLookup("":"NoCache";"";"vwProgTodos";"frConfAcompaniamiento";"nombreSolicitud";[FailSilent])</formula></code></computedtext></run><run
+ html='true'><font color='blue'/>&lt;/a&gt;&lt;/li&gt;</run></par>
+<pardef id='13' leftmargin='1in' tabs='L0.5000in L1in L1.1806in L1.3778in L1.5743in L1.7715in L1.9681in L2.1653in L2.3618in L2.5590in L2.7556in L2.9521in L3.1493in L3.3458in L3.5431in L3.7396in L3.9368in'><code
+ event='hidewhen'><formula>@IsNotMember("frSolicitudCalamidad"; formulariosPermitidos)</formula></code></pardef>
+<par def='13'><run html='true'><font color='blue'/>									&lt;li&gt;&lt;a href="javascript:void(0)" onClick="abrirRuta('frSolicitudCalamidad?Open')"&gt;</run><run
+ html='true'><font color='blue'/><computedtext><code event='value'><formula
+>@DbLookup("":"NoCache";"";"vwProgTodos";"frConfCalamidad";"nombreSolicitud";[FailSilent])</formula></code></computedtext></run><run
+ html='true'><font color='blue'/>&lt;/a&gt;&lt;/li&gt;</run></par>
+<pardef id='14' leftmargin='1in' tabs='L0.5000in L1in L1.1806in L1.3778in L1.5743in L1.7715in L1.9681in L2.1653in L2.3618in L2.5590in L2.7556in L2.9521in L3.1493in L3.3458in L3.5431in L3.7396in L3.9368in'><code
+ event='hidewhen'><formula>@IsNotMember("frSolicitudBonoEspacio"; formulariosPermitidos)</formula></code></pardef>
+<par def='14'><run html='true'><font color='blue'/>									&lt;li&gt;&lt;a href="javascript:void(0)" onClick="abrirRuta('</run><run
+ html='true'><font color='blue'/>frSolicitudBonoEspacio</run><run html='true'><font
+ color='blue'/>?Open')"&gt;</run><run html='true'><font color='blue'/><computedtext
+><code event='value'><formula>@DbLookup("":"NoCache";"";"vwProgTodos";"frConfBonoEspacio";"nombreSolicitud";[FailSilent])</formula></code></computedtext></run><run
+ html='true'><font color='blue'/>&lt;/a&gt;&lt;/li&gt;</run></par>
+<par def='7'><run html='true'><font color='blue'/>								&lt;/ul&gt;</run></par>
+<par def='7'><run html='true'><font color='maroon'/>							</run><run html='true'><font
+ color='blue'/>&lt;/li</run><run html='true'><font color='blue'/>&gt;</run></par>
+<par def='6'><run html='true'>							&lt;li&gt;&lt;a href="javascript:void(0)" onClick="abrirRuta('vwMisSolicitudes?Open')"&gt;</run><run
+ html='true'> Mis solicitudes&lt;/a&gt;&lt;/li&gt;</run></par>
+<par def='6'><run html='true'>							&lt;li&gt;&lt;a href="javascript:void(0)" onClick="abrirRuta('vwMisPendientes?Open')"&gt; Mis pendientes&lt;/a&gt;&lt;/li&gt;</run></par>
+<par def='6'><run html='true'>							&lt;li&gt;&lt;a href="javascript:void(0)" onClick="abrirRuta('vwMisAprobadas?Open')"&gt; Mis aprobadas&lt;/a&gt;&lt;/li&gt;</run></par>
+<pardef id='15' leftmargin='1in' hide='notes web mobile' tabs='L0.5000in L1in L1.1806in L1.3778in L1.5743in L1.7715in L1.9681in L2.1653in L2.3618in L2.5590in L2.7556in L2.9521in L3.1493in L3.3458in L3.5431in L3.7396in L3.9368in'/>
+<par def='15'><run html='true'>							&lt;li&gt;&lt;a href="javascript:void(0)" onClick="abrirRuta('vwMisRechazadas?Open')"&gt; Mis rechazadas&lt;/a&gt;&lt;/li&gt;</run></par>
+<par def='6'><run html='true'><font color='red'/>							&lt;li&gt;&lt;a href="javascript:void(0)" onClick="abrirRuta('vwConsultaNombres?Open')"&gt; Por nombre&lt;/a&gt;&lt;/li&gt;</run></par>
+<par def='6'><run html='true'><font color='red'/>							&lt;li&gt;&lt;a href="javascript:void(0)" onClick="abrirRuta('vwConsultaCedulas?Open')"&gt; Por cédula&lt;/a&gt;&lt;/li&gt;</run></par>
+<par def='6'><run html='true'><font color='red'/>							&lt;li&gt;&lt;a href="javascript:void(0)" onClick="abrirRuta('vwConsultaFechas?Open')"&gt; Por fecha&lt;/a&gt;&lt;/li&gt;</run></par>
+<par def='6'><run html='true'><font color='red'/>							&lt;li&gt;&lt;a href="javascript:void(0)" onClick="abrirRuta('vwConsultaJornadas?Open')"&gt; Por jornada&lt;/a&gt;&lt;/li&gt;</run></par>
+<par def='6'><run html='true'><font color='red'/>							&lt;li&gt;&lt;a href="javascript:void(0)" onClick="abrirRuta('vwConsultaEstados?Open')"&gt; Por estado&lt;/a&gt;&lt;/li&gt;</run></par>
+<par def='6'><run html='true'><font color='red'/>							&lt;li&gt;&lt;a href="</run><urllink
+ showborder='false' href='javascript:void(0)'><run html='true'><font color='system'/>javascript:void(0)</run></urllink><run
+ html='true'><font color='red'/>" onClick="abrirRuta('vwConsultaResponsables?Open')"&gt; Por responsable&lt;/a&gt;&lt;/li&gt;</run></par>
+<par def='6'><run html='true'><font color='red'/>							&lt;li&gt;&lt;a href="</run><urllink
+ showborder='false' href='javascript:void(0)'><run html='true'><font color='system'/>javascript:void(0)</run></urllink><run
+ html='true'><font color='red'/>" onClick="abrirRuta('</run><run html='true'><font
+ color='red'/>vwConsultaTipoSolicitud</run><run html='true'><font color='red'/>?Open')"&gt; Por tipo solicitud&lt;/a&gt;&lt;/li&gt;</run></par>
+<par def='6'><run html='true'><font color='red'/>							&lt;li&gt;&lt;a href="javascript:void(0)" onClick="abrirRuta('vwlogEliminaciones?Open')"&gt; Log de eliminaciones&lt;/a&gt;&lt;/li&gt;</run></par>
+<par def='6'><run html='true'>							&lt;li&gt;&lt;a href="javascript:void(0)" onClick="abrirRuta('</run><run
+ html='true'>frConsultaJefe</run><run html='true'>?Open')"&gt; Consulta jefes&lt;/a&gt;&lt;/li&gt;</run></par>
+<par def='6'><run html='true'>						&lt;/ul&gt;</run></par>
+<par def='6'><run html='true'>					&lt;/li&gt;</run></par>
+<par def='5'><run html='true'>					&lt;li&gt;&lt;a href="javascript:void(0)" onClick="abrirRuta('frBusqueda?Open')"&gt;&lt;i class="</run><run
+ html='true'><font color='#2f2f2f'/>icon-zoom-in</run><run html='true'> icon-white"&gt;&lt;/i&gt; Búsqueda &lt;/a&gt;&lt;/li&gt;</run></par>
+<pardef id='16' leftmargin='1in' tabs='L0.5000in L1in L1.1806in L1.3778in L1.5743in L1.7715in L1.9681in L2.1653in L2.3618in L2.5590in L2.7556in L2.9521in L3.1493in L3.3458in L3.5431in L3.7396in L3.9368in'><code
+ event='hidewhen'><formula>!tieneAccesoAReportes &amp; !tieneAccesoAReportesBA &amp;
+!tieneAccesoAReportesBE</formula></code></pardef>
+<par def='16'><run html='true'><font color='blue'/>					&lt;li class="dropdown"&gt;</run></par>
+<par def='16'><run html='true'><font color='blue'/>						&lt;a href="#" class="dropdown-toggle" data-toggle="dropdown"&gt; </run></par>
+<par def='16'><run html='true'><font color='blue'/>							&lt;i class="</run><run
+ html='true'><font color='blue'/>icon-book</run><run html='true'><font color='blue'/> icon-white"&gt;&lt;/i&gt;</run></par>
+<par def='16'><run html='true'><font color='blue'/>								Reportes</run></par>
+<par def='16'><run html='true'><font color='blue'/>							&lt;b class="caret"&gt;&lt;/b&gt;</run></par>
+<par def='16'><run html='true'><font color='blue'/>						&lt;/a&gt;</run></par>
+<par def='16'><run html='true'><font color='blue'/>						&lt;ul class="dropdown-menu"&gt;</run></par>
+<pardef id='17' leftmargin='1in' tabs='L0.5000in L1in L1.1806in L1.3778in L1.5743in L1.7715in L1.9681in L2.1653in L2.3618in L2.5590in L2.7556in L2.9521in L3.1493in L3.3458in L3.5431in L3.7396in L3.9368in'><code
+ event='hidewhen'><formula>!tieneAccesoAReportes</formula></code></pardef>
+<par def='17'><run html='true'><font color='blue'/>							&lt;li&gt;&lt;a href="javascript:void(0)" onClick="abrirRuta('frReportes?Open')"&gt;Reportes &lt;/a&gt;&lt;/li&gt;</run></par>
+<pardef id='18' leftmargin='1in' tabs='L0.5000in L1in L1.1806in L1.3778in L1.5743in L1.7715in L1.9681in L2.1653in L2.3618in L2.5590in L2.7556in L2.9521in L3.1493in L3.3458in L3.5431in L3.7396in L3.9368in'><code
+ event='hidewhen'><formula>!tieneAccesoAReportesBA</formula></code></pardef>
+<par def='18'><run html='true'><font color='blue'/>							&lt;li&gt;&lt;a href="</run><urllink
+ showborder='false' href='javascript:void(0)'><run html='true'><font color='system'/>javascript:void(0)</run></urllink><run
+ html='true'><font color='blue'/>" onClick="abrirRuta('frBonosAsignados?Open')"&gt;Bonos asignados&lt;/a&gt;&lt;/li&gt;</run></par>
+<pardef id='19' leftmargin='1in' tabs='L0.5000in L1in L1.1806in L1.3778in L1.5743in L1.7715in L1.9681in L2.1653in L2.3618in L2.5590in L2.7556in L2.9521in L3.1493in L3.3458in L3.5431in L3.7396in L3.9368in'><code
+ event='hidewhen'><formula>!tieneAccesoAReportesBE</formula></code></pardef>
+<par def='19'><run html='true'><font color='blue'/>							&lt;li&gt;&lt;a href="</run><urllink
+ showborder='false' href='javascript:void(0)'><run html='true'><font color='system'/>javascript:void(0)</run></urllink><run
+ html='true'><font color='blue'/>" onClick="abrirRuta('</run><run html='true'><font
+ color='blue'/>frBonosEspacios</run><run html='true'><font color='blue'/>?Open')"&gt;Bonos espacios&lt;/a&gt;&lt;/li&gt;</run></par>
+<par def='16'><run html='true'><font color='blue'/>						&lt;/ul&gt;</run></par>
+<par def='16'><run html='true'><font color='blue'/>					&lt;/li&gt;</run></par>
+<par def='4'><run html='true'>		&lt;li&gt;&lt;a href="</run><run html='true'><computedtext
+><code event='value'><formula>"/"+webDbName+"?logout&amp;redirectto=/"+webDbName</formula></code></computedtext></run><run
+ html='true'>"&gt; &lt;i class="icon-off icon-white"&gt; &lt;/i&gt; </run><run
+ html='true'>Cerrar sesión&lt;/a&gt;&lt;/li&gt;</run></par>
+<par def='3'><run html='true'>				&lt;/ul&gt;</run></par>
+<par def='3'><run html='true'>			&lt;/div&gt;</run></par>
+<par def='3'><run html='true'>			&lt;!--/.nav-collapse --&gt;</run></par>
+<par def='3'><run html='true'>		&lt;/div&gt;</run></par>
+<par def='3'><run html='true'>	&lt;/div&gt;</run></par>
+<par def='3'><run html='true'>&lt;/div&gt;</run></par>
+<par def='3'><run html='true'>&lt;/div&gt;</run></par>
+<pardef id='20' leftmargin='1in' tabs='L0.5000in L1in L1.5000in L2in L2.5000in L3in L3.5000in L4in'/>
+<par def='20'><run html='true'>&lt;div class="container" style="width:95%;margin-top:190px;"&gt;</run></par></richtext></body>
+<item name='enEdicion' summary='false' sign='true'><number>0</number></item>
+<item name='$SubForm_RepIDs' sign='true'><text>0000000000000000</text></item>
+<item name='$$ScriptName' summary='false' sign='true'><text>sfrHeader</text></item></subform>
+

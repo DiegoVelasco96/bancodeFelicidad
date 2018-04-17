@@ -1,0 +1,63 @@
+<?xml version='1.0' encoding='utf-8'?>
+<subform name='User / Footer bonos' alias='sfrFooterBonos' xmlns='http://www.lotus.com/dxl'
+ version='9.0' maintenanceversion='1.9' replicaid='052581670049F6C5' designerversion='8.5.3'
+ renderpassthrough='true'>
+<noteinfo noteid='882' unid='EEBC5648E32F5DAD05257C51004A1313' sequence='91'>
+<created><datetime>20131230T082905,47-05</datetime></created>
+<modified><datetime>20170724T082912,64-05</datetime></modified>
+<revised><datetime>20170724T082912,63-05</datetime></revised>
+<lastaccessed><datetime>20170724T082912,64-05</datetime></lastaccessed>
+<addedtofile><datetime>20170724T082802,64-05</datetime></addedtofile></noteinfo>
+<updatedby><name>CN=Admin Desarrollo/O=cognox</name><name>CN=Administrador Aplicaciones/O=GNCH</name><name
+>CN=Diego Alexander Velasco Acevedo/O=desarrollo</name></updatedby>
+<wassignedby><name>CN=Diego Alexander Velasco Acevedo/O=desarrollo</name></wassignedby>
+<body><richtext>
+<pardef id='1'/>
+<par def='1'><run html='true'>&lt;script&gt;</run></par>
+<pardef id='2' tabs='L1.1806in'/>
+<par def='2'><run html='true'>	var documento = {</run></par>
+<pardef id='3' tabs='L1.1806in L1.3778in'/>
+<par def='3'><run html='true'>		sUniqueFlujo : "</run><run html='true'><computedtext
+><code event='value'><formula>uniqueFlujo</formula></code></computedtext></run><run
+ html='true'>",</run></par>
+<par def='3'><run html='true'>		sUniqueEstado : "</run><run html='true'><computedtext
+><code event='value'><formula>uniqueEstado</formula></code></computedtext></run><run
+ html='true'>",</run></par>
+<par def='3'><run html='true'>		sPosEstado : "</run><run html='true'><computedtext
+><code event='value'><formula>posEstado</formula></code></computedtext></run><run
+ html='true'>",</run></par>
+<par def='3'><run html='true'>		sFechaActual : "</run><run html='true'><computedtext
+><code event='value'><formula>fecha:=@Now;
+@Right("0"+@Text(@Day(fecha));2)+"/"+@Right("0"+@Text(@Month(fecha));2)+"/"+@Text(@Year(fecha))</formula></code></computedtext></run><run
+ html='true'>",</run></par>
+<par def='3'><run html='true'>		sAutorAbbreviate : "</run><run html='true'><computedtext
+><code event='value'><formula>@Name([Abbreviate];autor)</formula></code></computedtext></run><run
+ html='true'>",</run></par>
+<par def='3'><run html='true'>		sAutorCommon : "</run><run html='true'><computedtext
+><code event='value'><formula>@Name([CN];autor)</formula></code></computedtext></run><run
+ html='true'>",</run></par>
+<par def='3'><run html='true'>		sFechaRedencion : "</run><run html='true'><computedtext
+><code event='value'><formula>fechaRedencion</formula></code></computedtext></run><run
+ html='true'>",</run></par>
+<par def='3'><run html='true'>		sCargo : "</run><run html='true'><computedtext
+><code event='value'><formula>cargo</formula></code></computedtext></run><run
+ html='true'>",</run></par>
+<par def='3'><run html='true'>		sHijo : </run><run html='true'> "</run><run
+ html='true'><computedtext><code event='value'><formula>nombreHijo</formula></code></computedtext></run><run
+ html='true'>",</run></par>
+<par def='3'><run html='true'>		</run><run html='true'>sfechaNacimiento</run><run
+ html='true'>:  "</run><run html='true'><computedtext><code event='value'><formula
+>fechaNacimiento</formula></code></computedtext></run><run html='true'>",</run></par>
+<par def='3'><run html='true'>		sCompania:  "</run><run html='true'><computedtext
+><code event='value'><formula>form</formula></code></computedtext></run><run
+ html='true'>",</run></par>
+<par def='3'><run html='true'>		sSolicitud :  "</run><run html='true'><computedtext
+><code event='value'><formula>form</formula></code></computedtext></run><run
+ html='true'>",</run></par>
+<par def='3'><run html='true'>		s</run><run html='true'>PermitirAprobarVencidas: "</run><run
+ html='true'><computedtext><code event='value'><formula>@DbLookup("":"NoCache";"";"vwProgTodos";"frConfBonoTiempo";"permitirAprobarVencidas";[FailSilent])</formula></code></computedtext></run><run
+ html='true'>"</run></par>
+<par def='3'><run html='true'>}</run></par>
+<par def='2'><run html='true'>&lt;/script&gt;</run></par></richtext></body>
+<item name='$$ScriptName' summary='false' sign='true'><text>sfrFooterBonos</text></item></subform>
+

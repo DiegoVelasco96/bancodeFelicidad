@@ -1,0 +1,93 @@
+<?xml version='1.0' encoding='utf-8'?>
+<form name='Admon / Flujo' alias='frFlujo' xmlns='http://www.lotus.com/dxl'
+ version='9.0' maintenanceversion='1.9' replicaid='052581670049F6C5' nocompose='true'
+ publicaccess='false' designerversion='8.5.3' editonopen='true' renderpassthrough='true'>
+<noteinfo noteid='57e' unid='1937490340820CD005257C0B006C1197' sequence='71'>
+<created><datetime>20131021T144023,91-05</datetime></created>
+<modified><datetime>20170724T082909,54-05</datetime></modified>
+<revised><datetime>20170724T082909,53-05</datetime></revised>
+<lastaccessed><datetime>20170724T082909,54-05</datetime></lastaccessed>
+<addedtofile><datetime>20170724T082758,92-05</datetime></addedtofile></noteinfo>
+<updatedby><name>CN=Admin Desarrollo/O=cognox</name><name>CN=Administrador Aplicaciones/O=GNCH</name><name
+>CN=Admin Desarrollo/O=cognox</name><name>CN=Administrador Aplicaciones/O=GNCH</name><name
+>CN=Admin Desarrollo/O=cognox</name><name>CN=Administrador Aplicaciones/O=GNCH</name><name
+>CN=Diego Alexander Velasco Acevedo/O=desarrollo</name></updatedby>
+<wassignedby><name>CN=Diego Alexander Velasco Acevedo/O=desarrollo</name></wassignedby><code
+ event='webquerysave'><formula>@Command([ToolsRunMacro]; "agGuardarConfiguracion")</formula></code>
+<body><richtext>
+<pardef id='1' leftmargin='1in' tabs='L0.5000in L1in L1.1806in L1.3778in L1.5743in L1.7715in L1.9681in L2.1653in L2.3618in L2.5590in L2.7556in L2.9521in L3.1493in L3.3458in L3.5431in L3.7396in L3.9368in'/><subformref
+><code event='value'><formula>"sfrHeader"</formula></code></subformref>
+<par def='1'/>
+<pardef id='2' hide='notes web mobile'/>
+<par def='2'><run><font color='red'/></run><run><font color='red'/><field
+ type='text' kind='editable' name='form'><code event='defaultvalue'><formula
+>"frFlujo"</formula></code></field></run><compositedata type='98' prevtype='65418'
+ nexttype='222' afterparcount='10' containertype='65418' aftercontainercount='1'
+ afterbegincount='3'>
+Yg4BAIQAAAAAAAAAAAA=
+</compositedata><run><font color='red'/></run><run><font
+ color='red'/><field type='text' kind='editable' name='keyForm'><code event='defaultvalue'><formula
+>"Configuración flujo"</formula></code></field></run><compositedata type='98'
+ prevtype='65418' nexttype='222' afterparcount='19' containertype='65418'
+ aftercontainercount='1' afterbegincount='3'>
+Yg4BAIQAAAAAAAAAAAA=
+</compositedata><run><font color='red'/></run><run
+><font color='red'/><field type='text' kind='computedfordisplay' name='SaveOptions'><code
+ event='defaultvalue'><formula>"1"</formula></code></field></run><compositedata
+ type='98' prevtype='65418' nexttype='222' afterparcount='28' containertype='65418'
+ aftercontainercount='1' afterbegincount='3'>
+Yg4BAIQAAAAAAAAAAAA=
+</compositedata><run><font color='red'/></run><run
+><font color='red'/><field type='text' kind='computedfordisplay' name='redireccion'><code
+ event='defaultvalue'><formula>"vwFlujos?Open"</formula></code></field></run><compositedata
+ type='98' prevtype='65418' nexttype='222' afterparcount='37' containertype='65418'
+ aftercontainercount='1' afterbegincount='3'>
+Yg4BAIQAAAAAAAAAAAA=
+</compositedata><run html='true'><font
+ color='red'/></run></par>
+<pardef id='3'/>
+<par def='3'><run html='true'>&lt;div style="display:none"&gt;</run><run html='true'><font
+ color='blue'/><field type='text' allowmultivalues='true' kind='editable'
+ name='nomFormularios' listinputseparators='newline' listdisplayseparator='newline'/></run><compositedata
+ type='98' prevtype='65418' nexttype='222' afterparcount='7' containertype='65418'
+ aftercontainercount='1' afterbegincount='3'>
+Yg4BAIQAAAAAAAAAAAA=
+</compositedata><run html='true'>&lt;/div&gt;</run></par>
+<par def='3'/><subformref><code event='value'><formula>"sfrHeaderConfiguracion"</formula></code></subformref>
+<par def='3'/>
+<table widthtype='fitmargins' refwidth='9.3854in'><tablecolumn width='24.0382%'/><tablecolumn
+ width='75.9618%'/>
+<tablerow>
+<tablecell borderwidth='0px' htmlclass='etiqueta'>
+<pardef id='5' keepwithnext='true' keeptogether='true'/>
+<par def='5'>Nombre</par></tablecell>
+<tablecell borderwidth='0px'>
+<pardef id='6' keepwithnext='true' keeptogether='true'/>
+<par def='6'><field type='text' kind='editable' name='nombre' htmlclass='input-xxlarge'/><compositedata
+ type='98' prevtype='65402' nexttype='222' afterparcount='8' containertype='65418'
+ aftercontainercount='2' afterbegincount='4'>
+Yg4BAIQAAAAAAAAAAAA=
+</compositedata></par></tablecell></tablerow>
+<tablerow>
+<tablecell borderwidth='0px'>
+<par def='5'>Formularios a los que aplica</par></tablecell>
+<tablecell borderwidth='0px'>
+<par def='6'><field type='keyword' allowmultivalues='true' kind='editable'
+ name='formularios' listinputseparators='comma' listdisplayseparator='comma'
+ htmlclass='input-xxlarge'><keywords ui='dialoglist'><textlist><text>Solicitud bono de tiempo | frSolicitudBono</text><text
+>Horarios flexibles | frSolicitudHorarioFlexible</text><text>Horas por mes lactancia | frSolicitudLactancia</text><text
+>Horas por mes acompañamiento | frSolicitudAcompaniamiento</text><text>Dias por calamidad | frSolicitudCalamidad</text><text
+>Permisos especiales |frSolicitudPermisoEspecial</text><text>Bono espacio |frSolicitudBonoEspacio</text></textlist></keywords></field></par></tablecell></tablerow></table>
+<pardef id='4' firstlineleftmargin='1in'/>
+<par def='4'/><subformref><code event='value'><formula>"sfrFooter"</formula></code></subformref>
+<pardef id='7' leftmargin='1in' tabs='L0.5000in L1in L1.5000in L2in L2.5000in L3in L3.5000in L4in'/>
+<par def='7'/>
+<par def='7'><run html='true'>&lt;script src="/</run><run html='true'><computedtext
+><code event='value'><formula>webDbName</formula></code></computedtext></run><run
+ html='true'>/JSFrFlujo?Open"&gt;&lt;/script&gt;</run></par>
+<par def='7'/></richtext></body>
+<item name='OriginalModTime'><datetime>20100916T112413,96-05</datetime></item>
+<item name='$SubForm_RepIDs' sign='true'><textlist><text>0000000000000000</text><text
+>0000000000000000</text><text>0000000000000000</text></textlist></item>
+<item name='$$ScriptName' summary='false' sign='true'><text>frFlujo</text></item></form>
+

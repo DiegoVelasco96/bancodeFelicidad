@@ -1,0 +1,27 @@
+<?xml version='1.0' encoding='utf-8'?>
+<sharedfield name='fechaCreacion' xmlns='http://www.lotus.com/dxl' version='9.0'
+ maintenanceversion='1.9' replicaid='052581670049F6C5' designerversion='8.5.3'>
+<noteinfo noteid='f72' unid='6F1D809B2AC9667005257F410068DD8C' sequence='13'>
+<created><datetime>20160121T140524,60-05</datetime></created>
+<modified><datetime>20170724T082910,62-05</datetime></modified>
+<revised><datetime>20170724T082910,61-05</datetime></revised>
+<lastaccessed><datetime>20170724T082910,62-05</datetime></lastaccessed>
+<addedtofile><datetime>20170724T082811,20-05</datetime></addedtofile></noteinfo>
+<updatedby><name>CN=Administrador DEV/O=DEV</name><name>CN=Administrador Aplicaciones/O=GNCH</name><name
+>CN=Admin Desarrollo/O=cognox</name><name>CN=Administrador Aplicaciones/O=GNCH</name><name
+>CN=Admin Desarrollo/O=cognox</name><name>CN=Administrador Aplicaciones/O=GNCH</name><name
+>CN=Admin Desarrollo/O=cognox</name><name>CN=Administrador Aplicaciones/O=GNCH</name><name
+>CN=Admin Desarrollo/O=cognox</name><name>CN=Administrador Aplicaciones/O=GNCH</name><name
+>CN=Admin Desarrollo/O=cognox</name><name>CN=Administrador Aplicaciones/O=GNCH</name><name
+>CN=Diego Alexander Velasco Acevedo/O=desarrollo</name></updatedby>
+<wassignedby><name>CN=Diego Alexander Velasco Acevedo/O=desarrollo</name></wassignedby><field
+ type='datetime' kind='editable' name='fechaCreacion'><datetimeformat show='datetime'
+ date='yearmonthday' fourdigityearfor21stcentury='true' time='hourminute'
+ zone='never' dateformat='weekdaydaymonthyear' dayformat='twodigitday' monthformat='twodigitmonth'
+ yearformat='twodigityear' weekdayformat='shortname' dateseparator1=' ' dateseparator2='/'
+ dateseparator3='/' timeseparator=':' timeformat24='true' preference='custom'/><code
+ event='defaultvalue'><formula>@Now</formula></code></field>
+<item name='$HTMLCode' sign='true'>
+<rawitemdata type='1'>
+</rawitemdata></item></sharedfield>
+

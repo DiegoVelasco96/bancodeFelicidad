@@ -1,0 +1,72 @@
+<?xml version='1.0' encoding='utf-8'?>
+<view name='(Prog Estados por flujo)' alias='vwProgEstadosFlujo' xmlns='http://www.lotus.com/dxl'
+ version='9.0' maintenanceversion='1.9' replicaid='052581670049F6C5' showinmenu='false'
+ publicaccess='false' designerversion='8.5.3' unreadmarks='none' onopengoto='lastopened'
+ onrefresh='displayindicator' headers='beveled' opencollapsed='false' showresponsehierarchy='false'
+ showmargin='true' shrinkrows='false' extendlastcolumn='false' showhierarchies='false'
+ unreadcolor='black' rowlinecount='1' headerlinecount='1' rowspacing='1' bgcolor='white'
+ totalscolor='black' headerbgcolor='white' boldunreadrows='false' evaluateactions='false'
+ allownewdocuments='false' allowcustomizations='true' hidemarginborder='false'
+ marginwidth='0px' marginbgcolor='white' uniquekeys='false'>
+<noteinfo noteid='5a2' unid='BEFD51AA3F5C990405257C0B0078B92A' sequence='42'>
+<created><datetime>20131021T165837,22-05</datetime></created>
+<modified><datetime>20170724T082913,88-05</datetime></modified>
+<revised><datetime>20170724T082913,87-05</datetime></revised>
+<lastaccessed><datetime>20180125T020030,33-05</datetime></lastaccessed>
+<addedtofile><datetime>20170724T082759,10-05</datetime></addedtofile></noteinfo>
+<updatedby><name>CN=Admin Desarrollo/O=cognox</name><name>CN=Administrador Aplicaciones/O=GNCH</name><name
+>CN=Admin Desarrollo/O=cognox</name><name>CN=admDllo administrador/O=PREBEL</name><name
+>CN=Admin Desarrollo/O=cognox</name><name>CN=admDllo administrador/O=PREBEL</name><name
+>CN=Contacto Lotus Sistemas SII/OU=Operacion/O=Prebel</name><name>CN=Admin Desarrollo/O=cognox</name><name
+>CN=Administrador Aplicaciones/O=GNCH</name><name>CN=Admin Desarrollo/O=cognox</name><name
+>CN=Administrador Aplicaciones/O=GNCH</name><name>CN=Admin Desarrollo/O=cognox</name><name
+>CN=Administrador Aplicaciones/O=GNCH</name><name>CN=Admin Desarrollo/O=cognox</name><name
+>CN=Administrador Aplicaciones/O=GNCH</name><name>CN=Admin Desarrollo/O=cognox</name><name
+>CN=Administrador Aplicaciones/O=GNCH</name><name>CN=Admin Desarrollo/O=cognox</name><name
+>CN=Administrador Aplicaciones/O=GNCH</name><name>CN=Admin Desarrollo/O=cognox</name><name
+>CN=Administrador Aplicaciones/O=GNCH</name><name>CN=Admin Desarrollo/O=cognox</name><name
+>CN=Administrador Aplicaciones/O=GNCH</name><name>CN=Admin Desarrollo/O=cognox</name><name
+>CN=Administrador Aplicaciones/O=GNCH</name><name>CN=Admin Desarrollo/O=cognox</name><name
+>CN=Administrador Aplicaciones/O=GNCH</name><name>CN=Admin Desarrollo/O=cognox</name><name
+>CN=Administrador Aplicaciones/O=GNCH</name><name>CN=Admin Desarrollo/O=cognox</name><name
+>CN=Administrador Aplicaciones/O=GNCH</name><name>CN=Admin Desarrollo/O=cognox</name><name
+>CN=Administrador DEV/O=DEV</name><name>CN=Admin Desarrollo/O=cognox</name><name
+>CN=Administrador DEV/O=DEV</name><name>CN=Admin Desarrollo/O=cognox</name><name
+>CN=Administrador DEV/O=DEV</name><name>CN=Administrador Aplicaciones/O=GNCH</name><name
+>CN=Admin Desarrollo/O=cognox</name><name>CN=Administrador Aplicaciones/O=GNCH</name><name
+>CN=Admin Desarrollo/O=cognox</name><name>CN=Administrador Aplicaciones/O=GNCH</name><name
+>CN=Admin Desarrollo/O=cognox</name><name>CN=Administrador Aplicaciones/O=GNCH</name><name
+>CN=Admin Desarrollo/O=cognox</name><name>CN=Administrador Aplicaciones/O=GNCH</name><name
+>CN=Admin Desarrollo/O=cognox</name><name>CN=Administrador Aplicaciones/O=GNCH</name><name
+>CN=Diego Alexander Velasco Acevedo/O=desarrollo</name></updatedby>
+<wassignedby><name>CN=Diego Alexander Velasco Acevedo/O=desarrollo</name></wassignedby><code
+ event='selection'><formula>SELECT ((Form = "Admon / Estado") | (Form = "frEstado"))</formula></code><code
+ event='querypaste'><lotusscript>Sub Querypaste(Source As Notesuiview, Continue As Variant)
+	'Continue = False
+End Sub</lotusscript></code>
+<column sort='ascending' hidedetailrows='false' itemname='flujo' width='15'
+ resizable='false' separatemultiplevalues='false' sortnoaccent='true' sortnocase='true'
+ showaslinks='false'><font size='7pt' name='Verdana' pitch='variable' truetype='true'
+ familyid='20'/><columnheader align='center' title='Flujo'><font size='7pt'
+ style='bold' name='Verdana' pitch='variable' truetype='true' familyid='20'/></columnheader></column>
+<column sort='ascending' hidedetailrows='false' itemname='nombre' width='15'
+ resizable='false' separatemultiplevalues='false' sortnoaccent='true' sortnocase='true'
+ showaslinks='false'><font size='7pt' name='Verdana' pitch='variable' truetype='true'
+ familyid='20'/><columnheader align='center' title='Nombre'><font size='7pt'
+ style='bold' name='Verdana' pitch='variable' truetype='true' familyid='20'/></columnheader></column>
+<column hidedetailrows='false' itemname='unique' width='15' resizable='false'
+ separatemultiplevalues='false' sortnoaccent='true' sortnocase='true' showaslinks='false'><font
+ size='7pt' name='Verdana' pitch='variable' truetype='true' familyid='20'/><columnheader
+ align='center' title='Unique'><font size='7pt' style='bold' name='Verdana'
+ pitch='variable' truetype='true' familyid='20'/></columnheader></column>
+<column hidedetailrows='false' itemname='$8' width='15' resizable='false'
+ separatemultiplevalues='false' sortnoaccent='true' sortnocase='true' showaslinks='false'><font
+ size='7pt' name='Verdana' pitch='variable' truetype='true' familyid='20'/><columnheader
+ align='center' title='Nombre | Unique'><font size='7pt' style='bold' name='Verdana'
+ pitch='variable' truetype='true' familyid='20'/></columnheader><code event='value'><formula
+>nombre+"|"+unique</formula></code></column>
+<item name='$SelQuery' sign='true'>
+<rawitemdata type='f'>
+gQYAAAAAif8jAAAAAAABABcAQWRtb24gLyBFc3RhZG98ZnJFc3RhZG8A
+</rawitemdata></item></view>
+

@@ -1,0 +1,331 @@
+<?xml version='1.0' encoding='utf-8'?>
+<subform name='User / Header bonos' alias='sfrHeaderBonos' xmlns='http://www.lotus.com/dxl'
+ version='9.0' maintenanceversion='1.9' replicaid='052581670049F6C5' designerversion='8.5.3'
+ renderpassthrough='true'>
+<noteinfo noteid='9b6' unid='2B1F150B5C1B693A05257C8A004878C0' sequence='44'>
+<created><datetime>20140225T081135,04-05</datetime></created>
+<modified><datetime>20170724T095148,95-05</datetime></modified>
+<revised><datetime>20170724T095148,94-05</datetime></revised>
+<lastaccessed><datetime>20170724T095148,95-05</datetime></lastaccessed>
+<addedtofile><datetime>20170724T082804,14-05</datetime></addedtofile></noteinfo>
+<updatedby><name>CN=Diego Alexander Velasco Acevedo/O=desarrollo</name></updatedby>
+<wassignedby><name>CN=Diego Alexander Velasco Acevedo/O=desarrollo</name></wassignedby>
+<body><richtext>
+<pardef id='1' leftmargin='1in' tabs='L0.5000in L1in L1.1806in L1.3778in L1.5743in L2in L2.5000in L3in L3.5000in L4in'/>
+<par def='1'><run html='true'>&lt;script&gt;</run></par>
+<par def='1'><run html='true'><computedtext><code event='value'><formula>@If(uniqueFlujo = "" | uniqueEstado = "";
+"location.href = '/"+webDbName+"/frError?Open&amp;msg=6'";
+"")</formula></code></computedtext></run></par>
+<par def='1'><run html='true'>&lt;/script&gt;</run></par>
+<table widthtype='fitmargins' refwidth='9.2083in'><tablecolumn width='2.7563in'/><tablecolumn
+ width='100%'/>
+<tablerow>
+<tablecell borderwidth='0px'>
+<pardef id='3' hide='notes web mobile' keepwithnext='true' keeptogether='true'/>
+<par def='3'><run><font color='red'/>Consecutivo</run></par></tablecell>
+<tablecell borderwidth='0px'>
+<pardef id='4' hide='notes web mobile' keepwithnext='true' keeptogether='true'/>
+<par def='4'><run><font color='red'/></run><run><font color='red'/><field
+ type='text' kind='editable' name='consecutivo'/></run><compositedata type='98'
+ prevtype='65418' nexttype='222' afterparcount='10' containertype='65418'
+ aftercontainercount='1' afterbegincount='3'>
+Yg4BAIQAAAAAAAAAAAA=
+</compositedata><run><font color='red'/></run></par></tablecell></tablerow>
+<tablerow>
+<tablecell borderwidth='0px'>
+<par def='3'><run><font color='red'/>Unique flujo</run></par></tablecell>
+<tablecell borderwidth='0px'>
+<par def='4'><run><font color='red'/></run><run><font color='red'/><field
+ type='text' kind='editable' name='uniqueFlujo'><code event='defaultvalue'><formula
+>@DbLookup("":"NoCache";"";"vwProgFormulariosFlujo";form;"unique";[FailSilent])</formula></code></field></run><compositedata
+ type='98' prevtype='65418' nexttype='222' afterparcount='9' containertype='65418'
+ aftercontainercount='1' afterbegincount='3'>
+Yg4BAIQAAAAAAAAAAAA=
+</compositedata><run><font color='red'/></run></par></tablecell></tablerow>
+<tablerow>
+<tablecell borderwidth='0px'>
+<par def='3'><run><font color='red'/>Unique estado</run></par></tablecell>
+<tablecell borderwidth='0px'>
+<par def='4'><run><font color='red'/></run><run><font color='red'/><field
+ type='text' kind='editable' name='uniqueEstado'><code event='defaultvalue'><formula
+>@DbLookup("":"NoCache";"";"vwProgEstadosIniciales";uniqueFlujo;"unique";[FailSilent])</formula></code></field></run><compositedata
+ type='98' prevtype='65418' nexttype='222' afterparcount='9' containertype='65418'
+ aftercontainercount='1' afterbegincount='3'>
+Yg4BAIQAAAAAAAAAAAA=
+</compositedata><run><font color='red'/></run></par></tablecell></tablerow>
+<tablerow>
+<tablecell borderwidth='0px'>
+<par def='3'><run><font color='red'/>Estado</run></par></tablecell>
+<tablecell borderwidth='0px'>
+<par def='4'><run><font color='red'/><field type='text' kind='editable' name='estado'><code
+ event='defaultvalue'><formula>@DbLookup("":"NoCache";"";"vwProgEstadosIniciales";uniqueFlujo;"nombre";[FailSilent])</formula></code></field></run><compositedata
+ type='98' prevtype='65418' nexttype='222' afterparcount='6' containertype='65418'
+ aftercontainercount='1' afterbegincount='3'>
+Yg4BAIQAAAAAAAAAAAA=
+</compositedata><run><font color='red'/></run></par></tablecell></tablerow>
+<tablerow>
+<tablecell borderwidth='0px'>
+<par def='3'><run><font color='red'/>Estado jefe</run></par></tablecell>
+<tablecell borderwidth='0px'>
+<par def='4'><run><font color='red'/></run><run><font color='red'/><field
+ type='text' kind='computedfordisplay' name='estadoJefe'><code event='defaultvalue'><formula
+>@DbLookup("":"NoCache";"";"vwProgUniques";uniqueEstado;"estadoJefe";[FailSilent])</formula></code></field></run><compositedata
+ type='98' prevtype='65418' nexttype='222' afterparcount='9' containertype='65418'
+ aftercontainercount='1' afterbegincount='3'>
+Yg4BAIQAAAAAAAAAAAA=
+</compositedata><run><font color='red'/></run></par></tablecell></tablerow>
+<tablerow>
+<tablecell borderwidth='0px'>
+<par def='3'><run><font color='red'/>Posicion estado</run></par></tablecell>
+<tablecell borderwidth='0px'>
+<par def='4'><run><font color='red'/></run><run><font color='red'/><field
+ type='text' kind='editable' name='posEstado'><code event='defaultvalue'><formula
+>@DbLookup("":"NoCache";"";"vwProgUniques";uniqueEstado;"ubicacion";[FailSilent])</formula></code></field></run><compositedata
+ type='98' prevtype='65418' nexttype='222' afterparcount='9' containertype='65418'
+ aftercontainercount='1' afterbegincount='3'>
+Yg4BAIQAAAAAAAAAAAA=
+</compositedata><run><font color='red'/></run></par></tablecell></tablerow>
+<tablerow>
+<tablecell borderwidth='0px'>
+<par def='3'><run><font color='red'/>Nombre botón adelantar</run></par></tablecell>
+<tablecell borderwidth='0px'>
+<par def='4'><run><font color='red'/></run><run><font color='red'/><field
+ type='text' kind='computedfordisplay' name='botonAdelantar'><code event='defaultvalue'><formula
+>@DbLookup("":"NoCache";"";"vwProgUniques";uniqueEstado;"botonAdelantar";[FailSilent])</formula></code></field></run><compositedata
+ type='98' prevtype='65418' nexttype='222' afterparcount='9' containertype='65418'
+ aftercontainercount='1' afterbegincount='3'>
+Yg4BAIQAAAAAAAAAAAA=
+</compositedata><run><font color='red'/></run></par></tablecell></tablerow>
+<tablerow>
+<tablecell borderwidth='0px'>
+<par def='3'><run><font color='red'/>Nombre botón retroceder</run></par></tablecell>
+<tablecell borderwidth='0px'>
+<par def='4'><run><font color='red'/><field type='text' kind='computedfordisplay'
+ name='botonRetroceder'><code event='defaultvalue'><formula>@DbLookup("":"NoCache";"";"vwProgUniques";uniqueEstado;"botonRetroceder";[FailSilent])</formula></code></field></run><compositedata
+ type='98' prevtype='65418' nexttype='222' afterparcount='6' containertype='65418'
+ aftercontainercount='1' afterbegincount='3'>
+Yg4BAIQAAAAAAAAAAAA=
+</compositedata><run><font color='red'/></run></par></tablecell></tablerow>
+<tablerow>
+<tablecell borderwidth='0px'>
+<par def='3'><run><font color='red'/>Botones por estado</run></par></tablecell>
+<tablecell borderwidth='0px'>
+<par def='4'><run><font color='red'/></run><run><font color='red'/><field
+ type='text' allowmultivalues='true' kind='computedfordisplay' name='botones'
+ listinputseparators='comma semicolon' listdisplayseparator='semicolon'><code
+ event='defaultvalue'><formula>@DbLookup("":"NoCache";"";"vwProgUniques";uniqueEstado;"botones";[FailSilent])</formula></code></field></run><compositedata
+ type='98' prevtype='65418' nexttype='222' afterparcount='9' containertype='65418'
+ aftercontainercount='1' afterbegincount='3'>
+Yg4BAIQAAAAAAAAAAAA=
+</compositedata><run><font color='red'/></run></par></tablecell></tablerow>
+<tablerow>
+<tablecell borderwidth='0px'>
+<par def='3'><run><font color='red'/>Autor</run></par></tablecell>
+<tablecell borderwidth='0px'>
+<par def='4'><run><font color='red'/></run><run><font color='red'/><field
+ type='names' kind='editable' name='autor'><code event='defaultvalue'><formula
+>usuario</formula></code></field></run><run><font color='red'/></run></par></tablecell></tablerow>
+<tablerow>
+<tablecell borderwidth='0px'>
+<par def='3'><run><font color='red'/>Autor aprobación</run></par></tablecell>
+<tablecell borderwidth='0px'>
+<par def='4'><run><font color='red'/></run><run><font color='red'/><field
+ type='names' kind='editable' name='autorAprobacion'/></run><run><font color='red'/></run></par></tablecell></tablerow>
+<tablerow>
+<tablecell borderwidth='0px'>
+<par def='3'><run><font color='red'/>Autor rechazo</run></par></tablecell>
+<tablecell borderwidth='0px'>
+<par def='4'><run><font color='red'/></run><run><font color='red'/><field
+ type='names' kind='editable' name='autorRechazo'/></run><run><font color='red'/></run></par></tablecell></tablerow>
+<tablerow>
+<tablecell borderwidth='0px'>
+<par def='3'><run><font color='red'/>Responsables</run></par></tablecell>
+<tablecell borderwidth='0px'>
+<par def='4'><run><font color='red'/><field type='names' allowmultivalues='true'
+ kind='editable' name='responsables' listinputseparators='newline' listdisplayseparator='newline'><code
+ event='defaultvalue'><formula>usuario</formula></code></field></run><run
+><font color='red'/></run></par></tablecell></tablerow>
+<tablerow>
+<tablecell borderwidth='0px'>
+<par def='3'><run><font color='red'/>Editores</run></par></tablecell>
+<tablecell borderwidth='0px'>
+<par def='4'><run><font color='red'/><field type='authors' allowmultivalues='true'
+ kind='editable' name='editores' listinputseparators='comma' listdisplayseparator='comma'><code
+ event='defaultvalue'><formula>usuario</formula></code></field></run><run
+><font color='red'/></run></par></tablecell></tablerow>
+<tablerow>
+<tablecell borderwidth='0px'>
+<par def='3'><run><font color='red'/>Fecha estado</run></par></tablecell>
+<tablecell borderwidth='0px'>
+<par def='4'><run><font color='red'/></run><run><font color='red'/><field
+ type='datetime' kind='editable' name='fechaEstado'><datetimeformat show='date'
+ date='yearmonthday' fourdigityearfor21stcentury='true' zone='never' dateformat='weekdaydaymonthyear'
+ dayformat='twodigitday' monthformat='twodigitmonth' yearformat='fourdigityear'
+ weekdayformat='shortname' dateseparator1=' ' dateseparator2='/' dateseparator3='/'
+ timeseparator=':' preference='custom'/><code event='defaultvalue'><formula
+>@Now</formula></code></field></run><run><font color='red'/></run></par></tablecell></tablerow></table>
+<pardef id='5'/>
+<par def='5'><run html='true'>&lt;div style="display:none"&gt;</run></par>
+<table widthtype='fitmargins' refwidth='9.2083in'><tablecolumn width='2.7563in'/><tablecolumn
+ width='100%'/>
+<tablerow>
+<tablecell borderwidth='0px'>
+<pardef id='6' keepwithnext='true' keeptogether='true'/>
+<par def='6'><run><font color='blue'/>Estado destino</run></par></tablecell>
+<tablecell borderwidth='0px'>
+<pardef id='7' keepwithnext='true' keeptogether='true'/>
+<par def='7'><run><font color='blue'/></run><run><font color='blue'/><field
+ type='text' kind='editable' name='estadoDestino'/></run><compositedata type='98'
+ prevtype='65418' nexttype='222' afterparcount='10' containertype='65418'
+ aftercontainercount='1' afterbegincount='3'>
+Yg4BAIQAAAAAAAAAAAA=
+</compositedata><run><font color='blue'/></run></par></tablecell></tablerow>
+<tablerow>
+<tablecell borderwidth='0px'>
+<par def='6'><run><font color='blue'/>Comentario</run></par></tablecell>
+<tablecell borderwidth='0px'>
+<par def='7'><run><font color='blue'/></run><run><font color='blue'/><field
+ type='text' allowmultivalues='true' kind='editable' name='comentario' listinputseparators='newline'
+ listdisplayseparator='newline'/></run><compositedata type='98' prevtype='65418'
+ nexttype='222' afterparcount='9' containertype='65418' aftercontainercount='1'
+ afterbegincount='3'>
+Yg4BAIQAAAAAAAAAAAA=
+</compositedata><run><font color='blue'/></run></par></tablecell></tablerow>
+<tablerow>
+<tablecell borderwidth='0px'>
+<par def='6'><run><font color='blue'/>Accion</run></par></tablecell>
+<tablecell borderwidth='0px'>
+<par def='7'><run><font color='blue'/></run><run><font color='blue'/><field
+ type='text' kind='editable' name='evento'/></run><compositedata type='98'
+ prevtype='65418' nexttype='222' afterparcount='9' containertype='65418' aftercontainercount='1'
+ afterbegincount='3'>
+Yg4BAIQAAAAAAAAAAAA=
+</compositedata><run><font color='blue'/></run></par></tablecell></tablerow>
+<tablerow>
+<tablecell borderwidth='0px'>
+<par def='6'><run><font color='blue'/>Notificaciones</run></par></tablecell>
+<tablecell borderwidth='0px'>
+<par def='7'><run><font color='blue'/></run><run><font color='blue'/><field
+ type='text' allowmultivalues='true' kind='editable' name='notificaciones'
+ listinputseparators='newline' listdisplayseparator='newline'/></run><compositedata
+ type='98' prevtype='65418' nexttype='222' afterparcount='9' containertype='65418'
+ aftercontainercount='1' afterbegincount='3'>
+Yg4BAIQAAAAAAAAAAAA=
+</compositedata><run><font color='blue'/></run></par></tablecell></tablerow>
+<tablerow>
+<tablecell borderwidth='0px'>
+<par def='6'><run><font color='blue'/>Acciones</run></par></tablecell>
+<tablecell borderwidth='0px'>
+<par def='7'><run><font color='blue'/></run><run><font color='blue'/><field
+ type='text' allowmultivalues='true' kind='editable' name='acciones' listinputseparators='newline'
+ listdisplayseparator='newline'/></run><compositedata type='98' prevtype='65418'
+ nexttype='222' afterparcount='9' containertype='65418' aftercontainercount='1'
+ afterbegincount='3'>
+Yg4BAIQAAAAAAAAAAAA=
+</compositedata><run><font color='blue'/></run></par></tablecell></tablerow>
+<tablerow>
+<tablecell borderwidth='0px'>
+<par def='6'><run><font color='blue'/>Administracion flujo</run></par></tablecell>
+<tablecell borderwidth='0px'>
+<par def='7'><run><font color='blue'/></run><run><font color='blue'/><field
+ type='text' kind='editable' name='admonFlujo'/></run><compositedata type='98'
+ prevtype='65418' nexttype='222' afterparcount='9' containertype='65418' aftercontainercount='1'
+ afterbegincount='3'>
+Yg4BAIQAAAAAAAAAAAA=
+</compositedata><run><font color='blue'/></run></par></tablecell></tablerow>
+<tablerow>
+<tablecell borderwidth='0px'>
+<par def='6'><run><font color='blue'/>Autor eliminación</run></par></tablecell>
+<tablecell borderwidth='0px'>
+<par def='7'><run><font color='blue'/></run><run><font color='blue'/><field
+ type='names' kind='editable' name='autorEliminacion'/></run><run><font color='blue'/></run></par></tablecell></tablerow>
+<tablerow>
+<tablecell borderwidth='0px'>
+<par def='6'><run><font color='blue'/>Comentario eliminación</run></par></tablecell>
+<tablecell borderwidth='0px'>
+<par def='7'><run><font color='blue'/></run><run><font color='blue'/><field
+ type='text' allowmultivalues='true' kind='editable' name='comentarioEliminacion'
+ listinputseparators='newline' listdisplayseparator='newline'/></run><compositedata
+ type='98' prevtype='65418' nexttype='222' afterparcount='9' containertype='65418'
+ aftercontainercount='1' afterbegincount='3'>
+Yg4BAIQAAAAAAAAAAAA=
+</compositedata><run><font color='blue'/></run></par></tablecell></tablerow>
+<tablerow>
+<tablecell borderwidth='0px'>
+<par def='6'><run><font color='blue'/>Fecha eliminación</run></par></tablecell>
+<tablecell borderwidth='0px'>
+<par def='7'><run><font color='blue'/></run><run><font color='blue'/><field
+ type='datetime' kind='editable' name='fechaEliminacion'><datetimeformat show='date'
+ date='yearmonthday' fourdigityearfor21stcentury='true' zone='never' dateformat='weekdaydaymonthyear'
+ dayformat='twodigitday' monthformat='twodigitmonth' yearformat='fourdigityear'
+ weekdayformat='shortname' dateseparator1=' ' dateseparator2='/' dateseparator3='/'
+ timeseparator=':' preference='custom'/></field></run><run><font color='blue'/></run></par></tablecell></tablerow></table>
+<par def='5'><run html='true'>&lt;/div&gt;</run></par>
+<pardef id='8' tabs='L0.5000in L1in L1.1806in L1.3778in L1.5743in L2in L2.5000in L3in L3.5000in L4in'/>
+<par def='8'/>
+<par def='8'><run html='true'>&lt;div class="cabeza"&gt;</run></par>
+<pardef id='9' tabs='L1.1806in L1.3778in'/>
+<par def='9'><run html='true'>	&lt;div class="titulo"&gt;</run></par>
+<par def='9'><run html='true'>		</run><run html='true'><computedtext><code
+ event='value'><formula>keyForm</formula></code></computedtext></run></par>
+<par def='9'><run html='true'>	&lt;/div&gt;</run></par>
+<par def='9'><run html='true'>	&lt;div class="botones"&gt;</run></par>
+<pardef id='10' hide='read preview' tabs='L1.1806in L1.3778in'/>
+<par def='10'><run html='true'>		&lt;div class="btn btn-mini" onclick="guardar()"&gt;Guardar&lt;/div&gt;</run></par>
+<pardef id='11' tabs='L1.1806in L1.3778in L1.5743in L1.7715in L1.9681in L2.1653in L2.3618in L2.5590in L2.7556in L2.9521in L3.1493in L3.3458in L3.5431in L3.7396in L3.9368in'><code
+ event='hidewhen'><formula>posEstado="F" |
+@DbLookup("":"NoCache";"";"vwProgTransicionesDireccion";uniqueFlujo+uniqueEstado+"AD";1;[FailSilent]) = "" |
+@IsNotMember(usuario;responsables)</formula></code></pardef>
+<par def='11'><run html='true'>		&lt;div class="btn btn-mini" onclick="adelantar()"&gt;</run><run
+ html='true'><computedtext><code event='value'><formula>botonAdelantar</formula></code></computedtext></run><run
+ html='true'>&lt;/div&gt;</run></par>
+<pardef id='12' tabs='L1.1806in L1.3778in L1.5743in L1.7715in L1.9681in L2.1653in L2.3618in L2.5590in L2.7556in L2.9521in L3.1493in L3.3458in L3.5431in L3.7396in L3.9368in'><code
+ event='hidewhen'><formula>posEstado="F" |
+@DbLookup("":"NoCache";"";"vwProgTransicionesDireccion";uniqueFlujo+uniqueEstado+"AT";1;[FailSilent]) = "" |
+@IsNotMember(usuario;responsables)</formula></code></pardef>
+<par def='12'><run html='true'>		&lt;div class="btn btn-mini" onclick="retroceder()"&gt;</run><run
+ html='true'><computedtext><code event='value'><formula>botonRetroceder</formula></code></computedtext></run><run
+ html='true'>&lt;/div&gt;</run></par>
+<pardef id='13' leftmargin='1in' tabs='L1.1806in L1.3778in L1.5743in L1.7715in L1.9681in L2.1653in L2.3618in L2.5590in L2.7556in L2.9521in L3.1493in L3.3458in L3.5431in L3.7396in L3.9368in'><code
+ event='hidewhen'><formula>@IsNewDoc |
+@IsNotMember("[Administrador]";@UserRoles)</formula></code></pardef>
+<par def='13'><run html='true'>		&lt;div class="btn btn-mini" onclick="cambiarEstado()"&gt;Cambiar estado&lt;/div&gt;</run></par>
+<pardef id='14' leftmargin='1in' tabs='L1.1806in L1.3778in L1.5743in L1.7715in L1.9681in L2.1653in L2.3618in L2.5590in L2.7556in L2.9521in L3.1493in L3.3458in L3.5431in L3.7396in L3.9368in'><code
+ event='hidewhen'><formula>@IsNewDoc</formula></code></pardef>
+<par def='14'><run html='true'>		&lt;div class="btn btn-mini" onclick="verHistorial()"&gt;Ver historial&lt;/div&gt;</run></par>
+<pardef id='15' leftmargin='1in' tabs='L1.1806in L1.3778in L1.5743in L1.7715in L1.9681in L2.1653in L2.3618in L2.5590in L2.7556in L2.9521in L3.1493in L3.3458in L3.5431in L3.7396in L3.9368in'><code
+ event='hidewhen'><formula>estadoJefe != "Si"</formula></code></pardef>
+<par def='15'><run html='true'>		&lt;div class="btn btn-mini" onclick="cancelarBono()"&gt;Cancelar&lt;/div&gt;</run></par>
+<pardef id='16' tabs='L1.1806in L1.3778in'><code event='hidewhen'><formula
+>@IsNewDoc |
+(@IsNotMember("[Administrador]";@UserRoles) &amp; (@IsNotMember("EL";botones) | usuario != autor))</formula></code></pardef>
+<par def='16'><run html='true'>		&lt;div class="btn btn-mini btn-danger" onclick="</run><run
+ html='true'>eliminarSolicitud</run><run html='true'>()" &gt;Eliminar&lt;/div&gt;</run></par>
+<par def='9'><run html='true'>		&lt;div class="btn btn-mini" onclick="cerrar()"&gt;Cerrar&lt;/div&gt;</run></par>
+<par def='9'><run html='true'>	&lt;/div&gt;</run></par>
+<par def='9'><run html='true'>&lt;/div&gt;</run></par>
+<pardef id='17' leftmargin='1in' tabs='L0.5000in L1in L1.1806in L1.3778in L1.5743in L1.7715in L1.9681in L2.1653in L2.3618in L2.5590in L2.7556in L2.9521in L3.1493in L3.3458in L3.5431in L3.7396in L3.9368in'/>
+<par def='17'/>
+<table widthtype='fitmargins' refwidth='9.2083in'><tablecolumn width='24.1146%'/><tablecolumn
+ width='75.8854%'/>
+<tablerow>
+<tablecell borderwidth='0px'>
+<pardef id='18' keepwithnext='true' keeptogether='true'/>
+<par def='18'>Consecutivo</par></tablecell>
+<tablecell borderwidth='0px'>
+<pardef id='19' tabs='L1.1806in L1.3778in' keepwithnext='true' keeptogether='true'/>
+<par def='19'><computedtext><code event='value'><formula>consecutivo</formula></code></computedtext></par></tablecell></tablerow>
+<tablerow>
+<tablecell borderwidth='0px'>
+<par def='18'>Autor</par></tablecell>
+<tablecell borderwidth='0px'>
+<par def='19'><computedtext><code event='value'><formula>@Name([CN];autor)</formula></code></computedtext></par></tablecell></tablerow>
+<tablerow>
+<tablecell borderwidth='0px'>
+<par def='18'>Estado</par></tablecell>
+<tablecell borderwidth='0px'>
+<par def='19'><computedtext><code event='value'><formula>estado</formula></code></computedtext></par></tablecell></tablerow></table>
+<pardef id='2' firstlineleftmargin='1in'/>
+<par def='2'/></richtext></body>
+<item name='$$ScriptName' summary='false' sign='true'><text>sfrHeaderBonos</text></item></subform>
+

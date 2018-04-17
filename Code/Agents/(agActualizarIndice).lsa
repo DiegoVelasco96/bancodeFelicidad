@@ -1,0 +1,66 @@
+<?xml version='1.0' encoding='utf-8'?>
+<agent name='(agActualizarIndice)' alias='agActualizarIndice' xmlns='http://www.lotus.com/dxl'
+ version='9.0' maintenanceversion='1.9' replicaid='052581670049F6C5' hide='v3'
+ publicaccess='false' designerversion='8.5.3'>
+<noteinfo noteid='92e' unid='66AE9957E9F1BC3805257C540050E2E6' sequence='37'>
+<created><datetime>20140102T094329,66-05</datetime></created>
+<modified><datetime>20170724T082913,12-05</datetime></modified>
+<revised><datetime>20170724T082913,11-05</datetime></revised>
+<lastaccessed><datetime>20170724T082913,12-05</datetime></lastaccessed>
+<addedtofile><datetime>20170724T082803,48-05</datetime></addedtofile></noteinfo>
+<updatedby><name>CN=Admin Desarrollo/O=cognox</name><name>CN=admDllo administrador/O=PREBEL</name><name
+>CN=Admin Desarrollo/O=cognox</name><name>CN=admDllo administrador/O=PREBEL</name><name
+>CN=Contacto Lotus Sistemas SII/OU=Operacion/O=Prebel</name><name>CN=Admin Desarrollo/O=cognox</name><name
+>CN=Contacto Lotus Sistemas SII/OU=Operacion/O=Prebel</name><name>CN=admDllo administrador/O=PREBEL</name><name
+>CN=Contacto Lotus Sistemas SII/OU=Operacion/O=Prebel</name><name>CN=admDllo administrador/O=PREBEL</name><name
+>CN=Contacto Lotus Sistemas SII/OU=Operacion/O=Prebel</name><name>CN=Admin Desarrollo/O=cognox</name><name
+>CN=admDllo administrador/O=PREBEL</name><name>CN=Admin Desarrollo/O=cognox</name><name
+>CN=admDllo administrador/O=PREBEL</name><name>CN=Contacto Lotus Sistemas SII/OU=Operacion/O=Prebel</name><name
+>CN=Admin Desarrollo/O=cognox</name><name>CN=Administrador Aplicaciones/O=GNCH</name><name
+>CN=Admin Desarrollo/O=cognox</name><name>CN=Administrador Aplicaciones/O=GNCH</name><name
+>CN=Admin Desarrollo/O=cognox</name><name>CN=Administrador Aplicaciones/O=GNCH</name><name
+>CN=Admin Desarrollo/O=cognox</name><name>CN=Administrador Aplicaciones/O=GNCH</name><name
+>CN=Admin Desarrollo/O=cognox</name><name>CN=Administrador Aplicaciones/O=GNCH</name><name
+>CN=Admin Desarrollo/O=cognox</name><name>CN=Administrador Aplicaciones/O=GNCH</name><name
+>CN=Admin Desarrollo/O=cognox</name><name>CN=Administrador Aplicaciones/O=GNCH</name><name
+>CN=Admin Desarrollo/O=cognox</name><name>CN=Administrador Aplicaciones/O=GNCH</name><name
+>CN=Admin Desarrollo/O=cognox</name><name>CN=Administrador Aplicaciones/O=GNCH</name><name
+>CN=Admin Desarrollo/O=cognox</name><name>CN=Administrador Aplicaciones/O=GNCH</name><name
+>CN=Admin Desarrollo/O=cognox</name><name>CN=Administrador Aplicaciones/O=GNCH</name><name
+>CN=Admin Desarrollo/O=cognox</name><name>CN=Administrador Aplicaciones/O=GNCH</name><name
+>CN=Admin Desarrollo/O=cognox</name><name>CN=Administrador DEV/O=DEV</name><name
+>CN=Admin Desarrollo/O=cognox</name><name>CN=Administrador DEV/O=DEV</name><name
+>CN=Admin Desarrollo/O=cognox</name><name>CN=Administrador DEV/O=DEV</name><name
+>CN=Administrador Aplicaciones/O=GNCH</name><name>CN=Admin Desarrollo/O=cognox</name><name
+>CN=Administrador Aplicaciones/O=GNCH</name><name>CN=Admin Desarrollo/O=cognox</name><name
+>CN=Administrador Aplicaciones/O=GNCH</name><name>CN=Admin Desarrollo/O=cognox</name><name
+>CN=Administrador Aplicaciones/O=GNCH</name><name>CN=Admin Desarrollo/O=cognox</name><name
+>CN=Administrador Aplicaciones/O=GNCH</name><name>CN=Admin Desarrollo/O=cognox</name><name
+>CN=Administrador Aplicaciones/O=GNCH</name><name>CN=Diego Alexander Velasco Acevedo/O=desarrollo</name></updatedby>
+<wassignedby><name>CN=Diego Alexander Velasco Acevedo/O=desarrollo</name></wassignedby>
+<designchange><datetime>20170724T082910,44-05</datetime></designchange>
+<trigger type='agentlist'/>
+<documentset type='runonce'/><code event='options'><lotusscript>Option Public
+Option Declare
+
+
+</lotusscript></code><code event='initialize'><lotusscript>Sub Initialize
+	Dim ns As New NotesSession
+	Dim db As NotesDatabase
+	Set db = ns.Currentdatabase
+	If (db.LastModified &gt; db.LastFTIndexed) Then
+		Call db.UpdateFTIndex(False)
+	End If
+End Sub
+
+
+</lotusscript></code>
+<rundata processeddocs='0' exitcode='0' agentdata='094751CA814D6E3005257C150073AB1C'>
+<agentmodified><datetime>20170724T082913,12-05</datetime></agentmodified>
+<agentrun><datetime>20170801T154914,16-05</datetime></agentrun>
+<runlog>Started running agent '(agActualizarIndice)|agActualizarIndice' on 01/08/2017 03:49:14 p. m.
+Ran LotusScript code
+Done running agent '(agActualizarIndice)|agActualizarIndice' on 01/08/2017 03:49:14 p. m.
+</runlog></rundata>
+<item name='$POID'><datetime>20170323T155827,02-05</datetime></item></agent>
+

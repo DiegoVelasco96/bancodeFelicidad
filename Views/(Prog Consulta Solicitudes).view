@@ -1,0 +1,48 @@
+<?xml version='1.0' encoding='utf-8'?>
+<view name='(Prog Consulta Solicitudes)' alias='vwProgConsultaSolicitudes'
+ xmlns='http://www.lotus.com/dxl' version='9.0' maintenanceversion='1.9' replicaid='052581670049F6C5'
+ showinmenu='false' publicaccess='false' designerversion='8.5.3' unreadmarks='none'
+ onopengoto='lastopened' onrefresh='displayindicator' headers='beveled' opencollapsed='false'
+ showresponsehierarchy='true' showmargin='true' shrinkrows='false' extendlastcolumn='false'
+ showhierarchies='false' unreadcolor='black' rowlinecount='1' headerlinecount='1'
+ rowspacing='1' bgcolor='white' totalscolor='black' headerbgcolor='white'
+ boldunreadrows='false' evaluateactions='false' allownewdocuments='false'
+ allowcustomizations='true' hidemarginborder='false' marginwidth='0px' marginbgcolor='white'
+ uniquekeys='false'>
+<noteinfo noteid='ed6' unid='17B890F0B9A1DE2405257E0E0045C9B3' sequence='30'>
+<created><datetime>20150320T074216,19-05</datetime></created>
+<modified><datetime>20170724T082913,84-05</datetime></modified>
+<revised><datetime>20170724T082913,83-05</datetime></revised>
+<lastaccessed><datetime>20180125T020030,09-05</datetime></lastaccessed>
+<addedtofile><datetime>20170724T082810,42-05</datetime></addedtofile></noteinfo>
+<updatedby><name>CN=Administrador DEV/O=DEV</name><name>CN=Admin Desarrollo/O=cognox</name><name
+>CN=Administrador DEV/O=DEV</name><name>CN=Admin Desarrollo/O=cognox</name><name
+>CN=Administrador DEV/O=DEV</name><name>CN=Administrador Aplicaciones/O=GNCH</name><name
+>CN=Admin Desarrollo/O=cognox</name><name>CN=Administrador Aplicaciones/O=GNCH</name><name
+>CN=Admin Desarrollo/O=cognox</name><name>CN=Administrador Aplicaciones/O=GNCH</name><name
+>CN=Admin Desarrollo/O=cognox</name><name>CN=Administrador Aplicaciones/O=GNCH</name><name
+>CN=Admin Desarrollo/O=cognox</name><name>CN=Administrador Aplicaciones/O=GNCH</name><name
+>CN=Admin Desarrollo/O=cognox</name><name>CN=Administrador Aplicaciones/O=GNCH</name><name
+>CN=Diego Alexander Velasco Acevedo/O=desarrollo</name></updatedby>
+<wassignedby><name>CN=Diego Alexander Velasco Acevedo/O=desarrollo</name></wassignedby><code
+ event='selection'><formula>SELECT ((Form = "User / Solicitud bono de tiempo") | (Form = "frSolicitudBono"))</formula></code><code
+ event='querypaste'><lotusscript>Sub Querypaste(Source As Notesuiview, Continue As Variant)
+	Continue = False
+End Sub</lotusscript></code>
+<column sort='ascending' hidedetailrows='false' itemname='autor' width='22.5000'
+ resizable='true' separatemultiplevalues='true' sortnoaccent='true' sortnocase='true'
+ showaslinks='false'><font size='7pt' name='Verdana' pitch='variable' truetype='true'
+ familyid='20'/><columnheader align='center' title='Autor'><font size='7pt'
+ style='bold' name='Verdana' pitch='variable' truetype='true' familyid='20'/></columnheader></column>
+<column sort='descending' hidedetailrows='false' itemname='$5' width='22.5000'
+ resizable='true' separatemultiplevalues='false' sortnoaccent='true' sortnocase='true'
+ showaslinks='false'><font size='7pt' name='Verdana' pitch='variable' truetype='true'
+ familyid='20'/><columnheader align='center' title='Fecha de redención (d/m/a)'><font
+ size='7pt' style='bold' name='Verdana' pitch='variable' truetype='true' familyid='20'/></columnheader><datetimeformat
+ show='date' date='yearmonthday' fourdigityearfor21stcentury='true' time='hourminutesecond'
+ zone='never' dateformat='weekdaydaymonthyear' dayformat='twodigitday' monthformat='twodigitmonth'
+ yearformat='fourdigityear' weekdayformat='shortname' dateseparator1=' ' dateseparator2='/'
+ dateseparator3='/' timeseparator=':' preference='custom'/><numberformat format='general'
+ punctuated='false' parens='false' percent='false' bytes='false'/><code event='value'><formula
+>@Text(@Year(fechaRedencion))</formula></code></column></view>
+

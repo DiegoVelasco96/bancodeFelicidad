@@ -1,0 +1,76 @@
+<?xml version='1.0' encoding='utf-8'?>
+<form name='Vista por defecto' alias='$$ViewTemplateDefault' xmlns='http://www.lotus.com/dxl'
+ version='9.0' maintenanceversion='1.9' replicaid='052581670049F6C5' nocompose='true'
+ publicaccess='false' designerversion='8.5.3' renderpassthrough='true'>
+<noteinfo noteid='45a' unid='0E8A7295835571DB05257BB30069C9A2' sequence='76'>
+<created><datetime>20130725T141528,98-05</datetime></created>
+<modified><datetime>20170724T082912,96-05</datetime></modified>
+<revised><datetime>20170724T082912,95-05</datetime></revised>
+<lastaccessed><datetime>20170724T082912,96-05</datetime></lastaccessed>
+<addedtofile><datetime>20170724T082757,46-05</datetime></addedtofile></noteinfo>
+<updatedby><name>CN=Admin Desarrollo/O=cognox</name><name>CN=Administrador DEV/O=DEV</name><name
+>CN=Admin Desarrollo/O=cognox</name><name>CN=Administrador DEV/O=DEV</name><name
+>CN=Administrador Aplicaciones/O=GNCH</name><name>CN=Admin Desarrollo/O=cognox</name><name
+>CN=Administrador Aplicaciones/O=GNCH</name><name>CN=Admin Desarrollo/O=cognox</name><name
+>CN=Administrador Aplicaciones/O=GNCH</name><name>CN=Admin Desarrollo/O=cognox</name><name
+>CN=Administrador Aplicaciones/O=GNCH</name><name>CN=Admin Desarrollo/O=cognox</name><name
+>CN=Administrador Aplicaciones/O=GNCH</name><name>CN=Admin Desarrollo/O=cognox</name><name
+>CN=Administrador Aplicaciones/O=GNCH</name><name>CN=Diego Alexander Velasco Acevedo/O=desarrollo</name></updatedby>
+<wassignedby><name>CN=Diego Alexander Velasco Acevedo/O=desarrollo</name></wassignedby>
+<body><richtext>
+<pardef id='1' hide='notes web mobile'/>
+<par def='1'><run><font color='red'/><field type='text' kind='computedfordisplay'
+ name='vista'><code event='defaultvalue'><formula>@If(@Elements(@ViewTitle)&gt;1;@Subset(@ViewTitle;-1);@ViewTitle)</formula></code></field></run><compositedata
+ type='98' prevtype='65418' nexttype='222' afterparcount='7' containertype='65418'
+ aftercontainercount='1' afterbegincount='3'>
+Yg4BAIQAAAAAAAAAAAA=
+</compositedata></par>
+<pardef id='2' leftmargin='1in' tabs='L0.5000in L1in L1.1806in L1.3778in L1.5743in L1.7715in L1.9681in L2.1653in L2.3618in L2.5590in L2.7556in L2.9521in L3.1493in L3.3458in L3.5431in L3.7396in L3.9368in'/><subformref
+><code event='value'><formula>@If(vista="vwCKUpload";"sfrHeaderSinMenu";"sfrHeader")</formula></code></subformref>
+<pardef id='3' leftmargin='1in' tabs='L0.5000in L1in L1.1806in L1.3778in L1.5743in L1.7715in'/>
+<par def='3'/>
+<par def='1'><run><font color='red'/></run><run><font color='red'/><field
+ type='text' kind='editable' name='form'><code event='defaultvalue'><formula
+>"fvwDefault"</formula></code></field></run><compositedata type='98' prevtype='65418'
+ nexttype='222' afterparcount='9' containertype='65418' aftercontainercount='1'
+ afterbegincount='3'>
+Yg4BAIQAAAAAAAAAAAA=
+</compositedata><run><font color='red'/></run><run><font
+ color='red'/><field type='text' kind='editable' name='keyForm'><code event='defaultvalue'><formula
+>@Subset(@ViewTitle;1)</formula></code></field></run><compositedata type='98'
+ prevtype='65418' nexttype='222' afterparcount='18' containertype='65418'
+ aftercontainercount='1' afterbegincount='3'>
+Yg4BAIQAAAAAAAAAAAA=
+</compositedata><run><font color='red'/></run><run
+><font color='red'/><field type='text' kind='computedfordisplay' name='SaveOptions'><code
+ event='defaultvalue'><formula>"0"</formula></code></field></run><compositedata
+ type='98' prevtype='65418' nexttype='222' afterparcount='27' containertype='65418'
+ aftercontainercount='1' afterbegincount='3'>
+Yg4BAIQAAAAAAAAAAAA=
+</compositedata><run><font color='red'/></run></par>
+<par def='1'/><subformref><code event='value'><formula>"sfrHeaderVistas"</formula></code></subformref>
+<pardef id='4'/>
+<par def='4'/>
+<par def='4'><run html='true'>&lt;div id=vista&gt;</run> <embeddedview displayusing='html'
+ width='3.5000in' height='2in'><code event='value'><formula>$$ViewName</formula></code></embeddedview> <run
+ html='true'>&lt;/div&gt;</run></par>
+<par def='2'/><subformref><code event='value'><formula>"sfrFooter"</formula></code></subformref>
+<par def='2'/>
+<pardef id='5' leftmargin='1in' tabs='L0.5000in L1in L1.5000in L2in L2.5000in L3in L3.5000in L4in'/>
+<par def='5'><run html='true'>&lt;script src="/</run><run html='true'><computedtext
+><code event='value'><formula>webDbName</formula></code></computedtext></run><run
+ html='true'>/JSFrViewTemplate?Open"&gt;&lt;/script&gt;</run></par>
+<par def='2'/>
+<pardef id='6' tabs='L1.1806in L1.3778in L1.5743in L1.7715in L1.9681in L2.1653in L2.3618in L2.5590in L2.7556in L2.9521in L3.1493in L3.3458in L3.5431in L3.7396in L3.9368in'/>
+<par def='6'><button width='2in' widthtype='maximum' maxlines='1' wraptext='true'
+ bgcolor='system' htmlstyle='display:none' name='btnPrevious'><code event='click'><formula
+>@DbCommand("Domino"; "ViewPreviousPage")</formula></code>Anterior</button><button
+ width='2in' widthtype='maximum' maxlines='1' wraptext='true' bgcolor='system'
+ htmlstyle='display:none' name='btnNext'><code event='click'><formula>@DbCommand("Domino"; "ViewNextPage")</formula></code>Siguiente</button><button
+ width='2in' widthtype='maximum' maxlines='1' wraptext='true' bgcolor='system'
+ htmlstyle='display:none' name='btnExpand'><code event='click'><formula>@Command([ViewExpandAll])</formula></code>Desplegar</button><button
+ width='2in' widthtype='maximum' maxlines='1' wraptext='true' bgcolor='system'
+ htmlstyle='display:none' name='btnCollapse'><code event='click'><formula
+>@Command([ViewCollapseAll])</formula></code>Plegar</button></par></richtext></body>
+<item name='$$ScriptName' summary='false' sign='true'><text>$$ViewTemplateDefault</text></item></form>
+

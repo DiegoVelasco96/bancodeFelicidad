@@ -1,0 +1,59 @@
+<?xml version='1.0' encoding='utf-8'?>
+<agent name='agEliminarAnexosSueltos' alias='agEliminarAnexosSueltos' xmlns='http://www.lotus.com/dxl'
+ version='9.0' maintenanceversion='1.9' replicaid='052581670049F6C5' hide='v3'
+ publicaccess='false' designerversion='8.5.3' activatable='false'>
+<noteinfo noteid='61e' unid='27C88A5D3A987ABA05257C26002A987F' sequence='48'>
+<created><datetime>20131117T024515,51-05</datetime></created>
+<modified><datetime>20170724T082909,94-05</datetime></modified>
+<revised><datetime>20170724T082909,93-05</datetime></revised>
+<lastaccessed><datetime>20170724T082909,94-05</datetime></lastaccessed>
+<addedtofile><datetime>20170724T082759,64-05</datetime></addedtofile></noteinfo>
+<updatedby><name>CN=Administrador Aplicaciones/O=GNCH</name><name>CN=Admin Desarrollo/O=cognox</name><name
+>CN=Administrador Aplicaciones/O=GNCH</name><name>CN=Admin Desarrollo/O=cognox</name><name
+>CN=Administrador Aplicaciones/O=GNCH</name><name>CN=Admin Desarrollo/O=cognox</name><name
+>CN=Administrador Aplicaciones/O=GNCH</name><name>CN=Admin Desarrollo/O=cognox</name><name
+>CN=Administrador Aplicaciones/O=GNCH</name><name>CN=Admin Desarrollo/O=cognox</name><name
+>CN=Administrador Aplicaciones/O=GNCH</name><name>CN=Diego Alexander Velasco Acevedo/O=desarrollo</name></updatedby>
+<wassignedby><name>CN=Diego Alexander Velasco Acevedo/O=desarrollo</name></wassignedby>
+<designchange><datetime>20170724T082909,51-05</datetime></designchange>
+<trigger type='scheduled'>
+<schedule type='weekly' dayofweek='sunday' runlocation='any'>
+<starttime><datetime>T024500,00</datetime></starttime></schedule></trigger>
+<documentset type='modified'/><code event='options'><lotusscript>Option Public
+Option Declare
+
+
+</lotusscript></code><code event='initialize'><lotusscript>Sub Initialize
+	Dim ns As New NotesSession
+	Dim db As NotesDatabase
+	Dim vwAnexos As NotesView
+	Dim vwUniques As NotesView
+	Dim ndAnexo As NotesDocument
+	Dim ndContenido As NotesDocument
+	Dim ndAux As NotesDocument
+	
+	Set db = ns.Currentdatabase
+	Set vwAnexos = db.Getview("vwProgAnexos")
+	Set vwUniques = db.Getview("vwProgUniques")
+	
+	Set ndAnexo = vwAnexos.Getfirstdocument()
+	While Not ndAnexo Is Nothing
+		Set ndAux = vwAnexos.Getnextdocument(ndAnexo) 
+		Set ndContenido = vwUniques.Getdocumentbykey(ndAnexo.uniquePadre(0), True)
+		If ndContenido Is Nothing Then
+			Call ndAnexo.Remove(True)
+		End If
+		Set ndAnexo = ndAux
+	Wend
+End Sub</lotusscript></code>
+<rundata processeddocs='0' exitcode='0' agentdata='F9558BC4A065BC5E05257F44002A9D2B'>
+<agentmodified><datetime>20170724T082909,94-05</datetime></agentmodified>
+<agentrun><datetime>20170820T094327,00-05</datetime></agentrun>
+<runlog>Started running agent 'agEliminarAnexosSueltos|agEliminarAnexosSueltos' on 20/08/2017 09:43:26 a. m.
+Running on new or modified documents: 156 total
+Found 156 document(s) that match search criteria
+Ran LotusScript code
+Done running agent 'agEliminarAnexosSueltos|agEliminarAnexosSueltos' on 20/08/2017 09:43:27 a. m.
+</runlog></rundata>
+<item name='$POID'><datetime>20170323T155823,84-05</datetime></item></agent>
+

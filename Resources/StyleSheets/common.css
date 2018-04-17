@@ -1,0 +1,207 @@
+body, form{
+margin:0px;
+padding:0px;
+}
+
+font{
+color: inherit;
+font-family: inherit;
+font-size: inherit;
+font-weight: normal;
+}
+
+.titulo, .subtitulo{
+text-align:left;
+font-weight:bold;
+margin:10px 0px;
+}
+
+.titulo{
+font-size:16px;
+}
+
+.subtitulo{
+font-size:14px;
+}
+
+.subtituloAdmon{
+text-align:left;
+font-weight:bold;
+margin:10px 0px;
+}
+
+.subtituloAdmon{
+font-size:14px;
+}
+
+.botones{
+text-align:right;
+margin-top: 10px;
+}
+
+.aviso{
+color:#ff0000;
+}
+
+#icircle{
+position: absolute;
+left: 7px;
+top: 3px;
+}
+
+.textoAsterisco{
+font-family: arial;
+}
+
+.icon-red{
+color:#ff0000;
+}
+
+.clear{
+cursor: pointer;
+display: inline-block;
+width: auto;
+height:12px;
+min-width: 16px;
+padding: 4px 5px;
+font-size: 14px;
+font-weight: normal;
+line-height: 20px;
+text-align: center;
+text-shadow: 0 1px 0 #fff;
+background-color: #eee;
+border: 1px solid #ccc;
+border-radius: 5px;
+position: relative;
+top: 10px;
+}
+
+.input-append input, .input-append .add-on{
+height:12px;
+line-height:12px;
+font-size:12px;
+margin-bottom:5px;
+}
+
+.enlaceAnexo{
+margin-bottom:5px;
+}
+
+.numero{
+text-align:right;
+}
+
+.protector{
+background-color:#FFFFFF;
+left:0px;
+opacity:0;
+position:absolute;
+top:0px;
+z-index:2000;
+filter:alpha(opacity=0);
+cursor:pointer;
+}
+
+.icon-dark-red{
+color:#da4f49;
+}
+
+/*Header*/
+
+.contenedorCabezote{
+position:fixed;
+top:0px;
+left:0px;
+width:100%;
+background:#fff;
+z-index:1025;
+}
+
+.fondoCabezote{
+width:100%;
+height:80px;
+background:#f3f3f3;
+position:relative;
+color:#000;
+}
+
+.imgCabezote{
+height:80px;
+width:100%;
+}
+
+.usuario {
+color: #FFFFFF;
+font-size: 13px;
+left: 20px;
+padding-right: 20px;
+position: absolute;
+right: 0;
+text-align: right;
+top: 62px;
+}
+.cabeza{
+position:fixed;
+top:120px;
+left:auto;
+width:95%;
+background:#fff;
+z-index:1000;
+}
+
+.navbar{
+margin-bottom:5px;
+}
+
+.fondoMenu{
+background:#000;
+font-size: 13px;
+}
+
+.fondoMenu .nav > li > a {
+position:relative;
+color:#fff;
+text-shadow:none;
+}
+
+.fondoMenu .nav > li > a:focus, .fondoMenu .nav > li > a:hover{
+background: none;
+color:#fff;
+}
+
+.fondoMenu .nav li.dropdown.open > .dropdown-toggle, .fondoMenu .nav li.dropdown.active > .dropdown-toggle, .fondoMenu .nav li.dropdown.open.active > .dropdown-toggle {
+background: none;
+color:#fff;
+}
+
+.dropdown-menu > li > a:hover, .dropdown-menu > li > a:focus, .dropdown-submenu:hover > a, .dropdown-submenu:focus > a{
+background:#000;
+filter:none:	
+}
+
+/*Header*/
+
+.dPortada{
+position:relative;
+margin-top:50px;
+width:834px
+}
+
+.enlaceInventariable, .enlaceNoInventariable{
+color: #FFFFFF;
+cursor: pointer;
+font-size: 16px;
+font-weight: bold;
+position: absolute;
+text-align: left;
+}
+
+.enlaceInventariable{
+top: 245px;
+left: 260px;
+}
+
+.enlaceNoInventariable{
+top: 125px;
+left: 460px;
+}

@@ -1,0 +1,98 @@
+<?xml version='1.0' encoding='utf-8'?>
+<subform name='Header sin menú' alias='sfrHeaderSinMenu' xmlns='http://www.lotus.com/dxl'
+ version='9.0' maintenanceversion='1.9' replicaid='052581670049F6C5' designerversion='8.5.3'
+ renderpassthrough='true'>
+<noteinfo noteid='166' unid='3579DE648ACDC56F05257B8A0065ED97' sequence='121'>
+<created><datetime>20130614T133319,59-05</datetime></created>
+<modified><datetime>20170724T082910,84-05</datetime></modified>
+<revised><datetime>20170724T082910,83-05</datetime></revised>
+<lastaccessed><datetime>20170724T082910,84-05</datetime></lastaccessed>
+<addedtofile><datetime>20170724T082753,76-05</datetime></addedtofile></noteinfo>
+<updatedby><name>CN=Administrador Aplicaciones/O=GNCH</name><name>CN=Admin Desarrollo/O=cognox</name><name
+>CN=Administrador Aplicaciones/O=GNCH</name><name>CN=Diego Alexander Velasco Acevedo/O=desarrollo</name></updatedby>
+<wassignedby><name>CN=Diego Alexander Velasco Acevedo/O=desarrollo</name></wassignedby>
+<body><richtext>
+<pardef id='1'/>
+<par def='1'><run html='true'>&lt;div id="general" class="page-container" style="display:none" align="center"&gt;</run></par>
+<pardef id='2' leftmargin='1in' hide='notes web mobile' tabs='L0.5000in L1in L1.5000in L2in L2.5000in L3in L3.5000in L4in'/>
+<par def='2'><run><font color='red'/><field type='text' kind='computedfordisplay'
+ name='$$HTMLFrontMatter'><code event='defaultvalue'><formula>"&lt;!doctype html&gt;"+@NewLine</formula></code></field></run><compositedata
+ type='98' prevtype='65418' nexttype='222' afterparcount='7' containertype='65418'
+ aftercontainercount='1' afterbegincount='3'>
+Yg4BAIQAAAAAAAAAAAA=
+</compositedata><run><font color='red'/></run><run
+><font color='red'/><field type='text' kind='computedfordisplay' name='$$HTMLHead'><code
+ event='defaultvalue'><formula>bd:=@WebDbName;
+"
+&lt;title&gt;"+@DbTitle+"&lt;/title&gt;
+&lt;meta name='viewport' content='width=device-width, initial-scale=1.0'&gt;
+&lt;meta http-equiv='X-UA-Compatible' content='IE=Edge' &gt;
+&lt;link href='/"+bd+"/bootstrap.min.css' rel='stylesheet' media='screen'&gt;
+&lt;link href='/"+bd+"/bootstrap-responsive.min.css?open&amp;id="+@Text(@Random)+"' rel='stylesheet' media='screen'&gt;
+&lt;link href='/"+bd+"/bootstrap-modal.css?open&amp;id="+@Text(@Random)+"' rel='stylesheet' media='screen'&gt;
+&lt;link href='/"+bd+"/bootstrap-fileupload.min.css' rel='stylesheet' media='screen'&gt;
+&lt;link href='/"+bd+"/font-awesome.min.css' rel='stylesheet' media='screen'&gt;
+&lt;link href='/"+bd+"/select2.css' rel='stylesheet' media='screen'&gt;
+&lt;link href='/"+bd+"/datepicker.css' rel='stylesheet' media='screen'&gt;
+&lt;link href='/"+bd+"/bootstrap-timepicker.min.css' rel='stylesheet' media='screen'&gt;
+&lt;link href='/"+bd+"/common.css?open&amp;v=3' rel='stylesheet' media='screen'&gt;"</formula></code></field></run><compositedata
+ type='98' prevtype='65418' nexttype='222' afterparcount='16' containertype='65418'
+ aftercontainercount='1' afterbegincount='3'>
+Yg4BAIQAAAAAAAAAAAA=
+</compositedata><run><font color='red'/></run><run
+><font color='red'/><field type='authors' kind='editable' name='administrador'><code
+ event='defaultvalue'><formula>"[Administrador]"</formula></code></field></run><run
+><font color='red'/><field type='names' kind='computedfordisplay' name='usuario'><code
+ event='defaultvalue'><formula>@UserName</formula></code></field></run><run
+><font color='red'/><field type='number' kind='computedfordisplay' name='esAdmin'><numberformat
+ format='general' digits='2' punctuated='false' parens='false' percent='false'
+ bytes='false'/><code event='defaultvalue'><formula>@IsMember(administrador;@UserRoles)</formula></code></field></run><run
+><font color='red'/><field type='number' kind='computedfordisplay' name='tieneAccesoAReportes'><numberformat
+ format='general' digits='2' punctuated='false' parens='false' percent='false'
+ bytes='false'/><code event='defaultvalue'><formula>esAdmin | @DbLookup("":"NoCache";"";"vwProgReportesUsuario";@UserName;1;[FailSilent]) != ""</formula></code></field></run><run
+><font color='red'/></run><run><font color='red'/><field type='text' kind='computedfordisplay'
+ name='webDbName'><code event='defaultvalue'><formula>@WebDbName</formula></code></field></run><compositedata
+ type='98' prevtype='65418' nexttype='222' afterparcount='48' containertype='65418'
+ aftercontainercount='1' afterbegincount='3'>
+Yg4BAIQAAAAAAAAAAAA=
+</compositedata><run><font color='red'/><field
+ type='number' kind='computedfordisplay' name='tieneAccesoAReportesBA'><numberformat
+ format='general' digits='2' punctuated='false' parens='false' percent='false'
+ bytes='false'/><code event='defaultvalue'><formula>esAdmin | @IsMember(@UserName;@DbLookup("":"NoCache";"";"vwProgTodos";"frGeneral";"usuarios";[FailSilent]))</formula></code></field></run><run
+><font color='red'/><field type='text' allowmultivalues='true' kind='computedfordisplay'
+ name='formulariosPermitidos' listinputseparators='newline' listdisplayseparator='newline'><code
+ event='defaultvalue'><formula>rutaDirectorio := @DbLookup("":"NoCache";"";"vwProgTodos";"frGeneral";"rutaDirectorio";[FailSilent]);
+@If(rutaDirectorio="";@Return("");@True);
+cedula := @NameLookup([Exhaustive];usuario;"EmployeeID");
+@If(cedula="";@Return("");@True);
+rutaNomina := @DbLookup("":"NoCache";"";"vwProgTodos";"frGeneral";"rutaNomina";[FailSilent]);
+@If(rutaNomina="";@Return("");@True);
+cargo:= @DbLookup("":"NoCache";"":rutaNomina;"dnvwCedula";cedula;"dnfdCargo";[FailSilent]);
+formulariosCargo:= @DbLookup("":"NoCache";"";"vwProgCargosEspecificos";cargo;"formularios";[FailSilent]);
+compania := @DbLookup("":"NoCache";"":rutaNomina;"dnvwCedula";cedula;"dnfdCodigoCia";[FailSilent]);
+formulariosCompania:= @DbLookup("":"NoCache";"";"vwProgFormulariosCompania";compania;2;[FailSilent]);
+@Trim(@Unique(formulariosCargo:formulariosCompania))</formula></code></field></run><compositedata
+ type='98' prevtype='65418' nexttype='222' afterparcount='59' containertype='65418'
+ aftercontainercount='1' afterbegincount='3'>
+Yg4BAIQAAAAAAAAAAAA=
+</compositedata><run><font color='red'/><field
+ type='number' kind='computedfordisplay' name='tieneAccesoAReportesBE'><numberformat
+ format='general' digits='2' punctuated='false' parens='false' percent='false'
+ bytes='false'/><code event='defaultvalue'><formula>fPermitidos := @IsMember("frSolicitudBonoEspacio"; formulariosPermitidos);
+@If(esAdmin;
+@Do(
+solicitudActiva := @DbLookup("":"NoCache";"";"vwProgTodos";"frConfBonoEspacio";"solicitudActiva";[FailSilent]);
+@If(solicitudActiva = "S";1;0)
+)
+;fPermitidos)</formula></code></field></run></par>
+<par def='1'><run html='true'>&lt;div style=display:none&gt;</run><run html='true'><font
+ color='blue'/><field type='text' kind='editable' name='unique'><code event='defaultvalue'><formula
+>@Unique</formula></code></field></run><compositedata type='98' prevtype='65418'
+ nexttype='222' afterparcount='7' containertype='65418' aftercontainercount='1'
+ afterbegincount='3'>
+Yg4BAIQAAAAAAAAAAAA=
+</compositedata><run html='true'>&lt;/div&gt;</run></par></richtext></body>
+<item name='$SubForm_RepIDs' sign='true'><text>0000000000000000</text></item>
+<item name='enEdicion' summary='false'><number>0</number></item>
+<item name='$$ScriptName' summary='false' sign='true'><text>sfrHeaderSinMenu</text></item></subform>
+

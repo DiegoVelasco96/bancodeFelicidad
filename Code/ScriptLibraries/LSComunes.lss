@@ -1,0 +1,176 @@
+'++LotusScript Development Environment:2:5:(Options):0:74
+Option Public
+Option Declare
+Use "LSCorreo"
+
+
+'++LotusScript Development Environment:2:5:(Forward):0:1
+Declare Class Comunes
+
+'++LotusScript Development Environment:2:5:(Declarations):0:10
+Class Comunes
+	
+	Private ns As NotesSession
+	Private db As NotesDatabase
+	Private webDbName As Variant
+	
+	Public Sub new 
+		Set ns = New NotesSession
+		Set db = ns.CurrentDatabase
+		webDbName = Evaluate(|@WebDbName|)
+	End Sub
+	
+	Function getNombreMes (numMes As Integer)
+		Dim nomMes As String 
+		Select Case numMes
+			Case 1:
+				nomMes = "Enero"
+			Case 2:
+				nomMes = "Febrero"
+			Case 3:
+				nomMes = "Marzo"
+			Case 4:
+				nomMes = "Abril"
+			Case 5:
+				nomMes = "Mayo"
+			Case 6:
+				nomMes = "Junio"
+			Case 7:
+				nomMes = "Julio"
+			Case 8:
+				nomMes = "Agosto"
+			Case 9:
+				nomMes = "Septiembre"
+			Case 10:
+				nomMes = "Octubre"
+			Case 11:
+				nomMes = "Noviembre"
+			Case 12:
+				nomMes = "Diciembre"
+		End Select
+		getNombreMes = nomMes		
+	End Function
+	
+	Function getNombreDia (numDia As Integer)
+		Dim nomDia As String 
+		Select Case numDia
+			Case 1:
+				nomDia = "Domingo"
+			Case 2:
+				nomDia = "Lunes"
+			Case 3:
+				nomDia = "Martes"
+			Case 4:
+				nomDia = "Miércoles"
+			Case 5:
+				nomDia = "Jueves"
+			Case 6:
+				nomDia = "Viernes"
+			Case 7:
+				nomDia = "Sábado"
+		End Select
+		
+		getNombreDia = nomDia		
+	End Function
+	
+	Function getAnexos(unique As String) As String
+		Dim vwAnexos As NotesView
+		Dim nav1 As NotesViewNavigator
+		Dim nav2 As NotesViewNavigator
+		Dim ve1 As NotesViewEntry
+		Dim ve2 As NotesViewEntry
+		Dim ndAnexo As NotesDocument
+		Dim anexos As String 
+		Dim separador As String
+		Dim separadorArchivos As String  
+		Dim macro As Variant
+		Dim webDbName As Variant
+		Dim eliminar As String 
+		Dim archivos As String 
+		
+		anexos = |"anexos":[|
+		Set vwAnexos = db.Getview("vwProgAnexosCategorizados")
+		Set nav1 = vwAnexos.Createviewnavfromcategory(unique)
+		Set ve1 = nav1.Getfirst()
+		While Not ve1 Is Nothing
+			If ve1.Iscategory Then
+				separadorArchivos = ""
+				archivos = |[|
+				Set nav2 = vwAnexos.Createviewnavfromchildren(ve1)
+				Set ve2 = nav2.Getfirst()
+				While Not ve2 Is Nothing 
+					Set ndAnexo = ve2.Document
+					eliminar = "true"
+					If ndAnexo.requerido(0) = "S" Then 
+						eliminar = "false"
+					End If
+					macro = Evaluate(|@URLEncode("Domino";"|+ndAnexo.archivo(0)+|")|)
+					archivos = archivos + (separadorArchivos + |{"unid":"| + ndAnexo.Universalid + |", "unique":"| + ndAnexo.unique(0) + |", "archivo":"| + macro(0) + |", "nombre":"| + ndAnexo.nombre(0) + |"}|)
+					separadorArchivos = ","
+					Set ve2 = nav2.Getnext(ve2)
+				Wend
+				archivos = archivos + |]|
+				anexos = anexos + (separador + |{"seccion":"|+ve1.columnvalues(1)+|", "archivos":|+archivos+|}|)
+				separador = ","
+			End If 
+			Set ve1 = nav1.Getnextcategory(ve1)
+		Wend
+		anexos = anexos + |]|
+		getAnexos = anexos
+	End Function
+	
+	Function limpiarTexto(cadena As String) As String 
+		cadena = Replace(cadena, |"|,|'|)
+		cadena = Replace(cadena, |“|,|'|)
+		cadena = Replace(cadena, |”|,|'|)
+		cadena = Replace(cadena, UChr(9),"")
+		cadena = Replace(cadena, UChr(10),"")
+		cadena = Replace(cadena, UChr(11),"")
+		cadena = Replace(cadena, UChr(12),"")
+		cadena = Replace(cadena, UChr(13),"")
+		limpiarTexto = cadena
+	End Function
+	
+	Function formatoTexto(cadena As String) As String
+		cadena = Replace(cadena, "##empty##", "xxxx")
+		cadena = Replace(cadena, "##ampersand##", "&")
+		cadena = Replace(cadena, "##percent##", "%")
+		cadena = Replace(cadena, "##arroba##", "@")
+		formatoTexto = cadena
+	End Function
+			
+	Function convertirANumero(cadena As String) As Double
+		If cadena = "" Then
+			convertirANumero = 0
+			Exit Function
+		End If
+		Dim arreglo As Variant
+		Dim retorno As Double
+		arreglo = Split(cadena,",")
+		If UBound(arreglo) = 0 Then
+			retorno = CDbl(cadena)
+		Else
+			If arreglo(1) = "" Then
+				arreglo(1) = "0"
+			End If
+			retorno = CDbl(arreglo(0)) + (CDbl(arreglo(1)) / (10 ^ Len(arreglo(1))))
+		End If
+		convertirANumero = retorno
+	End Function
+	
+	Function formatoNumero(numero As Double) As String
+		Dim arreglo As Variant
+		Dim cadena As String
+		cadena = Replace(CStr(Round(numero, 2)), ".", ",")
+		arreglo = Split(cadena,",")
+		If arreglo(0) = "" Then
+			arreglo(0) = "0"
+		End If
+		If UBound(arreglo) = 0 Then
+			cadena = arreglo(0) + ",00"
+		Else
+			cadena = arreglo(0) + "," + Left(arreglo(1)+"00", 2)
+		End If
+		formatoNumero = cadena
+	End Function
+End Class

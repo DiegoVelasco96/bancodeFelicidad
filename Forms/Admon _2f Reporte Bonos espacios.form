@@ -1,0 +1,100 @@
+<?xml version='1.0' encoding='utf-8'?>
+<form name='Admon / Reporte Bonos espacios' alias='frBonosEspacios' xmlns='http://www.lotus.com/dxl'
+ version='9.0' maintenanceversion='1.9' replicaid='052581670049F6C5' publicaccess='false'
+ designerversion='8.5.3' renderpassthrough='true'>
+<noteinfo noteid='10ce' unid='34A72D7FCE1FF69505257FB2005BA9A4' sequence='17'>
+<created><datetime>20160513T114112,04-05</datetime></created>
+<modified><datetime>20170724T082909,78-05</datetime></modified>
+<revised><datetime>20170724T082909,77-05</datetime></revised>
+<lastaccessed><datetime>20170724T082909,78-05</datetime></lastaccessed>
+<addedtofile><datetime>20170724T082812,86-05</datetime></addedtofile></noteinfo>
+<updatedby><name>CN=Administrador Aplicaciones/O=GNCH</name><name>CN=Admin Desarrollo/O=cognox</name><name
+>CN=Administrador Aplicaciones/O=GNCH</name><name>CN=Diego Alexander Velasco Acevedo/O=desarrollo</name></updatedby>
+<wassignedby><name>CN=Diego Alexander Velasco Acevedo/O=desarrollo</name></wassignedby>
+<body><richtext>
+<pardef id='1' leftmargin='1in' tabs='L0.5000in L1in L1.1806in L1.3778in L1.5743in L1.7715in L1.9681in L2.1653in L2.3618in L2.5590in L2.7556in L2.9521in L3.1493in L3.3458in L3.5431in L3.7396in L3.9368in'/><subformref
+><code event='value'><formula>"sfrHeader"</formula></code></subformref>
+<par def='1'/>
+<pardef id='2' hide='notes web mobile'/>
+<par def='2'><run><font color='red'/><field type='text' kind='editable' name='form'><code
+ event='defaultvalue'><formula>"frBonosEspacios"</formula></code></field></run><compositedata
+ type='98' prevtype='65418' nexttype='222' afterparcount='7' containertype='65418'
+ aftercontainercount='1' afterbegincount='3'>
+Yg4BAIQAAAAAAAAAAAA=
+</compositedata><run><font color='red'/><field
+ type='text' kind='editable' name='keyForm'><code event='defaultvalue'><formula
+>"Consulta de bonos espacios"</formula></code></field></run><compositedata
+ type='98' prevtype='65418' nexttype='222' afterparcount='13' containertype='65418'
+ aftercontainercount='1' afterbegincount='3'>
+Yg4BAIQAAAAAAAAAAAA=
+</compositedata><run><font color='red'/></run><run
+><font color='red'/><field type='text' kind='computedfordisplay' name='SaveOptions'><code
+ event='defaultvalue'><formula>"1"</formula></code></field></run><compositedata
+ type='98' prevtype='65418' nexttype='222' afterparcount='22' containertype='65418'
+ aftercontainercount='1' afterbegincount='3'>
+Yg4BAIQAAAAAAAAAAAA=
+</compositedata><run><font color='red'/></run><run
+><font color='red'/><field type='text' kind='computedfordisplay' name='redireccion'><code
+ event='defaultvalue'><formula>"frBonosEspacios?Open"</formula></code></field></run><compositedata
+ type='98' prevtype='65418' nexttype='222' afterparcount='31' containertype='65418'
+ aftercontainercount='1' afterbegincount='3'>
+Yg4BAIQAAAAAAAAAAAA=
+</compositedata></par>
+<pardef id='3'/>
+<par def='3'><run html='true'>&lt;div style="display:none"&gt;</run><run html='true'><font
+ color='blue'/><field type='text' kind='editable' name='cedula' htmlclass='input-xxlarge'/></run><compositedata
+ type='98' prevtype='65402' nexttype='222' afterparcount='9' containertype='65418'
+ aftercontainercount='2' afterbegincount='4'>
+Yg4BAIQAAAAAAAAAAAA=
+</compositedata><run html='true'>&lt;/div&gt;</run></par>
+<par def='3'/><subformref><code event='value'><formula>"sfrHeaderConfiguracion"</formula></code></subformref>
+<pardef id='4' leftmargin='1in' tabs='L0.5000in L1in L1.5000in L2in L2.5000in L3in L3.5000in L4in'/>
+<par def='4'/>
+<par def='4'><run html='true'>&lt;div id="bonosEspacios"&gt;&lt;/div&gt;</run></par>
+<par def='4'/>
+<par def='4'><run html='true'>&lt;script id="bonos" type="text/ractive"&gt;</run></par>
+<par def='4'><run html='true'>&lt;table class="mainTable table table-striped table-bordered table-condensed"&gt;</run></par>
+<par def='4'><run html='true'>	&lt;tbody&gt;</run></par>
+<par def='4'><run html='true'>		&lt;tr&gt;</run></par>
+<par def='4'><run html='true'>			&lt;td&gt;Año de redención&lt;/td&gt;</run></par>
+<par def='4'><run html='true'>			&lt;td&gt;Nombre&lt;/td&gt;</run></par>
+<par def='4'><run html='true'>			&lt;td&gt;Documento&lt;/td&gt;</run></par>
+<par def='4'><run html='true'>			&lt;td&gt;Derecho a&lt;/td&gt;</run></par>
+<par def='4'><run html='true'>			&lt;td&gt;Gasto&lt;/td&gt;</run></par>
+<par def='4'><run html='true'>		&lt;/tr&gt;</run></par>
+<par def='4'><run html='true'>		{{#personas}}</run></par>
+<par def='4'><run html='true'>		&lt;tr&gt;</run></par>
+<par def='4'><run html='true'>			&lt;td&gt;{{anioRedencion}}&lt;/td&gt;</run></par>
+<par def='4'><run html='true'>			&lt;td&gt;{{nombre}}&lt;/td&gt;</run></par>
+<par def='4'><run html='true'>			&lt;td&gt;{{cedula}}&lt;/td&gt;</run></par>
+<par def='4'><run html='true'>			&lt;td&gt;{{disponibles}}&lt;/td&gt;</run></par>
+<par def='4'><run html='true'>			&lt;td&gt;{{noDisponibles}}&lt;/td&gt;</run></par>
+<par def='4'><run html='true'>		&lt;/tr&gt;</run></par>
+<par def='4'><run html='true'>		{{/personas}}</run></par>
+<par def='4'><run html='true'>	&lt;/tbody&gt;</run></par>
+<par def='4'><run html='true'>&lt;/table&gt;</run></par>
+<par def='4'><run html='true'>&lt;/script&gt;</run></par>
+<par def='4'><run html='true'>&lt;script&gt;</run></par>
+<par def='4'><run html='true'>var documento = {</run></par>
+<par def='4'><run html='true'>sUsuario</run><run html='true'>:"</run><run
+ html='true'><computedtext><code event='value'><formula>usuario</formula></code></computedtext></run><run
+ html='true'>"</run></par>
+<par def='4'><run html='true'>}</run></par>
+<par def='4'><run html='true'>&lt;/script&gt;</run></par>
+<par def='3'/><subformref><code event='value'><formula>"sfrFooter"</formula></code></subformref>
+<par def='4'><run html='true'>&lt;script src="/</run><run html='true'><computedtext
+><code event='value'><formula>webDbName</formula></code></computedtext></run><run
+ html='true'>/</run><run html='true'>JSFrConsultaBonosEspacios</run><run html='true'>?Open"&gt;&lt;/script&gt;</run></par>
+<par def='3'><run html='true'>&lt;script src="/</run><run html='true'><computedtext
+><code event='value'><formula>webDbName</formula></code></computedtext></run><run
+ html='true'>/ractive.min.js"&gt;&lt;/script&gt;</run></par></richtext></body>
+<item name='Untitled' summary='false' sign='true'>
+<rawitemdata type='400'>
+AAAAAAAAAAA=
+</rawitemdata></item>
+<item name='fechaRedencion' summary='false' sign='true'>
+<rawitemdata type='400'>
+AAAAAAAAAAA=
+</rawitemdata></item>
+<item name='$$ScriptName' summary='false' sign='true'><text>frConsultaJefe</text></item></form>
+

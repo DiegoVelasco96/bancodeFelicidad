@@ -1,0 +1,78 @@
+<?xml version='1.0' encoding='utf-8'?>
+<form name='Alert' alias='frAlert' xmlns='http://www.lotus.com/dxl' version='9.0'
+ maintenanceversion='1.9' replicaid='052581670049F6C5' nocompose='true' publicaccess='false'
+ designerversion='8.5.3' renderpassthrough='true'>
+<noteinfo noteid='57a' unid='3C8543F99F46907E05257BF1007439B2' sequence='58'>
+<created><datetime>20130925T160929,46-05</datetime></created>
+<modified><datetime>20170724T082910,04-05</datetime></modified>
+<revised><datetime>20170724T082910,03-05</datetime></revised>
+<lastaccessed><datetime>20170724T082910,04-05</datetime></lastaccessed>
+<addedtofile><datetime>20170724T082758,90-05</datetime></addedtofile></noteinfo>
+<updatedby><name>CN=Admin Desarrollo/O=cognox</name><name>CN=Administrador Aplicaciones/O=GNCH</name><name
+>CN=Admin Desarrollo/O=cognox</name><name>CN=Administrador Aplicaciones/O=GNCH</name><name
+>CN=Admin Desarrollo/O=cognox</name><name>CN=Administrador Aplicaciones/O=GNCH</name><name
+>CN=Admin Desarrollo/O=cognox</name><name>CN=Administrador Aplicaciones/O=GNCH</name><name
+>CN=Admin Desarrollo/O=cognox</name><name>CN=Administrador Aplicaciones/O=GNCH</name><name
+>CN=Admin Desarrollo/O=cognox</name><name>CN=Administrador Aplicaciones/O=GNCH</name><name
+>CN=Admin Desarrollo/O=cognox</name><name>CN=Administrador Aplicaciones/O=GNCH</name><name
+>CN=Admin Desarrollo/O=cognox</name><name>CN=Administrador Aplicaciones/O=GNCH</name><name
+>CN=Admin Desarrollo/O=cognox</name><name>CN=Administrador Aplicaciones/O=GNCH</name><name
+>CN=Admin Desarrollo/O=cognox</name><name>CN=Administrador Aplicaciones/O=GNCH</name><name
+>CN=Admin Desarrollo/O=cognox</name><name>CN=Administrador Aplicaciones/O=GNCH</name><name
+>CN=Admin Desarrollo/O=cognox</name><name>CN=Administrador Aplicaciones/O=GNCH</name><name
+>CN=Admin Desarrollo/O=cognox</name><name>CN=Administrador DEV/O=DEV</name><name
+>CN=Admin Desarrollo/O=cognox</name><name>CN=Administrador DEV/O=DEV</name><name
+>CN=Admin Desarrollo/O=cognox</name><name>CN=Administrador DEV/O=DEV</name><name
+>CN=Administrador Aplicaciones/O=GNCH</name><name>CN=Admin Desarrollo/O=cognox</name><name
+>CN=Administrador Aplicaciones/O=GNCH</name><name>CN=Admin Desarrollo/O=cognox</name><name
+>CN=Administrador Aplicaciones/O=GNCH</name><name>CN=Admin Desarrollo/O=cognox</name><name
+>CN=Administrador Aplicaciones/O=GNCH</name><name>CN=Admin Desarrollo/O=cognox</name><name
+>CN=Administrador Aplicaciones/O=GNCH</name><name>CN=Admin Desarrollo/O=cognox</name><name
+>CN=Administrador Aplicaciones/O=GNCH</name><name>CN=Diego Alexander Velasco Acevedo/O=desarrollo</name></updatedby>
+<wassignedby><name>CN=Diego Alexander Velasco Acevedo/O=desarrollo</name></wassignedby><code
+ event='webqueryopen'><formula>@Command([ToolsRunMacro]; "agActualizarIndice")</formula></code>
+<body><richtext>
+<pardef id='1' leftmargin='1in' tabs='L0.5000in L1in L1.1806in L1.3778in L1.5743in L1.7715in L1.9681in L2.1653in L2.3618in L2.5590in L2.7556in L2.9521in L3.1493in L3.3458in L3.5431in L3.7396in L3.9368in'/><subformref
+><code event='value'><formula>"sfrHeaderSinMenu"</formula></code></subformref>
+<par def='1'/>
+<pardef id='2' hide='notes web mobile'/>
+<par def='2'><run><font color='red'/><field type='text' kind='editable' name='form'><code
+ event='defaultvalue'><formula>"frAlert"</formula></code></field></run><compositedata
+ type='98' prevtype='65418' nexttype='222' afterparcount='7' containertype='65418'
+ aftercontainercount='1' afterbegincount='3'>
+Yg4BAIQAAAAAAAAAAAA=
+</compositedata><run><font color='red'/></run><run
+><font color='red'/><field type='text' kind='editable' name='keyForm'><code
+ event='defaultvalue'><formula>"Alert"</formula></code></field></run><compositedata
+ type='98' prevtype='65418' nexttype='222' afterparcount='16' containertype='65418'
+ aftercontainercount='1' afterbegincount='3'>
+Yg4BAIQAAAAAAAAAAAA=
+</compositedata><run><font color='red'/></run><run
+><font color='red'/><field type='text' kind='computedfordisplay' name='SaveOptions'><code
+ event='defaultvalue'><formula>"0"</formula></code></field></run><compositedata
+ type='98' prevtype='65418' nexttype='222' afterparcount='25' containertype='65418'
+ aftercontainercount='1' afterbegincount='3'>
+Yg4BAIQAAAAAAAAAAAA=
+</compositedata><run html='true'><font
+ color='red'/></run></par>
+<pardef id='3'/>
+<par def='3'/><subformref><code event='value'><formula>"sfrFooter"</formula></code></subformref>
+<pardef id='4' leftmargin='1in' tabs='L0.5000in L1in L1.5000in L2in L2.5000in L3in L3.5000in L4in'/>
+<par def='4'/>
+<par def='4'><run html='true'>&lt;script&gt;</run></par>
+<par def='4'><run html='true'>bAlert("</run><run html='true'><computedtext
+><code event='value'><formula>msg:=@UrlQueryString("msg");
+@If(
+msg="1";"El documento ha sido guardado";
+msg="2";"El documento ha sido eliminado";
+msg)</formula></code></computedtext></run><run html='true'>", function(){</run></par>
+<par def='4'><run html='true'>	location.href = "</run><run html='true'><computedtext
+><code event='value'><formula>unid:=@UrlQueryString("unid");
+redirect:=@UrlQueryString("redirect");
+@If(unid!="";"/"+@WebDbName+"/0/"+@UrlQueryString("unid")+"?OpenDocument&amp;id="+@Text(@Random);"/"+@WebDbName+"/"+redirect)</formula></code></computedtext></run><run
+ html='true'>";</run></par>
+<par def='4'><run html='true'>})</run></par>
+<par def='4'><run html='true'>$(".modal-scrollable").css({background:"#fff"})</run></par>
+<par def='4'><run html='true'>&lt;/script&gt;</run></par></richtext></body>
+<item name='$$ScriptName' summary='false' sign='true'><text>frAlert</text></item></form>
+

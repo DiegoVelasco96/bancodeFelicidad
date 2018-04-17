@@ -1,0 +1,48 @@
+<?xml version='1.0' encoding='utf-8'?>
+<note default='true' class='icon' xmlns='http://www.lotus.com/dxl' version='9.0'
+ maintenanceversion='1.9' replicaid='052581670049F6C5'>
+<noteinfo noteid='11e' unid='B1668518F43254FB05257B8A0048D76D' sequence='761'>
+<created><datetime>20130614T081537,41-05</datetime></created>
+<modified><datetime>20170724T091834,16-05</datetime></modified>
+<revised><datetime>20170724T091834,15-05</datetime></revised>
+<lastaccessed><datetime>20170724T091834,16-05</datetime></lastaccessed>
+<addedtofile><datetime>20170724T082753,40-05</datetime></addedtofile></noteinfo>
+<updatedby><name>CN=Admin Desarrollo/O=cognox</name><name>CN=Administrador Aplicaciones/O=GNCH</name><name
+>CN=Aplica/O=CERT</name><name>CN=Administrador Aplicaciones/O=GNCH</name><name
+>CN=Aplica/O=CERT</name><name>CN=Administrador Aplicaciones/O=GNCH</name><name
+>CN=Aplica/O=CERT</name><name>CN=Administrador Aplicaciones/O=GNCH</name><name
+>CN=Aplica/O=CERT</name><name>CN=Administrador Aplicaciones/O=GNCH</name><name
+>CN=Aplica/O=CERT</name><name>CN=Administrador Aplicaciones/O=GNCH</name><name
+>CN=Aplica/O=CERT</name><name>CN=Administrador Aplicaciones/O=GNCH</name><name
+>CN=Aplica/O=CERT</name><name>CN=Administrador IBM/O=GNCH</name><name>CN=NCAPP023/O=NUTRESA</name><name
+>CN=Administrador Aplicaciones/O=GNCH</name><name>CN=NCAPP023/O=NUTRESA</name><name
+>CN=Administrador Aplicaciones/O=GNCH</name><name>CN=NCAPP023/O=NUTRESA</name><name
+>CN=Administrador Aplicaciones/O=GNCH</name><name>CN=Diego Alexander Velasco Acevedo/O=desarrollo</name></updatedby>
+<item name='$DefaultWebLaunchPage'><text>pgPrincipal</text></item>
+<item name='$DefaultFrameset'><text>frmsLotus</text></item>
+<item name='$FlagsNoRefresh'><text/></item>
+<item name='$TemplateServerName'><text>CN=NCAPP023/O=NUTRESA</text></item>
+<item name='$TemplateFileName'><text>F:\IBM\Lotus\Domino\data\Aplicaciones\Plantillas\TazasTiempoColcafe.ntf</text></item>
+<item name='$PIRCRefreshModTime'><datetime>20170718T010053,57-05</datetime></item>
+<item name='$TemplateModTime'><datetime>20170717T142550,32-05</datetime></item>
+<item name='IconBitmap' summary='true'>
+<rawitemdata type='6'>
+AiAgAQAA///////gBn//AAA/+AAAP/gAAB/8AAAP+AAAD/AAAAfwAAAP4AAAD+AAAAfgAAAHwAAA
+B8AAAAfAAAAHwAAAB8AAAAfAAAAH4AAAB+AAAAfwAAAH8AAAB/gAAAfEAAAHwwAAB8DgAAfkGAAP
+9AAAD/gGQA/4D/Df+/////////8AAAAAAAAAAAAAAAAAAAAAAAAAAAAP7t7u//APoAAAAAAAAAD+
+3e//7a3v+t8AAAAAAA3f7v/v//H93d3/AAAAAAAPrf7u//8R8equ//AAAAAAAO/u7u/u///+3e//
+AAAAAA/+7u/x8RHh/93e/wAAAAD/7u7uEe4REf/63e/wAAAA/u7vHxEPH/Ef/d3fAAAAD/4O/x8f
+ERERHu6t3QAAAA/q7fERHxERH/HurdrwAAAP0O/+ERHxERER/63d4AAA/97/HxGh/xER8f+t3aAA
+AP8O/xER/u0REe7vrd2gAAD+Dh7hER+PERHv/93doAAA/g/uoRH+7+EREe7d3aAAAP4PHvER7h7+
+ERHu3d2gAAD+DxHxHv8R/v///d3d0AAADw4R/v7xERHv/f3d3eAAAA/aHx/xEREREf/t3d3wAAAA
+4PERHx/QHx/v3d3d8AAAAP0BEf8e7hHt/d3d3aAAAAAPrhHh7u8e7+7u3a2gAAD64P3d/x//3v7/
+7t3doAAA/doA/d3d3v////7t3dAAAP7+rwAP////8R/+7drwAAAP8P7e8A////Ef/u3eAAAAAPD/
+/t3v/u7xH//vDwAAAAAP/+7t4A/w/v/+3+4AAAAADu/t3wAAAAD//wDwAAAAAA4AAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAA==
+</rawitemdata></item>
+<item name='$LargeSummary'><text>0</text></item>
+<item name='$Flags'><text>J7EFZqNR</text></item>
+<item name='$Daos'><text>0</text></item>
+<item name='$TITLE'><text>Banco de la Felicidad Comercial Nutresa
+</text></item></note>
+

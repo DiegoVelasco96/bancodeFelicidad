@@ -1,0 +1,142 @@
+<?xml version='1.0' encoding='utf-8'?>
+<agent name='(agCancelarBono)' alias='agCancelarBono' xmlns='http://www.lotus.com/dxl'
+ version='9.0' maintenanceversion='1.9' replicaid='052581670049F6C5' hide='v3'
+ publicaccess='false' designerversion='8.5.3'>
+<noteinfo noteid='11fa' unid='3249744F71976291052581670052AD95' sequence='1'>
+<created><datetime>20170724T100303,89-05</datetime></created>
+<modified><datetime>20170724T100304,00-05</datetime></modified>
+<revised><datetime>20170724T100303,99-05</datetime></revised>
+<lastaccessed><datetime>20170724T100304,00-05</datetime></lastaccessed>
+<addedtofile><datetime>20170724T100304,00-05</datetime></addedtofile></noteinfo>
+<updatedby><name>CN=Admin Desarrollo/O=cognox</name><name>CN=Diego Alexander Velasco Acevedo/O=desarrollo</name></updatedby>
+<wassignedby><name>CN=Diego Alexander Velasco Acevedo/O=desarrollo</name></wassignedby>
+<designchange><datetime>20161026T154109,67-05</datetime></designchange>
+<trigger type='agentlist'/>
+<documentset type='runonce'/><code event='options'><lotusscript>Option Public
+Option Declare
+Use "LSFlujo"
+Use "LSCorreo"
+
+</lotusscript></code><code event='declarations'><lotusscript>Dim db As NotesDatabase
+Dim vwUniques As NotesView
+Dim objFlujo As Flujo
+Private objCorreo As Correo
+Dim sWebDbName As Variant
+Dim ndPrincipal As NotesDocument
+
+</lotusscript></code><code event='initialize'><lotusscript>Sub Initialize
+	
+	On Error Goto label
+	
+	Dim ns As New NotesSession
+	Dim vwNotificaciones As NotesView
+	Dim ndNotificacion As NotesDocument
+	Dim nd As NotesDocument
+	Dim sError As String
+	Dim formula As String
+	Dim resultado As Long
+	
+	Set db = ns.CurrentDatabase
+	Set nd = ns.DocumentContext
+	Set vwUniques = db.GetView("vwProgUniques")
+	Set vwNotificaciones = db.Getview("vwProgNotificaciones")
+	
+	sWebDbName = Evaluate("@WebDBName")
+	Set objCorreo = New Correo
+	
+	formula = |[cancelacion] = Si|
+	
+	Set ndPrincipal = vwUniques.GetDocumentByKey(nd.uniquePadre(0), True)
+	resultado = vwNotificaciones.Ftsearch(formula, 0)
+	
+	If resultado &gt; 0 Then
+		Set ndNotificacion = vwNotificaciones.Getfirstdocument()
+		
+		ndPrincipal.usuario = nd.usuario
+		ndPrincipal.estadoDestino = nd.estadoDestino
+		ndPrincipal.comentario = nd.comentario
+		ndPrincipal.evento = "CE"
+		ndPrincipal.notificaciones = nd.notificaciones
+		ndPrincipal.acciones = nd.acciones
+		
+		Set objFlujo = New Flujo(ndPrincipal)
+		sError = objFlujo.cambiarEstado
+		If sError = "" Then
+			Call objFlujo.registrarHistorico
+			Call objFlujo.ejecutarAcciones
+			If nd.usuario(0) &lt;&gt; ndPrincipal.jefe(0) Then
+				Call enviarNotificacion(ndNotificacion.unique(0))
+			End If
+			
+			Call ndPrincipal.save(True, False)
+		End If
+	End If
+	
+salir:
+	Print |&lt;script&gt;|
+	If sError = "" Then
+		Print |top.location.href="/|+sWebDbName(0)+|/frRespuesta?OpenForm&amp;msg=1&amp;redirect=vwMisPendientes?Open"|
+	Else
+		Print |top.location.href="/|+sWebDbName(0)+|/frError?OpenForm&amp;msg=|+sError+|"|
+	End If
+	Print |&lt;/script&gt;|
+	
+	Exit Sub
+label:
+	sError = "Error al cambiar el estado. " &amp; " (" &amp; Cstr(Erl) &amp; ") " &amp; Error$
+	Msgbox "Error en agCambiarEstado. " &amp; " (" &amp; Cstr(Erl) &amp; ") " &amp; Error$
+	Resume salir
+End Sub
+
+
+
+</lotusscript></code><code event='enviarNotificacion'><lotusscript>Function enviarNotificacion(unique As String)
+		Dim ndNotificacion As NotesDocument
+		Dim ndCfg As NotesDocument 
+		Dim ndAnexo As NotesDocument
+		Dim vwAnexos As NotesView 
+		Dim vwTodos As NotesView 
+		Dim destinatarios As Variant
+		Dim i As Integer
+		Dim enlace(0) As String
+		Dim baner(0) As String 
+		Dim mensaje As Variant
+		Dim nota(1) As String
+		
+		Set vwTodos = db.Getview("vwProgTodos")
+		Set vwAnexos = db.Getview("vwProgAnexos")
+		Set ndCfg = vwTodos.Getdocumentbykey("frGeneral", True)
+		Set ndAnexo = vwAnexos.Getdocumentbykey(ndCfg.unique(0)+"ANE1", True)
+		Set ndNotificacion = vwUniques.GetDocumentByKey(unique, True)
+		
+		If Not ndNotificacion Is Nothing Then
+		
+			destinatarios = objFlujo.getPersonas(ndNotificacion.desCampo(0))
+			For i = 1 To UBound(ndNotificacion.desCampo)
+				destinatarios = ArrayAppend(destinatarios, objFlujo.getPersonas(ndNotificacion.desCampo(i)))
+			Next
+			destinatarios = FullTrim(ArrayUnique(destinatarios))
+			If ndNotificacion.enlace(0) = "Si" Then
+				enlace(0) = {&lt;a href='}+ndCfg.host(0)+"/"+sWebDbName(0)+{/0/}+ndPrincipal.UniversalID+{?OpenDocument' target='_blank'&gt;Ver documento&lt;/a&gt;}
+				mensaje = ArrayAppend(ndNotificacion.mensaje, enlace)
+			Else
+				mensaje = ndNotificacion.mensaje
+			End If
+			
+			If Not ndAnexo Is Nothing Then 
+				baner(0) = |&lt;img src='|+ndCfg.host(0)+|/|+sWebDbName(0)+|/0/|+ndAnexo.UniversalID+|/$file/|+ndAnexo.archivo(0)+|'"&gt;&lt;br&gt;|
+				mensaje  = ArrayAppend(baner,Join(mensaje,|&lt;br&gt;|))			
+			End If
+			
+			Call objCorreo.notificar(destinatarios, ndNotificacion.asunto(0), objFlujo.getComentario(mensaje), ndCfg.remitenteCorreos(0))
+		End If
+	End Function</lotusscript></code>
+<rundata processeddocs='0' exitcode='0' agentdata='0E9B11A439AD7988052580580071A987'>
+<agentmodified><datetime>20161026T154109,99-05</datetime></agentmodified>
+<agentrun><datetime>20161026T154129,75-05</datetime></agentrun>
+<runlog>Started running agent '(agCancelarBono)|agCancelarBono' on 26/10/2016 03:41:29 p.m.
+Ran LotusScript code
+Done running agent '(agCancelarBono)|agCancelarBono' on 26/10/2016 03:41:29 p.m.
+</runlog></rundata>
+<item name='$POID'><datetime>20161025T100117,70-05</datetime></item></agent>
+

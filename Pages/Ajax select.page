@@ -1,0 +1,58 @@
+<?xml version='1.0' encoding='utf-8'?>
+<page name='Ajax select' alias='pgAjaxSelect' xmlns='http://www.lotus.com/dxl'
+ version='9.0' maintenanceversion='1.9' replicaid='052581670049F6C5' treatashtml='true'
+ publicaccess='false' designerversion='8.5.3' renderpassthrough='true'>
+<noteinfo noteid='5c6' unid='6F5862F88FB9A17105257C0C000DD6F9' sequence='42'>
+<created><datetime>20131021T213110,01-05</datetime></created>
+<modified><datetime>20170724T082910,02-05</datetime></modified>
+<revised><datetime>20170724T082910,01-05</datetime></revised>
+<lastaccessed><datetime>20170724T082910,02-05</datetime></lastaccessed>
+<addedtofile><datetime>20170724T082759,28-05</datetime></addedtofile></noteinfo>
+<updatedby><name>CN=Admin Desarrollo/O=cognox</name><name>CN=Administrador/O=Hogar</name><name
+>CN=Admin Desarrollo/O=cognox</name><name>CN=Administrador Aplicaciones/O=GNCH</name><name
+>CN=Admin Desarrollo/O=cognox</name><name>CN=Administrador/O=Hogar</name><name
+>CN=Admin Desarrollo/O=cognox</name><name>CN=Administrador Aplicaciones/O=GNCH</name><name
+>CN=Administrador/O=Hogar</name><name>CN=Administrador Aplicaciones/O=GNCH</name><name
+>CN=Admin Desarrollo/O=cognox</name><name>CN=Administrador Aplicaciones/O=GNCH</name><name
+>CN=Administrador DEV/O=DEV</name><name>CN=Administrador Aplicaciones/O=GNCH</name><name
+>CN=Admin Desarrollo/O=cognox</name><name>CN=Administrador Aplicaciones/O=GNCH</name><name
+>CN=Admin Desarrollo/O=cognox</name><name>CN=admDllo administrador/O=PREBEL</name><name
+>CN=Admin Desarrollo/O=cognox</name><name>CN=admDllo administrador/O=PREBEL</name><name
+>CN=Contacto Lotus Sistemas SII/OU=Operacion/O=Prebel</name><name>CN=Admin Desarrollo/O=cognox</name><name
+>CN=Administrador Aplicaciones/O=GNCH</name><name>CN=Admin Desarrollo/O=cognox</name><name
+>CN=Administrador Aplicaciones/O=GNCH</name><name>CN=Admin Desarrollo/O=cognox</name><name
+>CN=Administrador Aplicaciones/O=GNCH</name><name>CN=Admin Desarrollo/O=cognox</name><name
+>CN=Administrador Aplicaciones/O=GNCH</name><name>CN=Admin Desarrollo/O=cognox</name><name
+>CN=Administrador Aplicaciones/O=GNCH</name><name>CN=Admin Desarrollo/O=cognox</name><name
+>CN=Administrador Aplicaciones/O=GNCH</name><name>CN=Admin Desarrollo/O=cognox</name><name
+>CN=Administrador Aplicaciones/O=GNCH</name><name>CN=Admin Desarrollo/O=cognox</name><name
+>CN=Administrador Aplicaciones/O=GNCH</name><name>CN=Admin Desarrollo/O=cognox</name><name
+>CN=Administrador Aplicaciones/O=GNCH</name><name>CN=Admin Desarrollo/O=cognox</name><name
+>CN=Administrador Aplicaciones/O=GNCH</name><name>CN=Admin Desarrollo/O=cognox</name><name
+>CN=Administrador Aplicaciones/O=GNCH</name><name>CN=Admin Desarrollo/O=cognox</name><name
+>CN=Administrador Aplicaciones/O=GNCH</name><name>CN=Admin Desarrollo/O=cognox</name><name
+>CN=Administrador DEV/O=DEV</name><name>CN=Admin Desarrollo/O=cognox</name><name
+>CN=Administrador DEV/O=DEV</name><name>CN=Admin Desarrollo/O=cognox</name><name
+>CN=Administrador DEV/O=DEV</name><name>CN=Administrador Aplicaciones/O=GNCH</name><name
+>CN=Admin Desarrollo/O=cognox</name><name>CN=Administrador Aplicaciones/O=GNCH</name><name
+>CN=Admin Desarrollo/O=cognox</name><name>CN=Administrador Aplicaciones/O=GNCH</name><name
+>CN=Admin Desarrollo/O=cognox</name><name>CN=Administrador Aplicaciones/O=GNCH</name><name
+>CN=Admin Desarrollo/O=cognox</name><name>CN=Administrador Aplicaciones/O=GNCH</name><name
+>CN=Admin Desarrollo/O=cognox</name><name>CN=Administrador Aplicaciones/O=GNCH</name><name
+>CN=Diego Alexander Velasco Acevedo/O=desarrollo</name></updatedby>
+<wassignedby><name>CN=Diego Alexander Velasco Acevedo/O=desarrollo</name></wassignedby>
+<body><richtext>
+<pardef id='1'/>
+<par def='1'><computedtext><code event='value'><formula>name:=@UrlQueryString("name");
+dRel:=@UrlQueryString("dRel");
+ruta:=@UrlQueryString("ruta");
+vista:=@UrlQueryString("vista");
+clave:=@UrlQueryString("clave");
+colNom:=@UrlQueryString("colNom");
+colVal:=@UrlQueryString("colVal");
+nom:=@DbLookup("":"NoCache";"":ruta;vista;clave;@TextToNumber(colNom);[FailSilent]);
+val:=@If(colNom=colVal;nom;@DbLookup("":"NoCache";"":ruta;vista;clave;@TextToNumber(colVal);[FailSilent]));
+"&lt;select id='"+name+"' name='"+name+"' onChange=\"actualizarElementos('"+dRel+"')\"&gt;&lt;option value='' selected&gt;"+@Implode(@Unique("&lt;option value='"+val+"'&gt;"+nom);"")+"&lt;/select&gt;"</formula></code></computedtext></par></richtext></body>
+<item name='OriginalModTime'><datetime>20111209T110447,11-05</datetime></item>
+<item name='$$ScriptName' summary='false' sign='true'><text>pgAjaxSelect</text></item></page>
+

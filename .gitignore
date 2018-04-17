@@ -1,0 +1,15 @@
+*.metadata
+!/CustomControls/*.metadata
+com.ibm.notes.java.api
+com.example.junit.tests
+com.example.xsp
+com.ibm.xsp.test.framework
+SeleniumXPagesTestSuite
+Thumbs.db
+*.phd
+*.trc
+*.class
+AppProperties/database.properties
+.settings
+.classpath
+.project

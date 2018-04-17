@@ -1,0 +1,167 @@
+<?xml version='1.0' encoding='utf-8'?>
+<form name='Admon / Reporte' alias='frReporte' xmlns='http://www.lotus.com/dxl'
+ version='9.0' maintenanceversion='1.9' replicaid='052581670049F6C5' nocompose='true'
+ publicaccess='false' designerversion='8.5.3' editonopen='true' renderpassthrough='true'>
+<noteinfo noteid='5ea' unid='8900428305D0AEF205257C23004CECA3' sequence='69'>
+<created><datetime>20131114T090013,15-05</datetime></created>
+<modified><datetime>20170724T082909,76-05</datetime></modified>
+<revised><datetime>20170724T082909,75-05</datetime></revised>
+<lastaccessed><datetime>20170724T082909,76-05</datetime></lastaccessed>
+<addedtofile><datetime>20170724T082759,42-05</datetime></addedtofile></noteinfo>
+<updatedby><name>CN=Admin Desarrollo/O=cognox</name><name>CN=Administrador Aplicaciones/O=GNCH</name><name
+>CN=Admin Desarrollo/O=cognox</name><name>CN=Administrador Aplicaciones/O=GNCH</name><name
+>CN=Admin Desarrollo/O=cognox</name><name>CN=Administrador Aplicaciones/O=GNCH</name><name
+>CN=Admin Desarrollo/O=cognox</name><name>CN=Administrador Aplicaciones/O=GNCH</name><name
+>CN=Admin Desarrollo/O=cognox</name><name>CN=Administrador Aplicaciones/O=GNCH</name><name
+>CN=Admin Desarrollo/O=cognox</name><name>CN=Administrador Aplicaciones/O=GNCH</name><name
+>CN=Admin Desarrollo/O=cognox</name><name>CN=Administrador Aplicaciones/O=GNCH</name><name
+>CN=Admin Desarrollo/O=cognox</name><name>CN=Administrador Aplicaciones/O=GNCH</name><name
+>CN=Admin Desarrollo/O=cognox</name><name>CN=Administrador Aplicaciones/O=GNCH</name><name
+>CN=Admin Desarrollo/O=cognox</name><name>CN=Administrador Aplicaciones/O=GNCH</name><name
+>CN=Admin Desarrollo/O=cognox</name><name>CN=Administrador Aplicaciones/O=GNCH</name><name
+>CN=Admin Desarrollo/O=cognox</name><name>CN=Administrador Aplicaciones/O=GNCH</name><name
+>CN=Admin Desarrollo/O=cognox</name><name>CN=Administrador DEV/O=DEV</name><name
+>CN=Admin Desarrollo/O=cognox</name><name>CN=Administrador DEV/O=DEV</name><name
+>CN=Admin Desarrollo/O=cognox</name><name>CN=Administrador DEV/O=DEV</name><name
+>CN=Administrador Aplicaciones/O=GNCH</name><name>CN=Admin Desarrollo/O=cognox</name><name
+>CN=Administrador Aplicaciones/O=GNCH</name><name>CN=Admin Desarrollo/O=cognox</name><name
+>CN=Administrador Aplicaciones/O=GNCH</name><name>CN=Admin Desarrollo/O=cognox</name><name
+>CN=Administrador Aplicaciones/O=GNCH</name><name>CN=Admin Desarrollo/O=cognox</name><name
+>CN=Administrador Aplicaciones/O=GNCH</name><name>CN=Admin Desarrollo/O=cognox</name><name
+>CN=Administrador Aplicaciones/O=GNCH</name><name>CN=Diego Alexander Velasco Acevedo/O=desarrollo</name></updatedby>
+<wassignedby><name>CN=Diego Alexander Velasco Acevedo/O=desarrollo</name></wassignedby><code
+ event='webquerysave'><formula>@Command([ToolsRunMacro]; "agGuardarConfiguracion")</formula></code>
+<body><richtext>
+<pardef id='1' leftmargin='1in' tabs='L0.5000in L1in L1.1806in L1.3778in L1.5743in L1.7715in L1.9681in L2.1653in L2.3618in L2.5590in L2.7556in L2.9521in L3.1493in L3.3458in L3.5431in L3.7396in L3.9368in'/><subformref
+><code event='value'><formula>"sfrHeader"</formula></code></subformref>
+<par def='1'/>
+<pardef id='2' hide='notes web mobile'/>
+<par def='2'><run><font color='red'/></run><run><font color='red'/><field
+ type='text' kind='editable' name='form'><code event='defaultvalue'><formula
+>"frReporte"</formula></code></field></run><compositedata type='98' prevtype='65418'
+ nexttype='222' afterparcount='10' containertype='65418' aftercontainercount='1'
+ afterbegincount='3'>
+Yg4BAIQAAAAAAAAAAAA=
+</compositedata><run><font color='red'/></run><run><font
+ color='red'/><field type='text' kind='editable' name='keyForm'><code event='defaultvalue'><formula
+>"Configuración reporte"</formula></code></field></run><compositedata type='98'
+ prevtype='65418' nexttype='222' afterparcount='19' containertype='65418'
+ aftercontainercount='1' afterbegincount='3'>
+Yg4BAIQAAAAAAAAAAAA=
+</compositedata><run><font color='red'/></run><run
+><font color='red'/><field type='text' kind='computedfordisplay' name='SaveOptions'><code
+ event='defaultvalue'><formula>"1"</formula></code></field></run><compositedata
+ type='98' prevtype='65418' nexttype='222' afterparcount='28' containertype='65418'
+ aftercontainercount='1' afterbegincount='3'>
+Yg4BAIQAAAAAAAAAAAA=
+</compositedata><run><font color='red'/></run><run
+><font color='red'/><field type='text' kind='computedfordisplay' name='redireccion'><code
+ event='defaultvalue'><formula>"vwReportes?Open"</formula></code></field></run><compositedata
+ type='98' prevtype='65418' nexttype='222' afterparcount='37' containertype='65418'
+ aftercontainercount='1' afterbegincount='3'>
+Yg4BAIQAAAAAAAAAAAA=
+</compositedata><run html='true'><font
+ color='red'/></run></par>
+<pardef id='3'/>
+<par def='3'/><subformref><code event='value'><formula>"sfrHeaderConfiguracion"</formula></code></subformref>
+<par def='3'/>
+<table widthtype='fitmargins' refwidth='10in'><tablecolumn width='27.4167%'/><tablecolumn
+ width='22.5833%'/><tablecolumn width='24.9931%'/><tablecolumn width='25.0069%'/>
+<tablerow>
+<tablecell borderwidth='0px' htmlstyle='width:100px;'>
+<pardef id='5' keepwithnext='true' keeptogether='true'/>
+<par def='5'>Nombre</par></tablecell>
+<tablecell columnspan='3' borderwidth='0px'>
+<pardef id='8' keepwithnext='true' keeptogether='true'/>
+<par def='8'><field type='text' kind='editable' name='nombre' htmlclass='input-xxlarge'/><compositedata
+ type='98' prevtype='65402' nexttype='222' afterparcount='8' containertype='65418'
+ aftercontainercount='2' afterbegincount='4'>
+Yg4BAIQAAAAAAAAAAAA=
+</compositedata></par></tablecell></tablerow>
+<tablerow>
+<tablecell borderwidth='0px'>
+<par def='5'>Personas con acceso</par></tablecell>
+<tablecell columnspan='3' borderwidth='0px'>
+<par def='8'><field type='names' allowmultivalues='true' kind='editable' name='usuarios'
+ listinputseparators='comma' listdisplayseparator='comma' htmlclass='input-xxlarge'
+ extrahtmlattrs='type=hidden'><code event='inputtranslation'><formula>@Sort(@ThisValue)</formula></code></field></par></tablecell></tablerow>
+<tablerow>
+<tablecell borderwidth='0px'>
+<par def='5'>Campo filtro de fecha</par></tablecell>
+<tablecell columnspan='3' borderwidth='0px'>
+<par def='8'><field type='text' kind='editable' name='campoFecha'/><compositedata
+ type='98' prevtype='65418' nexttype='222' afterparcount='6' containertype='65418'
+ aftercontainercount='1' afterbegincount='3'>
+Yg4BAIQAAAAAAAAAAAA=
+</compositedata></par></tablecell></tablerow>
+<tablerow>
+<tablecell borderwidth='0px'>
+<par def='5'>Criterio de búsqueda</par></tablecell>
+<tablecell columnspan='3' borderwidth='0px'>
+<par def='8'><field type='text' kind='editable' name='formula' htmlclass='input-xxlarge'/><compositedata
+ type='98' prevtype='65402' nexttype='222' afterparcount='7' containertype='65418'
+ aftercontainercount='2' afterbegincount='4'>
+Yg4BAIQAAAAAAAAAAAA=
+</compositedata></par></tablecell></tablerow>
+<tablerow>
+<tablecell columnspan='2' borderwidth='0px'>
+<pardef id='9' keepwithnext='true' keeptogether='true'/>
+<par def='9'>Títulos columnas</par></tablecell>
+<tablecell columnspan='2' borderwidth='0px'>
+<pardef id='10' keepwithnext='true' keeptogether='true'/>
+<par def='10'>Campos</par></tablecell></tablerow>
+<tablerow>
+<tablecell columnspan='2' borderwidth='0px'>
+<par def='9'><field type='text' allowmultivalues='true' kind='editable' name='columnas'
+ listinputseparators='newline' listdisplayseparator='newline' htmlclass='input-xlarge'/><compositedata
+ type='98' prevtype='65402' nexttype='222' afterparcount='7' containertype='65418'
+ aftercontainercount='2' afterbegincount='4'>
+Yg4BAIQAAAAAAAAAAAA=
+</compositedata></par></tablecell>
+<tablecell columnspan='2' borderwidth='0px'>
+<par def='10'><field type='text' allowmultivalues='true' kind='editable' name='campos'
+ listinputseparators='newline' listdisplayseparator='newline' htmlclass='input-xlarge'/><compositedata
+ type='98' prevtype='65402' nexttype='222' afterparcount='7' containertype='65418'
+ aftercontainercount='2' afterbegincount='4'>
+Yg4BAIQAAAAAAAAAAAA=
+</compositedata></par></tablecell></tablerow>
+<tablerow>
+<tablecell borderwidth='0px'>
+<par def='5'>¿Tiene documento padre?</par></tablecell>
+<tablecell columnspan='3' borderwidth='0px'>
+<par def='8'><field type='keyword' kind='editable' name='tienePadre'><keywords
+ ui='dialoglist'><textlist><text>[&lt;br&gt;]</text><text>Si | Si</text><text
+>No | No</text></textlist></keywords></field></par></tablecell></tablerow>
+<tablerow>
+<tablecell columnspan='2' borderwidth='0px'>
+<par def='9'>Títulos columnas padre</par></tablecell>
+<tablecell columnspan='2' borderwidth='0px'>
+<par def='10'>Campos padre</par></tablecell></tablerow>
+<tablerow>
+<tablecell columnspan='2' borderwidth='0px'>
+<par def='9'><field type='text' allowmultivalues='true' kind='editable' name='columnasPadre'
+ listinputseparators='newline' listdisplayseparator='newline' htmlclass='input-xlarge'><code
+ event='inputtranslation'><formula>@If(tienePadre="Si";@ThisValue;"")</formula></code></field><compositedata
+ type='98' prevtype='65402' nexttype='222' afterparcount='7' containertype='65418'
+ aftercontainercount='2' afterbegincount='4'>
+Yg4BAIQAAAAAAAAAAAA=
+</compositedata></par></tablecell>
+<tablecell columnspan='2' borderwidth='0px'>
+<par def='10'><field type='text' allowmultivalues='true' kind='editable' name='camposPadre'
+ listinputseparators='newline' listdisplayseparator='newline' htmlclass='input-xlarge'><code
+ event='inputtranslation'><formula>@If(tienePadre="Si";@ThisValue;"")</formula></code></field><compositedata
+ type='98' prevtype='65402' nexttype='222' afterparcount='7' containertype='65418'
+ aftercontainercount='2' afterbegincount='4'>
+Yg4BAIQAAAAAAAAAAAA=
+</compositedata></par></tablecell></tablerow></table>
+<par def='1'/><subformref><code event='value'><formula>"sfrFooter"</formula></code></subformref>
+<pardef id='11' leftmargin='1in' tabs='L0.5000in L1in L1.5000in L2in L2.5000in L3in L3.5000in L4in'/>
+<par def='11'/>
+<par def='11'><run html='true'>&lt;script src="/</run><run html='true'><computedtext
+><code event='value'><formula>webDbName</formula></code></computedtext></run><run
+ html='true'>/JSFrReporte?Open"&gt;&lt;/script&gt;</run></par></richtext></body>
+<item name='OriginalModTime'><datetime>20100916T112413,96-05</datetime></item>
+<item name='$SubForm_RepIDs' sign='true'><textlist><text>0000000000000000</text><text
+>0000000000000000</text><text>0000000000000000</text></textlist></item>
+<item name='$$ScriptName' summary='false' sign='true'><text>frReporte</text></item></form>
+

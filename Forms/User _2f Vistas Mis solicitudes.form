@@ -1,0 +1,150 @@
+<?xml version='1.0' encoding='utf-8'?>
+<form name='User / Vistas Mis solicitudes' alias='fvMisSolicitudes' xmlns='http://www.lotus.com/dxl'
+ version='9.0' maintenanceversion='1.9' replicaid='052581670049F6C5' nocompose='true'
+ publicaccess='false' designerversion='8.5.3' renderpassthrough='true'>
+<noteinfo noteid='f1a' unid='FD7785BEA9810FBE05257E7E006862C3' sequence='74'>
+<created><datetime>20150710T140010,27-05</datetime></created>
+<modified><datetime>20170801T154819,16-05</datetime></modified>
+<revised><datetime>20170801T154819,15-05</datetime></revised>
+<lastaccessed><datetime>20170801T154819,16-05</datetime></lastaccessed>
+<addedtofile><datetime>20170724T082810,76-05</datetime></addedtofile></noteinfo>
+<updatedby><name>CN=Diego Alexander Velasco Acevedo/O=desarrollo</name></updatedby>
+<wassignedby><name>CN=Diego Alexander Velasco Acevedo/O=desarrollo</name></wassignedby>
+<body><richtext>
+<pardef id='1' leftmargin='1in' tabs='L0.5000in L1in L1.1806in L1.3778in L1.5743in L1.7715in L1.9681in L2.1653in L2.3618in L2.5590in L2.7556in L2.9521in L3.1493in L3.3458in L3.5431in L3.7396in L3.9368in'/><subformref
+><code event='value'><formula>"sfrHeader"</formula></code></subformref>
+<pardef id='2' hide='notes web mobile'/>
+<par def='2'><run><font color='red'/></run><run><font color='red'/><field
+ type='text' kind='editable' name='form'><code event='defaultvalue'><formula
+>"fvwMisSolicitudes"</formula></code></field></run><compositedata type='98'
+ prevtype='65418' nexttype='222' afterparcount='10' containertype='65418'
+ aftercontainercount='1' afterbegincount='3'>
+Yg4BAIQAAAAAAAAAAAA=
+</compositedata><run><font color='red'/><field
+ type='text' kind='editable' name='keyForm'><code event='defaultvalue'><formula
+>"Mis solicitudes"</formula></code></field></run><compositedata type='98'
+ prevtype='65418' nexttype='222' afterparcount='16' containertype='65418'
+ aftercontainercount='1' afterbegincount='3'>
+Yg4BAIQAAAAAAAAAAAA=
+</compositedata><run><font color='red'/></run><run
+><font color='red'/><field type='text' kind='computedfordisplay' name='SaveOptions'><code
+ event='defaultvalue'><formula>"0"</formula></code></field></run><compositedata
+ type='98' prevtype='65418' nexttype='222' afterparcount='25' containertype='65418'
+ aftercontainercount='1' afterbegincount='3'>
+Yg4BAIQAAAAAAAAAAAA=
+</compositedata></par>
+<pardef id='3' tabs='L0.5000in L1in L1.1806in L1.3778in L1.5743in L2in L2.5000in L3in L3.5000in L4in'/>
+<par def='3'><run html='true'>&lt;div class="cabeza"&gt;</run></par>
+<pardef id='4' tabs='L1.1806in L1.3778in'/>
+<par def='4'><run html='true'>	&lt;div class="titulo"&gt;</run></par>
+<par def='4'><run html='true'>		</run><run html='true'>Mis bonos de tiempo</run></par>
+<par def='4'><run html='true'>	&lt;/div&gt;</run></par>
+<par def='4'><run html='true'>&lt;/div&gt;</run></par>
+<par def='4'><run html='true'>&lt;div align="left" style="font-size:14px"&gt;</run><run
+ html='true'><computedtext><code event='value'><formula>nombre := @UserName;
+solicitudes:=@Elements(@DbLookup("":"NoCache";"";"vwProgBonosDisponiblesJornada";nombre+@Text(@Year(@Now));1;[FailSilent]));
+diasCompletos:=@Elements(@DbLookup("":"NoCache";"";"vwProgBonosDisponiblesDiaCompleto";nombre+@Text(@Year(@Now));1;[FailSilent]));
+solicitudes := @ToNumber(solicitudes) + (@ToNumber(diasCompletos)*2);
+totalSolicitudes :=@DbLookup("":"NoCache";"";"vwProgTodos";"frConfBonoTiempo";"bonosAnio";[FailSilent]);
+totalSolicitudesEmpNuevo := @DbLookup("":"NoCache";"";"vwProgTodos";"frConfBonoTiempo";"bonosEmpleadosNuevos";[FailSilent]);
+fechaLimite := @Date(@Year(@Now);6;30);
+
+cedula := @Unique(@NameLookup([Exhaustive];nombre;"EmployeeID"));
+dbNomina := @DbLookup("":"NoCache";"";"vwProgTodos";"frGeneral";"rutaNomina";[FailSilent]);
+fechaIngreso := @DbLookup("":"NoCache";"":dbNomina;"dnvwCedula";cedula;"dnfdFechaIng";[FailSilent]);
+
+fechaIngresoTemp := @Explode(fechaIngreso;"/");
+
+@If(fechaIngresoTemp[3] != "";
+@Do(
+fechaIngresoAux := @Date(@TextToNumber(fechaIngresoTemp[3]);@TextToNumber(fechaIngresoTemp[2]);@TextToNumber(fechaIngresoTemp[1]));
+
+totalSolicitudes := @If(fechaIngresoAux &gt; fechaLimite;totalSolicitudesEmpNuevo;totalSolicitudes));@Nothing);
+
+cargo := @DbLookup("":"NoCache";"":dbNomina;"dnvwCedula";cedula;"dnfdCargo";[FailSilent]);
+cargo := @If(cargo = "";
+@Do(
+cargo :=@DbLookup("":"NoCache";"";"vwProgBonosNombre";usuario;"cargo";[FailSilent])
+);
+cargo);
+bonosCargos :=@DbLookup("":"NoCache";"";"vwProgCargosEspecificos";@Unique(@Text(cargo));"bonosAnioC";[FailSilent]);
+@If(bonosCargos != "";solicitudes:= @ToNumber(bonosCargos) - solicitudes;solicitudes:= @ToNumber(totalSolicitudes) - solicitudes);
+diaVencimiento :=@DbLookup("":"NoCache";"";"vwProgTodos";"frConfBonoTiempo";"diaVencimiento";[FailSilent]);
+mesVencimiento :=@DbLookup("":"NoCache";"";"vwProgTodos";"frConfBonoTiempo";"mesVencimiento";[FailSilent]);
+fechaVencimiento := @Date(@Year(@Now);@ToNumber(mesVencimiento);@ToNumber(diaVencimiento));
+"&lt;b&gt;Bonos dísponibles: "+@Text(solicitudes)+"&lt;br&gt; Fecha de vencimiento: "+@Text(fechaVencimiento)+"&lt;/b&gt;"</formula></code></computedtext></run><run
+ html='true'>&lt;/div&gt;</run></par>
+<pardef id='5' tabs='L1.1806in L1.3778in'><code event='hidewhen'><formula
+>vista != vwMisSolicitudes</formula></code></pardef>
+<par def='5'><run html='true'>&lt;br&gt;</run></par>
+<pardef id='6'><code event='hidewhen'><formula>vista = "vwMisPendientes"</formula></code></pardef>
+<par def='6'><run html='true'>&lt;div style="text-align:left;"&gt;</run></par>
+<pardef id='7'/>
+<par def='7'><run html='true'>Seleccionar fecha </run><run html='true'><computedtext
+><code event='value'><formula>anio:=@Year(@Now);
+anios:="";
+@For(i:=anio-10;i&lt;=anio+10;i:=i+1;
+anios:=anios+"&lt;option value='"+@Text(i)+"' "+@If(i=anio;"selected";"")+"&gt;"+@Text(i));
+"&lt;select name=anio &gt;&lt;option value=''&gt;&lt;/option&gt;&lt;option value='T'&gt;Todos&lt;/option&gt;"+anios+"&lt;/select&gt;"</formula></code></computedtext></run></par>
+<par def='6'><run html='true'>&lt;/div&gt;</run></par>
+<par def='4'><run html='true'>&lt;br&gt;</run></par>
+<par def='7'><run html='true'>&lt;div id=vista&gt;</run><run html='true'>&lt;/div&gt;</run></par>
+<par def='7'/>
+<pardef id='8' leftmargin='1in' tabs='L0.5000in L1in L1.5000in L2in L2.5000in L3in L3.5000in L4in'/>
+<par def='8'><run html='true'>&lt;script id="solicitudes" type="text/ractive"&gt;</run></par>
+<par def='8'><run html='true'>&lt;table class="mainTable table table-striped table-bordered table-condensed"&gt;</run></par>
+<par def='8'><run html='true'>	&lt;tbody&gt;</run></par>
+<par def='8'><run html='true'>		&lt;tr&gt;</run></par>
+<par def='8'><run html='true'>			&lt;td&gt;</run><run html='true'>Fecha de redención (d/m/a)</run><run
+ html='true'>&lt;/td&gt;</run></par>
+<par def='8'><run html='true'>			&lt;td&gt;</run><run html='true'>Consecutivo</run><run
+ html='true'>&lt;/td&gt;</run></par>
+<par def='8'><run html='true'>			&lt;td&gt;</run><run html='true'>Jornada</run><run
+ html='true'>&lt;/td&gt;</run></par>
+<par def='8'><run html='true'>			&lt;td&gt;</run><run html='true'>Estado</run><run
+ html='true'>&lt;/td&gt;</run></par>
+<par def='8'><run html='true'>		&lt;/tr&gt;</run></par>
+<par def='8'><run html='true'>		{{#personas}}</run></par>
+<par def='8'><run html='true'>		&lt;tr&gt;</run></par>
+<par def='8'><run html='true'>			&lt;td&gt;&lt;a href ='{{</run><run html='true'>htmlFecha</run><run
+ html='true'>}}'&gt;{{fechaRedencion}}&lt;/a&gt;</run><run html='true'>&lt;/td&gt;</run></par>
+<par def='8'><run html='true'>			&lt;td&gt;{{consecutivo}}&lt;/td&gt;</run></par>
+<par def='8'><run html='true'>			&lt;td&gt;{{jornada}}&lt;/td&gt;</run></par>
+<par def='8'><run html='true'>			&lt;td&gt;{{estado}}&lt;/td&gt;</run></par>
+<par def='8'><run html='true'>		&lt;/tr&gt;</run></par>
+<par def='8'><run html='true'>		{{/personas}}</run></par>
+<par def='8'><run html='true'>	&lt;/tbody&gt;</run></par>
+<par def='8'><run html='true'>&lt;/table&gt;</run></par>
+<par def='8'><run html='true'>&lt;/script&gt;</run></par>
+<par def='8'/>
+<par def='8'><run html='true'>&lt;script&gt;</run></par>
+<par def='8'><run html='true'>var documento = {</run></par>
+<par def='8'><run html='true'>	sUsuario</run><run html='true'><font name='Courier New'
+ pitch='fixed' truetype='true' familyid='30'/>:"</run><run html='true'><computedtext
+><code event='value'><formula>usuario</formula></code></computedtext></run><run
+ html='true'><font name='Courier New' pitch='fixed' truetype='true' familyid='30'/>"</run></par>
+<par def='8'><run html='true'>}</run></par>
+<par def='8'><run html='true'>&lt;/script&gt;</run></par>
+<par def='7'/>
+<par def='1'/><subformref><code event='value'><formula>"sfrFooter"</formula></code></subformref>
+<par def='1'/>
+<par def='8'><run html='true'>&lt;script src="/</run><run html='true'><computedtext
+><code event='value'><formula>webDbName</formula></code></computedtext></run><run
+ html='true'>/JSFrConsultaSolicitudes?Open"&gt;&lt;/script&gt;</run></par>
+<par def='7'><run html='true'>&lt;script src="/</run><run html='true'><computedtext
+><code event='value'><formula>webDbName</formula></code></computedtext></run><run
+ html='true'>/ractive.min.js"&gt;&lt;/script&gt;</run></par>
+<par def='1'/>
+<pardef id='9' tabs='L1.1806in L1.3778in L1.5743in L1.7715in L1.9681in L2.1653in L2.3618in L2.5590in L2.7556in L2.9521in L3.1493in L3.3458in L3.5431in L3.7396in L3.9368in'/>
+<par def='9'><button width='2in' widthtype='maximum' maxlines='1' wraptext='true'
+ bgcolor='system' htmlstyle='display:none' name='btnPrevious'><code event='click'><formula
+>@DbCommand("Domino"; "ViewPreviousPage")</formula></code>Anterior</button><button
+ width='2in' widthtype='maximum' maxlines='1' wraptext='true' bgcolor='system'
+ htmlstyle='display:none' name='btnNext'><code event='click'><formula>@DbCommand("Domino"; "ViewNextPage")</formula></code>Siguiente</button><button
+ width='2in' widthtype='maximum' maxlines='1' wraptext='true' bgcolor='system'
+ htmlstyle='display:none' name='btnExpand'><code event='click'><formula>@Command([ViewExpandAll])</formula></code>Desplegar</button><button
+ width='2in' widthtype='maximum' maxlines='1' wraptext='true' bgcolor='system'
+ htmlstyle='display:none' name='btnCollapse'><code event='click'><formula
+>@Command([ViewCollapseAll])</formula></code>Plegar</button></par></richtext></body>
+<item name='$$ScriptName' summary='false' sign='true'><text>$$ViewTemplate for vwSolicitudesBonos</text></item></form>
+

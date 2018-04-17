@@ -1,0 +1,126 @@
+<?xml version='1.0' encoding='utf-8'?>
+<agent name='(agGuardarAnexo)' alias='agGuardarAnexo' xmlns='http://www.lotus.com/dxl'
+ version='9.0' maintenanceversion='1.9' replicaid='052581670049F6C5' hide='v3'
+ publicaccess='false' designerversion='8.5.3' restrictions='fulladminunrestricted'>
+<noteinfo noteid='362' unid='1F5FD37CC2D2E9F405257BA10046B2B6' sequence='118'>
+<created><datetime>20130707T075212,70-05</datetime></created>
+<modified><datetime>20170724T082913,42-05</datetime></modified>
+<revised><datetime>20170724T082913,41-05</datetime></revised>
+<lastaccessed><datetime>20170724T082913,42-05</datetime></lastaccessed>
+<addedtofile><datetime>20170724T082756,24-05</datetime></addedtofile></noteinfo>
+<updatedby><name>CN=Admin Desarrollo/O=cognox</name><name>CN=Administrador Aplicaciones/O=GNCH</name><name
+>CN=Admin Desarrollo/O=cognox</name><name>CN=Administrador Aplicaciones/O=GNCH</name><name
+>CN=Admin Desarrollo/O=cognox</name><name>CN=Administrador Aplicaciones/O=GNCH</name><name
+>CN=Admin Desarrollo/O=cognox</name><name>CN=Administrador Aplicaciones/O=GNCH</name><name
+>CN=Admin Desarrollo/O=cognox</name><name>CN=Administrador Aplicaciones/O=GNCH</name><name
+>CN=Admin Desarrollo/O=cognox</name><name>CN=Administrador Aplicaciones/O=GNCH</name><name
+>CN=Admin Desarrollo/O=cognox</name><name>CN=Administrador Aplicaciones/O=GNCH</name><name
+>CN=Admin Desarrollo/O=cognox</name><name>CN=Administrador Aplicaciones/O=GNCH</name><name
+>CN=Admin Desarrollo/O=cognox</name><name>CN=Administrador Aplicaciones/O=GNCH</name><name
+>CN=Admin Desarrollo/O=cognox</name><name>CN=Administrador Aplicaciones/O=GNCH</name><name
+>CN=Admin Desarrollo/O=cognox</name><name>CN=Administrador Aplicaciones/O=GNCH</name><name
+>CN=Admin Desarrollo/O=cognox</name><name>CN=Administrador DEV/O=DEV</name><name
+>CN=Admin Desarrollo/O=cognox</name><name>CN=Administrador DEV/O=DEV</name><name
+>CN=Admin Desarrollo/O=cognox</name><name>CN=Administrador DEV/O=DEV</name><name
+>CN=Administrador Aplicaciones/O=GNCH</name><name>CN=Admin Desarrollo/O=cognox</name><name
+>CN=Administrador Aplicaciones/O=GNCH</name><name>CN=Admin Desarrollo/O=cognox</name><name
+>CN=Administrador Aplicaciones/O=GNCH</name><name>CN=Admin Desarrollo/O=cognox</name><name
+>CN=Administrador Aplicaciones/O=GNCH</name><name>CN=Admin Desarrollo/O=cognox</name><name
+>CN=Administrador Aplicaciones/O=GNCH</name><name>CN=Admin Desarrollo/O=cognox</name><name
+>CN=Administrador Aplicaciones/O=GNCH</name><name>CN=Diego Alexander Velasco Acevedo/O=desarrollo</name></updatedby>
+<wassignedby><name>CN=Diego Alexander Velasco Acevedo/O=desarrollo</name></wassignedby>
+<designchange><datetime>20170724T082910,52-05</datetime></designchange>
+<trigger type='agentlist'/>
+<documentset type='runonce'/><code event='options'><lotusscript>Option Public
+Option Declare
+
+</lotusscript></code><code event='initialize'><lotusscript>Sub Initialize
+	On Error GoTo label
+
+	Dim ns As NotesSession
+	Dim db As NotesDatabase
+	Dim vwAnexos As NotesView
+	Dim ndAnexo As NotesDocument
+	Dim nd As NotesDocument
+	Dim item As NotesItem
+	Dim Object As NotesEmbeddedObject
+	Dim sError As String
+	Dim webDbName As Variant
+	Dim uniquePadre As String
+	Dim seccion As String 
+	Dim requerido As String 
+	Dim tabla As String
+	Dim indice As String  
+	Dim unid As String 
+	Dim unique As String
+	Dim multiple As String 
+	Dim archivo As String
+	Dim nombre As String 
+	Dim macro As Variant 
+	
+	webDbName = Evaluate("@WebDbName")
+	
+	Set ns = New NotesSession
+	Set db = ns.CurrentDatabase
+	Set nd = ns.DocumentContext
+	Set vwAnexos = db.GetView("vwProgAnexos")
+	
+	uniquePadre = nd.uniquePadre(0)
+	seccion = nd.seccion(0)
+	requerido = nd.requerido(0)
+	tabla= nd.tabla(0)
+	indice = nd.indice(0)
+	unid = nd.Universalid
+	unique = nd.unique(0)
+	multiple = nd.multiple(0)
+	
+	If multiple &lt;&gt; "S" Then 
+		Set ndAnexo = vwAnexos.Getdocumentbykey(uniquePadre+seccion, True)
+		If Not ndAnexo Is Nothing Then 
+			Call ndAnexo.Remove(True)
+		End If
+	End If
+	
+	Set item = nd.GetFirstItem("$FILE")		
+	Set Object = nd.GetAttachment(Item.Values(0))
+	nd.archivo = Object.Name
+	
+	macro = Evaluate(|@URLEncode("Domino";"|+nd.archivo(0)+|")|)
+	archivo = macro(0)
+	nombre = nd.nombre(0)
+		
+	If CDbl(Object.FileSize)/1024 &gt; 5000 Then
+		sError = "No es posible cargar archivos que superen 5 Mb."	
+	End If
+	
+	Dim a As Integer
+	
+salir:
+	Print |&lt;script&gt;|
+	If sError &lt;&gt; "" Then
+		Print |top.bAlert("|+sError+|");
+			top.cerrarModal();
+		|
+		nd.SaveOptions = "0"
+	Else
+		Print |
+			top.adicionarAnexo("|+seccion+|", "|+tabla+|", "|+indice+|", "|+unid+|", "|+unique+|", "|+archivo+|", "|+nombre+|", "|+requerido+|", "|+multiple+|");
+			top.cerrarModal();
+		|
+	End If
+	Print |&lt;/script&gt;|
+	Exit Sub	
+label:
+	sError = "Error al guardar el anexo. " &amp; " (" &amp; CStr(Erl) &amp; ") " &amp; Error$
+	MsgBox "Error en agGuardarAnexo. " &amp; " (" &amp; CStr(Erl) &amp; ") " &amp; Error$
+	Resume salir
+End Sub</lotusscript></code>
+<rundata processeddocs='0' exitcode='0' agentdata='6A7D0542AD73E25505257F1C005B5BAD'>
+<agentmodified><datetime>20151221T173037,45-05</datetime></agentmodified>
+<agentrun><datetime>20151221T173850,01-05</datetime></agentrun>
+<runlog>Started running agent '(agGuardarAnexo)|agGuardarAnexo' on 21/12/2015 05:38:49 p.m.
+Ran LotusScript code
+Done running agent '(agGuardarAnexo)|agGuardarAnexo' on 21/12/2015 05:38:50 p.m.
+</runlog></rundata>
+<item name='$POID'><datetime>20170323T155827,32-05</datetime></item></agent>
+

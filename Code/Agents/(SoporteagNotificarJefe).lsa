@@ -1,0 +1,330 @@
+<?xml version='1.0' encoding='utf-8'?>
+<agent name='(SoporteagNotificarJefe)' alias='(SoporteagNotificarJefe)' xmlns='http://www.lotus.com/dxl'
+ version='9.0' maintenanceversion='1.9' replicaid='052581670049F6C5' hide='v3'
+ publicaccess='false' designerversion='8.5.3' enabled='false'>
+<noteinfo noteid='10be' unid='081F343A78F6E8AE05257F9400769E97' sequence='179'>
+<created><datetime>20160413T163538,47-05</datetime></created>
+<modified><datetime>20170724T082914,48-05</datetime></modified>
+<revised><datetime>20170724T082914,47-05</datetime></revised>
+<lastaccessed><datetime>20170724T082914,48-05</datetime></lastaccessed>
+<addedtofile><datetime>20170724T082812,78-05</datetime></addedtofile></noteinfo>
+<updatedby><name>CN=Administrador Aplicaciones/O=GNCH</name><name>CN=Diego Alexander Velasco Acevedo/O=desarrollo</name></updatedby>
+<wassignedby><name>CN=Diego Alexander Velasco Acevedo/O=desarrollo</name></wassignedby>
+<designchange><datetime>20170724T082910,87-05</datetime></designchange>
+<trigger type='agentlist'/>
+<documentset type='runonce'/><code event='options'><lotusscript>Option Public
+Option Declare
+Use "LSCorreo"
+
+</lotusscript></code><code event='initialize'><lotusscript>Sub Initialize
+	On Error GoTo label
+		
+	Dim sError As String
+	Dim nd As NotesDocument
+	Dim ns As New NotesSession
+	Dim db As NotesDatabase
+	Dim dbNomina As NotesDatabase
+	Dim dbNames As NotesDatabase 
+	Dim vwCfg As NotesView
+	Dim vwUniques As NotesView 
+	Dim ndAux As NotesDocument 
+	Dim ndAuxEmple As NotesDocument 
+	Dim ndAuxDire As NotesDocument 
+	Dim ndAuxSolicitudes As NotesDocument 
+	Dim dc As NotesDocumentCollection 	
+	Dim dcEmple As NotesDocumentCollection 	
+	Dim dcEmpleado As NotesDocumentCollection
+	Dim webDbName As Variant
+	Dim ndGeneral As NotesDocument
+	Dim ndConfSolicitud As NotesDocument
+	Dim ndConsulta As NotesDocument
+	Dim vwCedulaJefe As NotesView
+	Dim vwPersonas As NotesView
+	Dim encontro As String 
+	Dim ccJefe As String
+	Dim ccEmpleado As String
+	Dim dcVencidos As NotesDocumentCollection 	
+	Dim vwCedulaDispo As NotesView
+	Dim vwSolicitudesVencidas As NotesView
+	Dim count As Integer
+	Dim nBonoAnio As Integer  
+	Dim anio As String
+	Dim usuario(0) As String 
+	Dim asunto As String
+	Dim html As String
+	Dim jornada As String
+	Dim objCorreo As New Correo
+	Dim mensaje(2) As String
+	Dim autor As NotesName
+	Dim codCompania As Variant 
+	Dim resultados As Long
+	Dim noNotificarPersonas As Variant
+	Dim ndBonosCargos As NotesDocument
+	Dim vwBonosCargos As NotesView
+	Dim bonos As Integer
+	Dim disponible As String
+	Dim diasCompletos As Integer
+	Dim diasAux As Integer
+	Dim empleados As Variant 
+	Dim empleadoBono As String
+	Dim cc As Variant 
+	Dim ccBono As String 
+	Dim disponiblesBono As String
+	Dim solicitadasBono As String
+	Dim vencidasBono As String
+	Dim disponibles As Variant 
+	Dim solicitadas As Variant 
+	Dim vencidas As Variant 
+	Dim cont As Integer 
+	Dim fechaRedencion As Variant 
+	Dim diaR As String 
+	Dim anioR As String 
+	Dim mesR As String 
+	Dim vectorMes(11) As Integer 
+	Dim solicitudesXmes As Variant 
+	Dim solicitudesXmesBono As String
+	Dim bonosUsados As Integer  
+	Dim notificacionReal As Boolean
+	
+	
+	webDbName = Evaluate("@WebDBName")	
+	Set db = ns.CurrentDatabase
+	Set vwCfg = db.Getview("vwProgTodos")
+	Set vwUniques = db.Getview("vwProgUniques")
+	Set ndGeneral = vwCfg.Getdocumentbykey("frGeneral", True)
+	Set ndConfSolicitud = vwCfg.Getdocumentbykey("frConfBonoTiempo", True)
+	Set ndConsulta = vwCfg.Getdocumentbykey("frConsultaJefe", True)
+	Set dbNomina = New NotesDatabase("", ndGeneral.rutaNomina(0))
+	Set dbNames = New NotesDatabase("", "names.nsf")
+	Set ndAux = New NotesDocument(db)
+	Set ndAuxEmple = New NotesDocument(db)
+	Set dbNomina = ns.Getdatabase("",ndGeneral.rutaNomina(0))
+	Set nd = ns.DocumentContext
+	Set vwCedulaJefe = dbNomina.getView("dnvwCedulaJefe")
+	Set vwCedulaDispo = db.GetView("vwProgBonosCedulaDispo")
+	Set vwPersonas = dbNames.Getview("($People)")
+	Set vwSolicitudesVencidas = db.Getview("vwProgSolicitudesVencidas")
+	Set vwBonosCargos = db.Getview("vwProgCargosEspecificos")
+
+	notificacionReal = False
+	anio = Year(Now)
+	
+	If Not ndConfSolicitud Is Nothing And ndConfSolicitud.notificacionJefe(0) = "S" Then 
+
+		Dim macro1 As Variant 
+		Dim macro2 As Variant 
+		macro1 = Evaluate(|@Date(fechaEnvioJefe) = @Date(@Now)|, ndConfSolicitud) 
+		macro2 = Evaluate(|@Date(@Adjust(fechaNotiJefe;0;@TextToNumber(periodicidadJefe);0;0;0;0)) = @Date(@Now)|, ndConfSolicitud)
+			
+		If macro1(0) = 1 Or macro2(0) = 1  Or Not notificacionReal Then 
+			If notificacionReal Then 
+				ndConfSolicitud.fechaNotiJefe = Now
+				Call ndConfSolicitud.Save(True, False)	
+			End If
+			
+			Set ndAux = vwCedulaJefe.Getfirstdocument()
+			
+				While Not ndAux Is Nothing
+				codCompania = ArrayGetIndex(ndConfSolicitud.codigoCompania,ndAux.dnfdCodigoCia(0))
+				If Not IsNull(codCompania) Then 
+					html = ""
+					empleadoBono = ""
+					ccBono = ""
+					disponiblesBono = ""
+					solicitadasBono = ""
+					vencidasBono = ""
+					solicitudesXmesBono = ""
+					
+					Set dc = vwCedulaJefe.Getalldocumentsbykey(ndAux.dnfdCedula(0), True)		
+					If 	Trim(ndAux.dnfdCedula(0)) &lt;&gt; "" Then
+						resultados = vwPersonas.Ftsearch("FIELD EmployeeID = " + Trim(ndAux.dnfdCedula(0)) + " and Person", 1)			
+						Set ndAuxDire = vwPersonas.Getfirstdocument()
+						
+						If resultados &gt; 0 Then 
+							
+							usuario(0) = ndAuxDire.fullName(0)
+							noNotificarPersonas = ArrayGetIndex(ndConfSolicitud.noNotificar, ndAuxDire.fullName(0))
+							
+							If IsNull(noNotificarPersonas) Then 
+								If usuario(0) &lt;&gt; "" Then 
+								
+									Set ndAuxEmple = dc.Getfirstdocument()
+									   
+ 									While Not ndAuxEmple Is Nothing 
+	 									ccEmpleado = ndAuxEmple.dnfdCedula(0)
+										
+										Set dcEmple = vwCedulaDispo.Getalldocumentsbykey(ndAuxEmple.dnfdCedula(0)+anio, True)											
+	 									Set dcVencidos = vwSolicitudesVencidas.Getalldocumentsbykey(ndAuxEmple.dnfdCedula(0), True)
+										
+										Set ndBonosCargos = vwBonosCargos.Getdocumentbykey(ndAuxEmple.dnfdCargo(0), True)					
+										If Not ndBonosCargos Is Nothing Then
+											nBonoAnio =  CInt(ndBonosCargos.bonosAnioC(0))
+										Else
+											nBonoAnio =  CInt(ndConfSolicitud.bonosAnio(0))
+										End If
+										'---------Conteo Dia Completo y conteo por Meses---------------
+										diasCompletos=0
+										diasAux = 0
+										bonosUsados = 0
+	 									ForAll bonoMes In vectorMes
+											bonoMes = 0
+										End ForAll
+										
+										Set ndAuxSolicitudes = dcEmple.Getfirstdocument()
+										While Not ndAuxSolicitudes	Is Nothing 
+											If CLng(ndConfSolicitud.equivalenteBono(0)) = 2 Then
+												If ndAuxSolicitudes.jornada(0) = "D" Then
+													diasCompletos = diasCompletos + CInt(ndConfSolicitud.equivalenteBono(0))
+													diasAux = 2
+												Else
+													diasAux = 1
+												End If
+											Else
+												diasAux = 1
+											End If
+											
+											bonosUsados = bonosUsados + diasAux  
+											
+											fechaRedencion = Evaluate(|@Month(@Date(fechaRedencion))|, ndAuxSolicitudes)
+											mesR = CStr(Right("0"+fechaRedencion(0),2))
+											
+											Select Case mesR
+											Case "01" : 
+													vectorMes(0) = vectorMes(0)+diasAux
+												Case "02" :
+													vectorMes(1) = vectorMes(1)+diasAux
+												Case "03" : 
+													vectorMes(2) = vectorMes(2)+diasAux
+												Case "04" :
+													vectorMes(3) = vectorMes(3)+diasAux
+												Case "05" :
+													vectorMes(4) = vectorMes(4)+diasAux
+												Case "06" :
+													vectorMes(5) = vectorMes(5)+diasAux
+												Case "07" :
+													vectorMes(6) = vectorMes(6)+diasAux
+												Case "08" :
+													vectorMes(7) = vectorMes(7)+diasAux
+												Case "09" :
+													vectorMes(8) = vectorMes(8)+diasAux
+												Case "10" :
+													vectorMes(9) = vectorMes(9)+diasAux
+												Case "11" :
+													vectorMes(10) = vectorMes(10)+diasAux
+												Case "12" :
+													vectorMes(11) = vectorMes(11)+diasAux		
+											End Select
+											Set ndAuxSolicitudes = dcEmple.Getnextdocument(ndAuxSolicitudes)
+										Wend	
+				
+	 									ForAll bonoMes In vectorMes
+											If bonoMes = 0 Then
+												solicitudesXmesBono=solicitudesXmesBono+|&lt;td&gt;&lt;/td&gt;|
+											Else
+												solicitudesXmesBono=solicitudesXmesBono+|&lt;td&gt;|+CStr(bonoMes)+|&lt;/td&gt;|
+											End If
+										End ForAll
+	 									
+	 									count = nBonoAnio - bonosUsados
+	 									If count = 0 Then 
+											disponible = "0"
+										Else 
+											disponible = CStr(count) 
+										End If
+	 									
+	 									Set autor = New NotesName(ndAuxEmple.FullName(0))
+										
+										empleadoBono = empleadoBono+autor.common +"|"
+	 									ccBono = ccBono+ndAuxEmple.dnfdCedula(0) +"|"
+	 									disponiblesBono = disponiblesBono+disponible +"|"
+	 									solicitadasBono = solicitadasBono+CStr(bonosUsados)+"|"
+	 									vencidasBono = vencidasBono+CStr(dcVencidos.Count) +"|"
+	 									solicitudesXmesBono = solicitudesXmesBono+"|"
+										Set ndAuxEmple = dc.Getnextdocument(ndAuxEmple)
+									Wend 
+									empleados=Split(empleadoBono,"|")
+									cc=Split(ccBono,"|")
+									disponibles=Split(disponiblesBono,"|")
+									solicitadas=Split(solicitadasBono,"|")
+									vencidas=Split(vencidasBono,"|")
+									solicitudesXmes=Split(solicitudesXmesBono,"|")
+									html= html+|&lt;style&gt;
+									table {border-collapse:collapse;width:90%;}	
+									caption {text-align:left;font-size:15px;padding-bottom:10px;									        }									    
+									table td,table th {border-width:0 1px 1px 0;padding:5px;}	            
+									thead th{background-color:#215b32;color:#ffffff;text-align:center;vertical-align:middle}									        
+									tbody td{text-align:center; white-space: nowrap; word-break: inherit;}
+									.izq{text-align:left;}
+									.der{text-align:right;}
+									&lt;/style&gt;|
+									html = html +|&lt;table border="1" cellpadding="0.2" cellspacing="0.5" bordercolor="#000000" style="border-collapse:collapse;"&gt;
+									&lt;thead&gt;    
+								        &lt;tr&gt;&lt;th colspan="3"&gt;Jefe: |+ndAux.dnfdNombres(0)+|&lt;/th&gt;&lt;th colspan="14"&gt;Reporte año |+Anio+|&lt;/th&gt;&lt;/tr&gt;
+								        &lt;tr&gt;
+											&lt;th&gt;Cédula&lt;/th&gt;
+											&lt;th&gt;Empleado&lt;/th&gt;
+								            &lt;th&gt;Solicitudes disponibles&lt;/th&gt;
+								            &lt;th&gt;Solicitudes solicitadas&lt;/th&gt;
+								            &lt;th&gt;Solicitudes vencidas&lt;/th&gt;
+								            &lt;th&gt;Ene&lt;/th&gt;
+								            &lt;th&gt;Feb&lt;/th&gt;
+											&lt;th&gt;Mar&lt;/th&gt;
+								            &lt;th&gt;Abr&lt;/th&gt;
+											&lt;th&gt;May&lt;/th&gt;
+								            &lt;th&gt;Jun&lt;/th&gt;
+											&lt;th&gt;Jul&lt;/th&gt;
+								            &lt;th&gt;Ago&lt;/th&gt;
+											&lt;th&gt;Sep&lt;/th&gt;
+								            &lt;th&gt;Oct&lt;/th&gt;
+											&lt;th&gt;Nov&lt;/th&gt;
+								            &lt;th&gt;Dic&lt;/th&gt;
+								        &lt;/tr&gt;        
+								    &lt;/thead&gt;
+									&lt;tbody&gt;
+								        &lt;tr&gt;|	
+									cont=0
+									While empleados(cont)&lt;&gt;""
+										If empleados(cont) &lt;&gt; "" Then
+											html = html + |&lt;td class="izq"&gt;|+cc(cont)+|&lt;/td&gt;|
+											html = html + |&lt;td class="izq"&gt;|+empleados(cont)+|&lt;/td&gt;|
+											html = html + |&lt;td class="der"&gt;|+disponibles(cont)+|&lt;/td&gt;|
+											html = html + |&lt;td class="der"&gt;|+solicitadas(cont)+|&lt;/td&gt;|
+											html = html + |&lt;td class="der"&gt;|+vencidas(cont)+|&lt;/td&gt;|
+											html = html + solicitudesXmes(cont)+|&lt;/tr&gt;|
+										End If
+										cont=cont+1
+ 									Wend		
+									html = html + |&lt;/tbody&gt;&lt;/table&gt;|	
+									
+									If dc.count &gt; 0 Then					
+										asunto = ndConfSolicitud.asuntoJefe(0)					
+										mensaje(0) = ndConfSolicitud.mensajeJefe(0)+|&lt;br&gt;|
+										mensaje(1) = html
+										If notificacionReal Then
+											Call objCorreo.notificar(usuario, asunto, mensaje, ndGeneral.remitenteCorreos(0))
+										Else
+											Print |&lt;p&gt;&lt;/p&gt;|	
+											Print html	
+										End If
+ 									End If		
+								End If
+							End If
+						End If
+					End If 
+				End If
+				Set ndAux = vwCedulaJefe.Getnextdocument(ndAux)
+			Wend
+		End If
+	End If 
+	
+salir:
+	Exit Sub
+label:
+	sError = "Error en simular notificación jefe. " &amp; " (" &amp; CStr(Erl) &amp; ") " &amp; Error$
+	MsgBox "Error en agSimularNoficacionJefe. " &amp; " (" &amp; CStr(Erl) &amp; ") " &amp; Error$
+	Resume salir
+End Sub</lotusscript></code>
+<rundata processeddocs='0' exitcode='0'>
+<agentmodified><datetime>20170717T142401,34-05</datetime></agentmodified></rundata>
+<item name='$POID'><datetime>20170717T142408,09-05</datetime></item></agent>
+

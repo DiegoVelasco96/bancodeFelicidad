@@ -1,0 +1,190 @@
+<?xml version='1.0' encoding='utf-8'?>
+<form name='User / Solicitud Calamidad' alias='frSolicitudCalamidad' xmlns='http://www.lotus.com/dxl'
+ version='9.0' maintenanceversion='1.9' replicaid='052581670049F6C5' nocompose='true'
+ publicaccess='false' designerversion='8.5.3' editonopen='true' renderpassthrough='true'>
+<noteinfo noteid='faa' unid='BC1ECB76690AA65705257F1E00131D8F' sequence='59'>
+<created><datetime>20151216T222847,51-05</datetime></created>
+<modified><datetime>20170724T082912,78-05</datetime></modified>
+<revised><datetime>20170724T082912,77-05</datetime></revised>
+<lastaccessed><datetime>20170724T082912,78-05</datetime></lastaccessed>
+<addedtofile><datetime>20170724T082811,48-05</datetime></addedtofile></noteinfo>
+<updatedby><name>CN=Administrador DEV/O=DEV</name><name>CN=Administrador Aplicaciones/O=GNCH</name><name
+>CN=Admin Desarrollo/O=cognox</name><name>CN=Administrador Aplicaciones/O=GNCH</name><name
+>CN=Admin Desarrollo/O=cognox</name><name>CN=Administrador Aplicaciones/O=GNCH</name><name
+>CN=Admin Desarrollo/O=cognox</name><name>CN=Administrador Aplicaciones/O=GNCH</name><name
+>CN=Admin Desarrollo/O=cognox</name><name>CN=Administrador Aplicaciones/O=GNCH</name><name
+>CN=Admin Desarrollo/O=cognox</name><name>CN=Administrador Aplicaciones/O=GNCH</name><name
+>CN=Diego Alexander Velasco Acevedo/O=desarrollo</name></updatedby>
+<wassignedby><name>CN=Diego Alexander Velasco Acevedo/O=desarrollo</name></wassignedby><code
+ event='webquerysave'><formula>@Command([ToolsRunMacro]; "agGuardarSolicitud")</formula></code><code
+ event='webqueryopen'><formula>@Command([ToolsRunMacro]; "agDatosUsuario")</formula></code>
+<body><richtext>
+<pardef id='1' leftmargin='1in' tabs='L0.5000in L1in L1.1806in L1.3778in L1.5743in L1.7715in L1.9681in L2.1653in L2.3618in L2.5590in L2.7556in L2.9521in L3.1493in L3.3458in L3.5431in L3.7396in L3.9368in'/>
+<par def='1'><run html='true'>&lt;script&gt;</run><run html='true'><computedtext
+><code event='value'><formula>@If(error != "";"location.href = '/"+@WebDbName+"/frError?Open&amp;msg="+error+"&amp;solicitudes="+solicitudes+"'";"")</formula></code></computedtext></run><run
+ html='true'>&lt;/script&gt;</run></par><subformref><code event='value'><formula
+>"sfrHeader"</formula></code></subformref>
+<par def='1'/>
+<pardef id='2' hide='notes web mobile'/>
+<par def='2'><run><font color='red'/><field type='text' kind='editable' name='form'><code
+ event='defaultvalue'><formula>"frSolicitudCalamidad"</formula></code></field></run><compositedata
+ type='98' prevtype='65418' nexttype='222' afterparcount='7' containertype='65418'
+ aftercontainercount='1' afterbegincount='3'>
+Yg4BAIQAAAAAAAAAAAA=
+</compositedata><run><font color='red'/><field
+ type='text' kind='editable' name='keyForm'><code event='defaultvalue'><formula
+>@DbLookup("":"NoCache";"";"vwProgTodos";"frConfCalamidad";"nombreSolicitud";[FailSilent])</formula></code></field></run><compositedata
+ type='98' prevtype='65418' nexttype='222' afterparcount='13' containertype='65418'
+ aftercontainercount='1' afterbegincount='3'>
+Yg4BAIQAAAAAAAAAAAA=
+</compositedata><run><font color='red'/></run><run
+><font color='red'/><field type='text' kind='computedfordisplay' name='SaveOptions'><code
+ event='defaultvalue'><formula>"1"</formula></code></field></run><compositedata
+ type='98' prevtype='65418' nexttype='222' afterparcount='22' containertype='65418'
+ aftercontainercount='1' afterbegincount='3'>
+Yg4BAIQAAAAAAAAAAAA=
+</compositedata><run><font color='red'/></run><run
+><font color='red'/><field type='text' kind='computedfordisplay' name='redireccion'><code
+ event='defaultvalue'><formula>"vwMisSolicitudes?Open"</formula></code></field></run><compositedata
+ type='98' prevtype='65418' nexttype='222' afterparcount='31' containertype='65418'
+ aftercontainercount='1' afterbegincount='3'>
+Yg4BAIQAAAAAAAAAAAA=
+</compositedata><run html='true'><font
+ color='red'/></run><run html='true'><sharedfieldref name='fechaCreacion'/></run><run
+ html='true'><font color='red'/></run></par>
+<pardef id='3'/>
+<par def='3'><run html='true'>&lt;div style="display:none"&gt;</run><run><font
+ color='blue'/><field type='text' kind='editable' name='cedula' htmlclass='input-xxlarge'/></run><compositedata
+ type='98' prevtype='65402' nexttype='222' afterparcount='9' containertype='65418'
+ aftercontainercount='2' afterbegincount='4'>
+Yg4BAIQAAAAAAAAAAAA=
+</compositedata><run><font color='blue'/></run><run
+><font color='blue'/><field type='text' kind='editable' name='correo' htmlclass='input-xxlarge'/></run><compositedata
+ type='98' prevtype='65402' nexttype='222' afterparcount='19' containertype='65418'
+ aftercontainercount='2' afterbegincount='4'>
+Yg4BAIQAAAAAAAAAAAA=
+</compositedata><run><font color='blue'/></run><run
+><font color='blue'/><field type='text' kind='editable' name='gerencia' htmlclass='input-xxlarge'/></run><compositedata
+ type='98' prevtype='65402' nexttype='222' afterparcount='29' containertype='65418'
+ aftercontainercount='2' afterbegincount='4'>
+Yg4BAIQAAAAAAAAAAAA=
+</compositedata><run><font color='blue'/><field
+ type='text' kind='editable' name='cargo' htmlclass='input-xxlarge'/></run><compositedata
+ type='98' prevtype='65402' nexttype='222' afterparcount='36' containertype='65418'
+ aftercontainercount='2' afterbegincount='4'>
+Yg4BAIQAAAAAAAAAAAA=
+</compositedata><run><font color='blue'/><field
+ type='datetime' kind='editable' name='fechaIngreso' htmlclass='input-xxlarge'><datetimeformat
+ show='date' date='yearmonthday' fourdigityearfor21stcentury='true' zone='never'
+ dateformat='weekdaydaymonthyear' dayformat='twodigitday' monthformat='twodigitmonth'
+ yearformat='fourdigityear' weekdayformat='shortname' dateseparator1=' ' dateseparator2='/'
+ dateseparator3='/' timeseparator=':' preference='custom'/></field></run><run
+ html='true'>&lt;/div&gt;</run></par><subformref><code event='value'><formula
+>"sfrHeaderBonos"</formula></code></subformref>
+<par def='3'/>
+<table widthtype='fitmargins' refwidth='9.3021in'><tablecolumn width='24.0764%'/><tablecolumn
+ width='75.9236%'/>
+<tablerow>
+<tablecell borderwidth='0px'>
+<pardef id='5' keepwithnext='true' keeptogether='true'/>
+<par def='5'>Fecha de creación</par></tablecell>
+<tablecell borderwidth='0px'>
+<pardef id='6' keepwithnext='true' keeptogether='true'/>
+<par def='6'><run html='true'><computedtext><code event='value'><formula>fechaCreacion</formula></code></computedtext></run></par></tablecell></tablerow>
+<tablerow>
+<tablecell borderwidth='0px'>
+<par def='5'>Cédula</par></tablecell>
+<tablecell borderwidth='0px'>
+<par def='6'><run html='true'><computedtext><code event='value'><formula>cedula</formula></code></computedtext></run></par></tablecell></tablerow>
+<tablerow>
+<tablecell borderwidth='0px'>
+<par def='5'>Correo</par></tablecell>
+<tablecell borderwidth='0px'>
+<par def='6'><run html='true'><computedtext><code event='value'><formula>correo</formula></code></computedtext></run></par></tablecell></tablerow>
+<tablerow>
+<tablecell borderwidth='0px'>
+<par def='5'>Gerencia</par></tablecell>
+<tablecell borderwidth='0px'>
+<par def='6'><run html='true'><computedtext><code event='value'><formula>gerencia</formula></code></computedtext></run></par></tablecell></tablerow>
+<tablerow>
+<tablecell borderwidth='0px'>
+<par def='5'>Cargo</par></tablecell>
+<tablecell borderwidth='0px'>
+<par def='6'><run html='true'><computedtext><code event='value'><formula>cargo</formula></code></computedtext></run></par></tablecell></tablerow>
+<tablerow>
+<tablecell borderwidth='0px'>
+<par def='5'>Fecha de ingreso</par></tablecell>
+<tablecell borderwidth='0px'>
+<par def='6'><run html='true'><computedtext><code event='value'><formula>fechaIngreso</formula></code></computedtext></run></par></tablecell></tablerow>
+<tablerow>
+<tablecell borderwidth='0px'>
+<par def='5'>Jefe</par></tablecell>
+<tablecell borderwidth='0px'>
+<par def='6'><field type='names' kind='editable' name='jefe' htmlclass='input-xxlarge'/></par></tablecell></tablerow>
+<tablerow>
+<tablecell borderwidth='0px'>
+<par def='5'>Dias</par></tablecell>
+<tablecell borderwidth='0px'>
+<par def='6'><field type='keyword' kind='editable' name='jornada' htmlclass='input-xxlarge'><keywords
+ ui='dialoglist'><formula>lista := @DbLookup("":"NoCache";"";"vwProgTodos";"frConfCalamidad";"horarios";[FailSilent]);
+lista := lista+"|"+lista;
+"":lista</formula></keywords></field></par></tablecell></tablerow></table>
+<par def='3'><run html='true'>&lt;br&gt;</run></par>
+<par def='3'><run html='true'>&lt;div align="left"&gt;</run><run html='true'><computedtext
+><code event='value'><formula>nota:=@DbLookup("":"NoCache";"";"vwProgTodos";"frConfCalamidad";"notaSolicitud";[FailSilent]);
+@If(nota != "";"&lt;b&gt;Nota:&lt;/b&gt; "+@Implode(nota;"&lt;br&gt;");"")</formula></code></computedtext></run><run
+ html='true'>&lt;/div&gt;</run></par>
+<par def='3'/><subformref><code event='value'><formula>"sfrFooterBonos"</formula></code></subformref>
+<par def='3'/><subformref><code event='value'><formula>"sfrFooter"</formula></code></subformref>
+<par def='1'/>
+<pardef id='7' leftmargin='1in' tabs='L0.5000in L1in L1.5000in L2in L2.5000in L3in L3.5000in L4in'/>
+<par def='7'><run html='true'>&lt;script src="/</run><run html='true'><computedtext
+><code event='value'><formula>webDbName</formula></code></computedtext></run><run
+ html='true'>/</run><run html='true'>JSFrSolicitudCalamidad</run><run html='true'>?Open&amp;v=1"&gt;&lt;/script&gt;</run></par>
+<par def='1'/></richtext></body>
+<item name='OriginalModTime' sign='true'><datetime>20100916T112413,96-05</datetime></item>
+<item name='fechaElaboracion' summary='false' sign='true'>
+<rawitemdata type='400'>
+AAAAAAAAAAA=
+</rawitemdata></item>
+<item name='fechaInscripcion' summary='false' sign='true'>
+<rawitemdata type='400'>
+AAAAAAAAAAA=
+</rawitemdata></item>
+<item name='fechaAusentismo' summary='false' sign='true'>
+<rawitemdata type='400'>
+AAAAAAAAAAA=
+</rawitemdata></item>
+<item name='horaInicio' summary='false' sign='true'>
+<rawitemdata type='400'>
+AAAAAAAAAAA=
+</rawitemdata></item>
+<item name='horaFin' summary='false' sign='true'>
+<rawitemdata type='400'>
+AAAAAAAAAAA=
+</rawitemdata></item>
+<item name='fechaInicio' summary='false' sign='true'>
+<rawitemdata type='400'>
+AAAAAAAAAAA=
+</rawitemdata></item>
+<item name='fechaFin' summary='false' sign='true'>
+<rawitemdata type='400'>
+AAAAAAAAAAA=
+</rawitemdata></item>
+<item name='fecha' summary='false' sign='true'>
+<rawitemdata type='400'>
+AAAAAAAAAAA=
+</rawitemdata></item>
+<item name='$SubForm_RepIDs' sign='true'><textlist><text>0000000000000000</text><text
+>0000000000000000</text><text>0000000000000000</text><text>0000000000000000</text><text
+>0000000000000000</text></textlist></item>
+<item name='fechaRedencion' summary='false'>
+<rawitemdata type='400'>
+AAAAAAAAAAA=
+</rawitemdata></item>
+<item name='$$ScriptName' summary='false' sign='true'><text>frSolicitudBono</text></item>
+<item name='fechaCreacion' summary='false'>
+<rawitemdata type='400'>
+AAAAAAAAAAA=
+</rawitemdata></item></form>
+

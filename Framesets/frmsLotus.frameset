@@ -1,0 +1,64 @@
+<?xml version='1.0' encoding='utf-8'?>
+<frameset name='frmsLotus' xmlns='http://www.lotus.com/dxl' version='9.0'
+ maintenanceversion='1.9' replicaid='052581670049F6C5' publicaccess='false'
+ designerversion='8.5.3' spacing='0px' borderwidth='11px' bordercolor='none'>
+<noteinfo noteid='156' unid='2CC6AC6079B89A3805257B8A0065D37A' sequence='40'>
+<created><datetime>20130614T133212,74-05</datetime></created>
+<modified><datetime>20170724T082910,78-05</datetime></modified>
+<revised><datetime>20170724T082910,77-05</datetime></revised>
+<lastaccessed><datetime>20170724T082910,78-05</datetime></lastaccessed>
+<addedtofile><datetime>20170724T082753,68-05</datetime></addedtofile></noteinfo>
+<updatedby><name>CN=Admin Desarrollo/O=cognox</name><name>CN=Administrador/O=Hogar</name><name
+>CN=Admin Desarrollo/O=cognox</name><name>CN=Administrador/O=Hogar</name><name
+>CN=Admin Desarrollo/O=cognox</name><name>CN=Administrador Aplicaciones/O=GNCH</name><name
+>CN=Admin Desarrollo/O=cognox</name><name>CN=Administrador Aplicaciones/O=GNCH</name><name
+>CN=Admin Desarrollo/O=cognox</name><name>CN=Administrador Aplicaciones/O=GNCH</name><name
+>CN=Admin Desarrollo/O=cognox</name><name>CN=Administrador Aplicaciones/O=GNCH</name><name
+>CN=Admin Desarrollo/O=cognox</name><name>CN=Administrador Aplicaciones/O=GNCH</name><name
+>CN=Admin Desarrollo/O=cognox</name><name>CN=Administrador Aplicaciones/O=GNCH</name><name
+>CN=Admin Desarrollo/O=cognox</name><name>CN=Administrador/O=Hogar</name><name
+>CN=Admin Desarrollo/O=cognox</name><name>CN=Administrador/O=Hogar</name><name
+>CN=Juan Carlos Gonzalez Arroyave/O=COGNOX</name><name>CN=Admin Desarrollo/O=cognox</name><name
+>CN=Administrador/O=Hogar</name><name>CN=Admin Desarrollo/O=cognox</name><name
+>CN=Administrador/O=Hogar</name><name>CN=Admin Desarrollo/O=cognox</name><name
+>CN=Administrador/O=Hogar</name><name>CN=Admin Desarrollo/O=cognox</name><name
+>CN=Administrador/O=Hogar</name><name>CN=Admin Desarrollo/O=cognox</name><name
+>CN=Administrador Aplicaciones/O=GNCH</name><name>CN=Admin Desarrollo/O=cognox</name><name
+>CN=Administrador Aplicaciones/O=GNCH</name><name>CN=Administrador/O=Hogar</name><name
+>CN=Administrador Aplicaciones/O=GNCH</name><name>CN=Administrador/O=Hogar</name><name
+>CN=Administrador Aplicaciones/O=GNCH</name><name>CN=Admin Desarrollo/O=cognox</name><name
+>CN=Administrador Aplicaciones/O=GNCH</name><name>CN=Admin Desarrollo/O=cognox</name><name
+>CN=Juan Carlos Gonzalez Arroyave/O=COGNOX</name><name>CN=Administrador Notes/O=COGNOX</name><name
+>CN=Admin Desarrollo/O=cognox</name><name>CN=Administrador Notes/O=COGNOX</name><name
+>CN=Admin Desarrollo/O=cognox</name><name>CN=Administrador Aplicaciones/O=GNCH</name><name
+>CN=Admin Desarrollo/O=cognox</name><name>CN=Administrador Aplicaciones/O=GNCH</name><name
+>CN=Admin Desarrollo/O=cognox</name><name>CN=Administrador Aplicaciones/O=GNCH</name><name
+>CN=Admin Desarrollo/O=cognox</name><name>CN=Administrador Aplicaciones/O=GNCH</name><name
+>CN=Admin Desarrollo/O=cognox</name><name>CN=Administrador Aplicaciones/O=GNCH</name><name
+>CN=Admin Desarrollo/O=cognox</name><name>CN=Administrador Aplicaciones/O=GNCH</name><name
+>CN=Admin Desarrollo/O=cognox</name><name>CN=admDllo administrador/O=PREBEL</name><name
+>CN=Admin Desarrollo/O=cognox</name><name>CN=admDllo administrador/O=PREBEL</name><name
+>CN=Contacto Lotus Sistemas SII/OU=Operacion/O=Prebel</name><name>CN=Administrador Aplicaciones/O=GNCH</name><name
+>CN=Admin Desarrollo/O=cognox</name><name>CN=Administrador Aplicaciones/O=GNCH</name><name
+>CN=Admin Desarrollo/O=cognox</name><name>CN=Administrador Aplicaciones/O=GNCH</name><name
+>CN=Admin Desarrollo/O=cognox</name><name>CN=Administrador Aplicaciones/O=GNCH</name><name
+>CN=Admin Desarrollo/O=cognox</name><name>CN=Administrador Aplicaciones/O=GNCH</name><name
+>CN=Admin Desarrollo/O=cognox</name><name>CN=Administrador Aplicaciones/O=GNCH</name><name
+>CN=Admin Desarrollo/O=cognox</name><name>CN=Administrador Aplicaciones/O=GNCH</name><name
+>CN=Admin Desarrollo/O=cognox</name><name>CN=Administrador Aplicaciones/O=GNCH</name><name
+>CN=Admin Desarrollo/O=cognox</name><name>CN=Administrador Aplicaciones/O=GNCH</name><name
+>CN=Admin Desarrollo/O=cognox</name><name>CN=Administrador Aplicaciones/O=GNCH</name><name
+>CN=Admin Desarrollo/O=cognox</name><name>CN=Administrador Aplicaciones/O=GNCH</name><name
+>CN=Admin Desarrollo/O=cognox</name><name>CN=Administrador Aplicaciones/O=GNCH</name><name
+>CN=Admin Desarrollo/O=cognox</name><name>CN=Administrador DEV/O=DEV</name><name
+>CN=Admin Desarrollo/O=cognox</name><name>CN=Administrador DEV/O=DEV</name><name
+>CN=Admin Desarrollo/O=cognox</name><name>CN=Administrador DEV/O=DEV</name><name
+>CN=Administrador Aplicaciones/O=GNCH</name><name>CN=Admin Desarrollo/O=cognox</name><name
+>CN=Administrador Aplicaciones/O=GNCH</name><name>CN=Admin Desarrollo/O=cognox</name><name
+>CN=Administrador Aplicaciones/O=GNCH</name><name>CN=Admin Desarrollo/O=cognox</name><name
+>CN=Administrador Aplicaciones/O=GNCH</name><name>CN=Admin Desarrollo/O=cognox</name><name
+>CN=Administrador Aplicaciones/O=GNCH</name><name>CN=Admin Desarrollo/O=cognox</name><name
+>CN=Administrador Aplicaciones/O=GNCH</name><name>CN=Diego Alexander Velasco Acevedo/O=desarrollo</name></updatedby>
+<wassignedby><name>CN=Diego Alexander Velasco Acevedo/O=desarrollo</name></wassignedby>
+<frame name='frmsLotus'><namedelementlink type='page' name='pgLotus'/></frame></frameset>
+
