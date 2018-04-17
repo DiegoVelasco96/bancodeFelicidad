@@ -2,11 +2,11 @@
 <subform name='Header' alias='sfrHeader' xmlns='http://www.lotus.com/dxl'
  version='9.0' maintenanceversion='1.9' replicaid='0525827200787ED5' designerversion='8.5.3'
  renderpassthrough='true'>
-<noteinfo noteid='27a' unid='A8E1DBB1C4E8942F052582720078F0BE' sequence='7'>
+<noteinfo noteid='27a' unid='A8E1DBB1C4E8942F052582720078F0BE' sequence='9'>
 <created><datetime>20180417T170059,50-05</datetime></created>
-<modified><datetime>20180417T173230,23-05</datetime></modified>
-<revised><datetime>20180417T173230,22-05</datetime></revised>
-<lastaccessed><datetime>20180417T173230,23-05</datetime></lastaccessed>
+<modified><datetime>20180417T173709,37-05</datetime></modified>
+<revised><datetime>20180417T173709,36-05</datetime></revised>
+<lastaccessed><datetime>20180417T173709,37-05</datetime></lastaccessed>
 <addedtofile><datetime>20180417T170059,56-05</datetime></addedtofile></noteinfo>
 <updatedby><name>CN=Diego Alejandro Romero/O=desarrollo</name></updatedby>
 <wassignedby><name>CN=Diego Alejandro Romero/O=desarrollo</name></wassignedby>
@@ -54,8 +54,8 @@ archivo:=@DbLookup("":"NoCache";"";"vwProgAnexos";unique+"ANE2";"archivo";[FailS
 <par def='5'><run html='true'><font color='maroon'/>                                           </run><run
  html='true'><font color='blue'/>&lt;li class="dropdown-submenu"&gt;&lt;a href="javascript:void(0)"&gt; Solicitudes &lt;/a&gt;</run></par>
 <par def='5'><run html='true'><font color='blue'/>								&lt;ul class="dropdown-menu"&gt;</run></par>
-<par def='5'><run html='true'><font color='blue'/>									&lt;li&gt;&lt;a href="</run><run
- html='true'><font color='blue'/>#" onClick="abrirRuta('frConfBonoTiempo?Open')"&gt;Bonos de tiempo&lt;/a&gt;&lt;/li&gt;</run></par>
+<par def='5'><run html='true'><font color='blue'/>									&lt;li&gt;&lt;a</run><run
+ html='true'><font color='blue'/> href="#" onClick="abrirRuta('frConfBonoTiempo?Open')"&gt;Bonos de tiempo&lt;/a&gt;&lt;/li&gt;</run></par>
 <par def='5'><run html='true'><font color='blue'/>									&lt;li&gt;&lt;a href="javascript:void(0)" onClick="abrirRuta('frConfHorarioFlexible?Open')"&gt;Horarios flexibles&lt;/a&gt;&lt;/li&gt;</run></par>
 <par def='5'><run html='true'><font color='blue'/>									&lt;li&gt;&lt;a href="javascript:void(0)" onClick="abrirRuta('</run><run
  html='true'><font color='blue'/>frConfLactancia</run><run html='true'><font
